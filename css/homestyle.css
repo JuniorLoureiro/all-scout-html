@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box; /* Inclui padding e bordas na largura total */
+}
+
 body, html {
     margin: 0;
     padding: 0;
