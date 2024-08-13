@@ -1,0 +1,68 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza verticalmente */
+    background-color: rgb(8, 8, 58);
+}
+
+.top-nav {
+    width: 100%;
+    padding: 3px 20px; /* Adiciona um padding horizontal para o contêiner */
+    background: radial-gradient(circle, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 100%);
+    position: absolute; /* Fica fixo no topo da página */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Para garantir que fique sobre outros elementos */
+}
+
+.top-nav-container {
+    max-width: 1000px; /* Limita a largura do conteúdo */
+    margin: 0 auto; /* Centraliza o contêiner dentro do top-nav */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mini-logo {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centraliza a barra de pesquisa dentro do container */
+    margin: 0 20px; /* Ajuste a margem esquerda e direita */
+}
+
+.search-bar {
+    width: 320px; /* Ajuste a largura conforme necessário */
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 4px;
+    margin-left: 125px;
+}
+
+.favorites, .cart, .account-button {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.favorites img, .cart img {
+    width: 18px; /* Ajuste o tamanho conforme necessário */
+}
+
+.account-button {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 2px solid white;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
