@@ -12,6 +12,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     background-color: #00101E;
+    overflow-x: hidden; /* Remove qualquer rolagem horizontal */
 }
 
 /* Estilo do cabeçalho */
@@ -182,17 +183,20 @@ body, html {
 
 /* Carrossel de Notícias */
 .news-carousel {
-    width: 100%;
-    margin: 50px auto;
+    width: 100vw; /* Garante que ocupe 100% da largura da tela */
+    margin: 0; /* Remove margens para ocupar toda a largura */
+    padding: 0; /* Remove padding para garantir a largura total */
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse o contêiner */
     height: 550px; /* Ajuste a altura conforme necessário */
     border: 1px solid #006eff;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
+/* Configuração dos slides do carrossel */
 .carousel-slide {
     position: absolute;
-    width: 100%;
+    width: 100%; /* Garante que o slide ocupe 100% da largura do carrossel */
     height: 100%; /* Faz com que o slide ocupe toda a altura do carrossel */
     display: flex;
     flex-direction: column; /* Organiza a imagem e o conteúdo em coluna */
@@ -202,13 +206,14 @@ body, html {
     transition: transform 0.5s ease-in-out;
 }
 
+/* Estilo das imagens do carrossel */
 .carousel-slide img {
-    width: 100%;
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 90%; /* Limita a altura da imagem para deixar espaço para o conteúdo */
+    width: 100%; /* Garante que a imagem ocupe 100% da largura do slide */
+    height: 100%; /* Faz com que a imagem ocupe toda a altura do slide */
     object-fit: cover; /* Faz com que a imagem cubra a área sem distorcer */
 }
 
+/* Estilo do conteúdo do carrossel */
 .carousel-content {
     width: 100%;
     background-color: rgb(0, 0, 0);
@@ -219,6 +224,7 @@ body, html {
     box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
+/* Estilo dos títulos e descrições do carrossel */
 .carousel-content h2 {
     margin: 0;
     font-size: 24px;
@@ -240,18 +246,36 @@ body, html {
     text-decoration: underline;
 }
 
+/* Botões de navegação do carrossel */
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
 
 /* Lista de Notícias */
 .news-list {
     max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin: 20px auto; /* Centraliza a lista de notícias */
+    padding: 0 20px; /* Adiciona padding para os lados */
 }
 
 .news-item {
     display: flex;
-    align-items: flex-start;
-    border: 1px solid #006eff;
+    align-items: center; /* Alinha a imagem e o conteúdo verticalmente */
     padding: 20px;
     background-color: black;
 }
@@ -275,7 +299,7 @@ body, html {
 
 .news-content a {
     text-decoration: none;
-    color: #006eff;
+    color: white;
 }
 
 .news-content a:hover {
