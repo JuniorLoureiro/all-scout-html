@@ -4,22 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/homestyle.css">
-    <title>Document</title>
+    <title>Página Principal</title>
 </head>
 <body>
     <header class="top-nav">
         <div class="top-nav-container">
-            <img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo">
+            <!-- Parte esquerda -->
+            <div class="left-nav">
+                <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+                <nav class="main-nav">
+                    <a href="home.html">Início</a>
+                    <a href="#">Clubes</a>
+                    <a href="#">Atletas</a>
+                    <a href="#">Sobre Nós</a>
+                </nav>
+            </div>
+            <!-- Parte central -->
             <div class="search-container">
                 <input type="text" class="search-bar" placeholder="Pesquise...">
             </div>
-            <a href="#" class="favorites">
-                <img src="../images/heart_icon.png" alt="Favoritos">
-            </a>
-            <a href="#" class="account-button">Minha Conta</a>
+            <!-- Parte direita -->
+            <div class="right-nav">
+                <a href="#" class="favorites">
+                    <img src="../images/heart_icon.png" alt="Favoritos">
+                </a>
+                <a href="#" class="account-button">Minha Conta</a>
+            </div>
         </div>
     </header>
 
+    <main class="content-wrapper">
+        <!-- Carrossel de Notícias -->
+        <section class="news-carousel">
+            <div class="carousel-slide">
+                <img src="../images/news/carousel-1.jpg" alt="Notícia 1">
+                <div class="carousel-content">
+                    <h2><a href="noticia1.html">Título da Notícia 1</a></h2>
+                    <p>Descrição breve da notícia 1.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="../images/news/carousel-2.jpg" alt="Notícia 2">
+                <div class="carousel-content">
+                    <h2><a href="noticia2.html">Título da Notícia 2</a></h2>
+                    <p>Descrição breve da notícia 2.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="../images/news/carousel-3.jpg" alt="Notícia 3">
+                <div class="carousel-content">
+                    <h2><a href="noticia3.html">Título da Notícia 3</a></h2>
+                    <p>Descrição breve da notícia 3.</p>
+                </div>
+            </div>
+        </section>  
+
+        <!-- Lista de Notícias -->
+        <section class="news-list">
+            <article class="news-item">
+                <img src="../images/news/carousel-1.jpg" alt="Notícia Thumb 1" class="news-thumb">
+                <div class="news-content">
+                    <h2><a href="noticia4.html">Título da Notícia 4</a></h2>
+                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <img src="../images/news/carousel-2.jpg" alt="Notícia Thumb 2" class="news-thumb">
+                <div class="news-content">
+                    <h2><a href="noticia5.html">Título da Notícia 5</a></h2>
+                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <img src="../images/news/carousel-3.jpg" alt="Notícia Thumb 2" class="news-thumb">
+                <div class="news-content">
+                    <h2><a href="noticia6.html">Título da Notícia 6</a></h2>
+                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <img src="../images/news/carousel-1.jpg" alt="Notícia Thumb 1" class="news-thumb">
+                <div class="news-content">
+                    <h2><a href="noticia4.html">Título da Notícia 4</a></h2>
+                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <img src="../images/news/carousel-2.jpg" alt="Notícia Thumb 2" class="news-thumb">
+                <div class="news-content">
+                    <h2><a href="noticia5.html">Título da Notícia 5</a></h2>
+                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                </div>
+            </article>
+            <article class="news-item">
+                <img src="../images/news/carousel-3.jpg" alt="Notícia Thumb 2" class="news-thumb">
+                <div class="news-content">
+                    <h2><a href="noticia6.html">Título da Notícia 6</a></h2>
+                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                </div>
+            </article>
+        </section>
+    </main>
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -49,8 +134,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 SeuSite. Todos os direitos reservados.</p>
+            <p>&copy; 2024 AllScout. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script src="../js/logica.js"></script>
 </body>
 </html>
