@@ -42,18 +42,19 @@ body, html {
 
 .mini-logo {
     width: 110px;
-    margin-right: 20px; /* Espaço entre a logo e os links */
 }
 
 .main-nav {
     display: flex;
     gap: 15px; /* Espaço entre os links */
+    align-items: center;
 }
 
 .main-nav a {
     color: white;
     text-decoration: none;
     font-size: 16px;
+    white-space: nowrap; /* Impede quebra de linha dentro dos links */
 }
 
 .main-nav a:hover {
