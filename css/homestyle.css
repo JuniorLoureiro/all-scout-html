@@ -427,3 +427,33 @@ body, html {
 .register-button:hover {
     background-color: #0056cc;
 }
+
+/*estilo pagina sobre nos*/
+
+nav{
+    color:white;
+    margin: 5% ;
+}
+#creators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    text-align: center; /* Opcional: centraliza o texto */
+  }
+  
+  .creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha o conteúdo horizontalmente no centro */
+    text-align: center; /* Opcional: centraliza o texto */
+  }
+  
+  .creator img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    height: auto; /* Mantém a proporção da imagem */
+  }
+  
+  h3, p {
+    margin: 0.5em 0; /* Ajuste a margem conforme necessário */
+  }
