@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/homestyle.css">
-    <title>Login</title>
+    <title>Sobre os Criadores</title>
+    <link rel="stylesheet" href="../css/homestyle.css">
+       
 </head>
 <body>
     <header class="top-nav">
@@ -33,28 +34,42 @@
         </div>
     </header>
 
-    <main class="login-wrapper">
-        <div class="login-container">
-            <h2>Login</h2>
-            <form action="/login" method="POST">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="login-button">Entrar</button>
-                </div>
-                <div class="form-footer">
-                    <!-- <p><a href="#">Esqueceu sua senha?</a></p> -->
-                    <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
-                </div>
-            </form>
+
+    <nav>
+    
+
+    <section id="home">
+        <h1>Bem-vindo ao Projeto All-Scout</h1>
+        <p>Escrever alguma coisa.</p>
+    </section>
+
+    <section id="about">
+        <h2>Sobre o Projeto</h2>
+        <p>
+            Descição:
+            O All-Scout é um projeto dedicado à análise abrangente e detalhada do futebol,
+            focado em explorar e destacar o talento de jogadores de todas as divisões e 
+            categorias. A plataforma oferece uma visão global das habilidades e desempenhos
+            dos jogadores, desde as categorias de base até as principais ligas profissionais.
+            Com uma abordagem imparcial e criteriosa, o All-Scout busca ser uma referência
+            para técnicos, olheiros, e entusiastas do futebol, ajudando na descoberta e
+            valorização de novos talentos.
+            <p>
+           
+            Obetivo:
+            O All Scout foi criado para oferecer uma solução que facilita o acesso aos dados esportivos para o público geral.
+            Empresários, dirigentes, e até mesmo amantes do futebol podem se beneficiar de uma plataforma que centraliza e
+            automatiza a coleta e a análise de dados de forma simples e intuitiva..</p>
+    </section>
+
+    <section id="creators">
+        <div class="creator">
+            <img src="../images/logo.png" alt="Foto do Criador 1">
+            <h3>Davi Santos, Gelson Junior, Lucas Laner, Mateus Assumpção e Lucas Roppa</h3>
+            <p>Todos os 5 eram colegas na Instituição de ensino Senac Tech do Curso de Técnico de Desenvolvimento de Sistemas, e tiveram a ideia do All-Scout como projeto Integrador.</p>
         </div>
-    </main>
+    </section>
+    </nav>
 
     <footer class="site-footer">
         <div class="footer-container">
@@ -85,7 +100,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 SeuSite. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Seu Site. Todos os direitos reservados.</p>
         </div>
     </footer>
 </body>

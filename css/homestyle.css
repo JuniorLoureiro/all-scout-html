@@ -42,18 +42,19 @@ body, html {
 
 .mini-logo {
     width: 110px;
-    margin-right: 20px; /* Espaço entre a logo e os links */
 }
 
 .main-nav {
     display: flex;
     gap: 15px; /* Espaço entre os links */
+    align-items: center;
 }
 
 .main-nav a {
     color: white;
     text-decoration: none;
     font-size: 16px;
+    white-space: nowrap; /* Impede quebra de linha dentro dos links */
 }
 
 .main-nav a:hover {
@@ -188,8 +189,7 @@ body, html {
     padding: 0; /* Remove padding para garantir a largura total */
     position: relative;
     overflow: hidden; /* Garante que o conteúdo não ultrapasse o contêiner */
-    height: 550px; /* Ajuste a altura conforme necessário */
-    border: 1px solid #006eff;
+    height: 600px; /* Ajuste a altura conforme necessário */
     box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
@@ -218,7 +218,6 @@ body, html {
     width: 100%;
     background-color: rgb(0, 0, 0);
     padding: 10px 20px;
-    border-top: 1px solid #006eff;
     text-align: center;
     color: white;
     box-sizing: border-box; /* Inclui padding e border na largura total */
@@ -250,12 +249,15 @@ body, html {
 .carousel-prev, .carousel-next {
     position: absolute;
     top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente */
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 15px; /* Aumenta o tamanho do padding para dar mais espaço para as setas */
     cursor: pointer;
     z-index: 1000;
+    font-size: 24px; /* Aumenta o tamanho da fonte para as setas serem mais visíveis */
+    border-radius: 5px;
 }
 
 .carousel-prev {
@@ -501,3 +503,32 @@ aside {
     align-items: center;
     height: 100vh;
 }
+
+/*estilo pagina sobre nos*/
+nav{
+    color:white;
+    margin: 5% ;
+}
+#creators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+    text-align: center; /* Opcional: centraliza o texto */
+  }
+  
+  .creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha o conteúdo horizontalmente no centro */
+    text-align: center; /* Opcional: centraliza o texto */
+  }
+  
+  .creator img {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
+    height: auto; /* Mantém a proporção da imagem */
+  }
+  
+  h3, p {
+    margin: 0.5em 0; /* Ajuste a margem conforme necessário */
+  }
