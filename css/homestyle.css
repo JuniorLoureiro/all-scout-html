@@ -189,7 +189,7 @@ body, html {
     padding: 0; /* Remove padding para garantir a largura total */
     position: relative;
     overflow: hidden; /* Garante que o conteúdo não ultrapasse o contêiner */
-    height: 550px; /* Ajuste a altura conforme necessário */
+    height: 600px; /* Ajuste a altura conforme necessário */
     box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
@@ -249,12 +249,15 @@ body, html {
 .carousel-prev, .carousel-next {
     position: absolute;
     top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente */
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 15px; /* Aumenta o tamanho do padding para dar mais espaço para as setas */
     cursor: pointer;
     z-index: 1000;
+    font-size: 24px; /* Aumenta o tamanho da fonte para as setas serem mais visíveis */
+    border-radius: 5px;
 }
 
 .carousel-prev {
