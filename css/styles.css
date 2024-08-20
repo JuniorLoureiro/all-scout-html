@@ -496,6 +496,7 @@ body, html {
 .btn:hover {
     background-color: #0056b3;
 }
+
 aside {
     margin-top: 100px;
     display: flex;
@@ -504,31 +505,83 @@ aside {
     height: 100vh;
 }
 
-/*estilo pagina sobre nos*/
+/* Estilo da página sobre nós*/
 nav{
     color:white;
     margin: 5% ;
 }
+
 #creators {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Ajuste a altura conforme necessário */
     text-align: center; /* Opcional: centraliza o texto */
-  }
+}
   
-  .creator {
+.creator {
     display: flex;
     flex-direction: column;
     align-items: center; /* Alinha o conteúdo horizontalmente no centro */
     text-align: center; /* Opcional: centraliza o texto */
-  }
+}
   
-  .creator img {
+.creator img {
     max-width: 100%; /* Garante que a imagem não ultrapasse o container */
     height: auto; /* Mantém a proporção da imagem */
-  }
+}
   
-  h3, p {
+h3, p {
     margin: 0.5em 0; /* Ajuste a margem conforme necessário */
-  }
+}
+
+/* Estilo exibir atleta */
+.content-wrapper-atleta {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 20px;
+    background-color: #002244;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+}
+
+h1 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 20px;
+}
+
+.player-info, .player-stats {
+    margin-bottom: 30px;
+}
+
+.player-info h2, .player-stats h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.player-info p, .player-stats p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.player-info img {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+    height: 140px;
+    width: 150px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.player-info label, .player-stats label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+}
