@@ -555,7 +555,7 @@ h3, p {
     max-width: 1000px;
     margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
     padding: 20px;
-    background-color: #002244;
+    background-color: black;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
@@ -587,10 +587,11 @@ h1 {
     display: block;
     margin: 0 auto;
     max-width: 200px;
-    height: 140px;
-    width: 150px;
-    border-radius: 8px;
+    height: 200px;
+    width: 190px;
+    border-radius: 5px;
     margin-bottom: 20px;
+    border: 2px solid #006eff;
 }
 
 .player-info label, .player-stats label {
@@ -617,7 +618,7 @@ label {
     max-width: 1000px;
     margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
     padding: 20px;
-    background-color: #002244;
+    background-color: black;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
