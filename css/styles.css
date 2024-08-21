@@ -598,3 +598,111 @@ h1 {
     width: 200px;
     font-weight: bold;
 }
+/*css exibição de clubes*/
+body, html, .club-info, .club-titles, .club-squad, .club-history {
+    color: white;
+}
+
+.club-info h2, .club-titles h2, .club-squad h2, .club-history h2 {
+    color: #006eff; /* Mantém a cor do título em azul */
+}
+
+label {
+    color: #1c31f0; /* Mantém a cor do label em azul */
+    font-weight: bold;
+}
+.content-wrapper-club {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 20px;
+    background-color: #002244;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+}
+
+/* Cabeçalho do clube */
+.club-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.club-logo {
+    width: 200px;
+    height: 230px;
+    border-radius: 8px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+.stadium-photo{
+    width: 700px;
+    height: 225px;
+    border-radius: 8px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+/* Divisão das informações gerais, títulos e estatísticas */
+.club-details {
+    display: flex;
+    align-items: flex-start;
+}
+
+.left-info, .middle-info, .right-info {
+    flex: 1;
+    padding: 0 20px;
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.left-info, .middle-info {
+    border-right: 2px solid #006eff;
+}
+
+.middle-info {
+    border-left: 2px solid #006eff;
+    border-right: 2px solid #006eff;
+}
+
+.right-info {
+    border-left: 2px solid #006eff;
+}
+
+/* Estilo do título */
+h1 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 20px;
+}
+
+/* Estilo da linha horizontal */
+.horizontal-line {
+    border: none;
+    border-top: 2px solid #006eff;
+    margin: 20px 0;
+}
+
+/* Estilo das seções */
+.club-section {
+    margin-bottom: 30px;
+}
+
+.club-section h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.club-section p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.club-section label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    color: #006eff; /* Cor do label em azul */
+}
