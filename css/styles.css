@@ -277,16 +277,29 @@ body, html {
 
 .news-item {
     display: flex;
-    align-items: center; /* Alinha a imagem e o conteúdo verticalmente */
     padding: 20px;
     background-color: black;
+    position: relative; /* Necessário para posicionar a linha */
+}
+
+.news-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Posiciona a linha no fundo do item */
+    left: 2%; /* Define a margem esquerda */
+    width: 96%; /* Define a largura da linha */
+    height: 2px; /* Espessura da linha */
+    background-color: #006eff; /* Cor da linha */
+}
+
+.news-item:last-child::after {
+    content: none; /* Remove a linha após a última notícia */
 }
 
 .news-thumb {
-    width: 150px;
-    height: 100px;
+    width: 220px;
+    height: 130px;
     margin-right: 20px;
-    border-radius: 8px;
 }
 
 .news-content h2 {
