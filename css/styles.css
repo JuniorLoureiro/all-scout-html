@@ -619,43 +619,52 @@ label {
     color: #1c31f0; /* Mantém a cor do label em azul */
     font-weight: bold;
 }
-.content-wrapper-club {
+/*.content-wrapper-club {
     flex: 1;
     width: 100%;
-    max-width: 1000px;
+    max-width: 600px;
     margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
-    padding: 20px;
+    /*padding: 15px;
     background-color: black;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
-}
+/*}
+
+
 
 /* Cabeçalho do clube */
 .club-header {
+    width: 100%;
+    height: 200px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 .club-logo {
     width: 200px;
-    height: 230px;
+    height: 200px;
+    margin-left: auto;
     border-radius: 8px;
     object-fit: cover; /* Mantém a proporção da imagem */
 }
 .stadium-photo{
     width: 700px;
-    height: 225px;
+    height: 200px;
+    margin-left: 10px;
     border-radius: 8px;
     object-fit: cover; /* Mantém a proporção da imagem */
 }
 
-/* Divisão das informações gerais, títulos e estatísticas */
 .club-details {
     display: flex;
-    align-items: flex-start;
+    width: 900px;
+    height: 400px;
+    background-color: black;  /* Apenas para visualização */
+    margin-left: 10px ;          /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
 }
 
 .left-info, .middle-info, .right-info {
@@ -687,8 +696,8 @@ h1 {
 /* Estilo da linha horizontal */
 .horizontal-line {
     border: none;
-    border-top: 2px solid #006eff;
-    margin: 20px 0;
+    border-top: 5px solid #006eff;
+    
 }
 
 /* Estilo das seções */
@@ -715,36 +724,88 @@ h1 {
     color: #006eff; /* Cor do label em azul */
 }
 
-/* Estilo para acessibilidade de fonte*/
-/* Estilizando os botões de controle de fonte */
-.font-controls {
-    position: fixed;
-    top: 10%;
-    right: 25px;
+.exibe-time {
     display: flex;
-    gap: 5px;
-    z-index: 1000; /* Certifique-se de que está acima de outros conteúdos */
+    width: 100%;
+    max-width: 1600px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 10px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
 }
 
-.font-controls button {
-    background-color: #fff;
-    border: 2px solid black;
-    border-radius: 4px;
-    padding: 5px 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+.club-details-players {
+    display: flex;    
+    width: 400px;
+    height: 500px;
+    background-color: black;  /* Apenas para visualização */
+    margin-right: 10px;          /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
 }
 
-.font-controls button:focus {
-    outline: 2px solid rgb(25, 135, 84); /* Destaque ao focar */
+.info-players {
+    
+    width: 800px;
+    height: 200px;
+    background-color: black;  /* Apenas para visualização */        /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
 }
 
-/* Tamanhos de fonte ajustáveis */
-body.large-font {
-    font-size: 18px;
+.scrollable-buttons {
+    max-height: 350px; /* Altura máxima do contêiner */
+    overflow-y: auto; /* Habilita a rolagem vertical */
+    padding: 3px; /* Espaçamento interno */
+    border: 1px solid black; /* Borda para visualização */
+    border-radius: 8px; /* Arredonda os cantos */
+    width: 550px; /* Largura do contêiner */
+    
+    background-color: black;
 }
 
-body.extra-large-font {
-    font-size: 20px;
+.custom-button {
+    display: block; /* Faz o botão ocupar a largura completa */
+    width: 100%; /* Garante que o botão ocupe toda a largura do contêiner */
+    height: 60px;
+    margin-bottom: 8px; /* Espaçamento entre os botões */
+    padding: 10px; /* Espaçamento interno do botão */
+    background-color: #007bff; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Arredonda os cantos */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    text-align: left; /* Centraliza o texto no botão */
+    font-size: 20px; /* Ajuste do tamanho da fonte, se necessário */
+}
+
+.custom-button:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+   
+}
+
+.button-icon {
+    width: 45px; /* Tamanho da imagem */
+    height: 50px;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+    border-spacing: 25px; /* Adiciona espaçamento entre as células da tabela */
+}
+
+td {
+    vertical-align: top; /* Alinha o conteúdo ao topo das células */
+}
+
+.tituloClube {
+    text-align: left;
+    color: #006eff;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-top: 70px;
+    font-size: 50px;
+    
 }
