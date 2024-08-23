@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <title>Login</title>
+    <title>Informações time</title>
+    <link rel="stylesheet" href="../css/styles.css"> <!-- Inclua o seu arquivo CSS -->
 </head>
 <body>
+
+    <!-- Barra de Navegação -->
     <header class="top-nav">
         <div class="top-nav-container">
             <!-- Parte esquerda -->
@@ -37,30 +39,58 @@
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
-
-    <main class="login-wrapper">
-        <div class="login-container">
-            <h2>Login</h2>
-            <form action="/login" method="POST">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+   
+    <!-- Conteúdo Principal -->
+    <main class="content-wrapper-club">
+        <h1>Informações do Clube</h1>
+    
+        <!-- Informações do Clube -->
+        <section class="club-info">
+            <div class="club-header">
+                <img src="../images/TIMES/madrid.jpg" alt="Escudo do Clube" class="club-logo">
+                <img src="../images/TIMES/bernabeu.jpg" alt="Foto do Estádio" class="stadium-photo">
+            </div>
+            <hr class="horizontal-line">
+    
+            <div class="club-details">
+                <div class="left-info">
+                    <h2>Informações Gerais</h2>
+                    <p><label>Nome do Clube:</label> FC Bayern München</p>
+                    <p><label>Fundação:</label> 1900</p>
+                    <p><label>Estádio:</label> Allianz Arena</p>
+                    <p><label>Capacidade:</label> 75.024</p>
+                    <p><label>Presidente:</label> Jan-Christian Dreesen</p>
+                    <p><label>Treinador:</label> Vincent Kompany</p>
+                    <p><label>Localização:</label> Munique, Alemanha</p>
+                    <p><label>Capitão:</label> Manuel Neuer</p>
+                    <p><label>Tamanho do elenco</label> 35 jogadores</p>
                 </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
+                <div class="divider"></div>
+                <div class="middle-info">
+                    <h2>Títulos Conquistados</h2>
+                    <p><label>Títulos Internacionais:</label> 14</p>
+                    <p><label>Títulos Nacionais:</label> 69</p>
+                    <p><label>Títulos continentais:</label> 10</p>
+                    <p><label>Títulos Municipais:</label> 12</p>
+                    <p><label>Títulos Mundiais:</label> 4</p>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="login-button">Entrar</button>
+                <div class="divider"></div>
+                <div class="right-info">
+                    <h2>Estatísticas da Temporada</h2>
+                    <p><label>Jogos Disputados:</label> 2</p>
+                    <p><label>Vitórias:</label> 2</p>
+                    <p><label>Empates:</label> 0</p>
+                    <p><label>Derrotas:</label> 0</p>
+                    <p><label>Gols Marcados:</label> 8</p>
+                    <p><label>Gols Sofridos:</label> 0</p>
+                    <p><label>Pontos na liga:</label> 3</p>
                 </div>
-                <div class="form-footer">
-                    <!-- <p><a href="#">Esqueceu sua senha?</a></p> -->
-                    <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
-                </div>
-            </form>
-        </div>
+            </div>
+        </section>
     </main>
 
+
+    <!-- Rodapé -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">

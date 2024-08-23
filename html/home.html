@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/homestyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <title>Página Principal</title>
 </head>
 <body>
@@ -14,9 +14,9 @@
                 <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
                 <nav class="main-nav">
                     <a href="home.html">Início</a>
-                    <a href="#">Clubes</a>
-                    <a href="#">Atletas</a>
-                    <a href="#">Sobre Nós</a>
+                    <a href="clubes.html">Clubes</a>
+                    <a href="atletas.html">Atletas</a>
+                    <a href="sobrenos.html">Sobre Nós</a>
                 </nav>
             </div>
             <!-- Parte central -->
@@ -32,6 +32,11 @@
             </div>
         </div>
     </header>
+
+    <div class="font-controls">
+        <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
+    </div>
 
     <main class="content-wrapper">
         <!-- Carrossel de Notícias -->
@@ -58,46 +63,46 @@
                 </div>
             </div>
         
-            <!-- Adicione os botões de navegação ao HTML -->
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
+            <!-- Botões de navegação do carrossel -->
+            <button class="carousel-prev">‹</button>
+            <button class="carousel-next">›</button>
         </section>
     
         <!-- Lista de Notícias -->
         <section class="news-list">
             <article class="news-item">
-                <a href="noticia4.html"><img src="../images/news/carousel-1.jpg" alt="Notícia Thumb 1" class="news-thumb"></a>
+                <a href="https://ge.globo.com/futebol/times/atletico-mg/noticia/2024/08/20/torcida-do-atletico-mg-faz-mosaico-contra-o-san-lorenzo-nao-ao-racismo.ghtml" target="_blank"><img src="../images/news/noticia-4.avif" alt="Notícia Thumb 1" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="noticia4.html">Título da Notícia 4</a></h2>
-                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                    <h2><a href="https://ge.globo.com/futebol/times/atletico-mg/noticia/2024/08/20/torcida-do-atletico-mg-faz-mosaico-contra-o-san-lorenzo-nao-ao-racismo.ghtml" target="_blank">Torcida do Atlético-MG faz mosaico contra o San Lorenzo: "Não ao racismo"</a></h2>
+                    <p>Partida pela Libertadores, na Arena MRV, tem mosaico em manifestação contra o racismo</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="noticia5.html"><img src="../images/news/carousel-2.jpg" alt="Notícia Thumb 2" class="news-thumb"></a>
+                <a href="https://ge.globo.com/futebol/times/fluminense/noticia/2024/08/21/artilharia-troca-de-bracadeira-e-penalti-thiago-silva-vive-noite-de-lider-em-classificacao-do-fluminense.ghtml" target="_blank"><img src="../images/news/noticia-5.avif" alt="Notícia Thumb 2" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="noticia5.html">Título da Notícia 5</a></h2>
-                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                    <h2><a href="https://ge.globo.com/futebol/times/fluminense/noticia/2024/08/21/artilharia-troca-de-bracadeira-e-penalti-thiago-silva-vive-noite-de-lider-em-classificacao-do-fluminense.ghtml" target="_blank">Thiago Silva conta por que decidiu bater pênalti em vaga do Fluminense</a></h2>
+                    <p>Mano vê frieza nos pênaltis e prevê "efeito positivo" em recuperação no Brasileiro</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="noticia6.html"><img src="../images/news/carousel-3.jpg" alt="Notícia Thumb 3" class="news-thumb"></a>
+                <a href="https://ge.globo.com/futebol/times/corinthians/noticia/2024/08/20/corinthians-faz-proposta-ao-west-ham-para-contratar-zagueiro-luizao.ghtml"  target="_blank"><img src="../images/news/noticia-6.avif" alt="Notícia Thumb 3" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="noticia6.html">Título da Notícia 6</a></h2>
-                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                    <h2><a href="https://ge.globo.com/futebol/times/corinthians/noticia/2024/08/20/corinthians-faz-proposta-ao-west-ham-para-contratar-zagueiro-luizao.ghtml"  target="_blank">Corinthians faz proposta ao West Ham para contratar zagueiro Luizão</a></h2>
+                    <p>Clube inglês aceita emprestar o jogador e negocia condições para venda em 2025</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="noticia7.html"><img src="../images/news/carousel-1.jpg" alt="Notícia Thumb 1" class="news-thumb"></a>
+                <a href="https://ge.globo.com/sp/tem-esporte/futebol/brasileirao-serie-b/jogo/20-08-2024/novorizontino-ituano.ghtml" target="_blank"><img src="../images/news/noticia-7.avif" alt="Notícia Thumb 1" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="noticia7.html">Título da Notícia 7</a></h2>
-                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                    <h2><a href="https://ge.globo.com/sp/tem-esporte/futebol/brasileirao-serie-b/jogo/20-08-2024/novorizontino-ituano.ghtml" target="_blank">Novorizontino bate Ituano e dorme na liderança</a></h2>
+                    <p>Lucca fez o único gol do jogo</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="noticia8.html"><img src="../images/news/carousel-2.jpg" alt="Notícia Thumb 2" class="news-thumb"></a>
+                <a href="https://ge.globo.com/futebol/selecao-brasileira/noticia/2024/08/20/eliminatorias-cbf-anuncia-brasil-x-peru-no-mane-garrincha-em-brasilia.ghtml"  target="_blank"><img src="../images/news/noticia-8.avif" alt="Notícia Thumb 2" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="noticia8.html">Título da Notícia 8</a></h2>
-                    <p>Resumo breve da notícia para atrair os leitores.</p>
+                    <h2><a href="https://ge.globo.com/futebol/selecao-brasileira/noticia/2024/08/20/eliminatorias-cbf-anuncia-brasil-x-peru-no-mane-garrincha-em-brasilia.ghtml"  target="_blank">CBF anuncia Brasil x Peru no Mané Garrincha, pelas Eliminatórias</a></h2>
+                    <p>Seleção jogará na capital federal sua partida como mandante da rodada de outubro do torneio</p>
                 </div>
             </article>
         </section>
@@ -107,11 +112,11 @@
         <div class="footer-container">
             <div class="footer-section">
                 <h4>Sobre Nós</h4>
-                <p>Informações sobre a empresa, história e missão.</p>
+                <p>Informações sobre a AllScout, história e missão.</p>
             </div>
             <div class="footer-section">
                 <h4>Contato</h4>
-                <p>Email: contato@exemplo.com</p>
+                <p>Email: contato@allscout.com</p>
                 <p>Telefone: (00) 1234-5678</p>
             </div>
             <div class="footer-section">
@@ -125,9 +130,9 @@
             <div class="footer-section">
                 <h4>Siga-nos</h4>
                 <div class="social-media-icons">
-                    <a href="#"><img src="../images/facebook_icon.png" alt="Facebook"></a>
-                    <a href="#"><img src="../images/instagram_icon.png" alt="Instagram"></a>
-                    <a href="#"><img src="../images/twitter_icon.png" alt="Twitter"></a>
+                    <a href="https://www.facebook.com" target="_blank"><img src="../images/facebook_icon.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="../images/instagram_icon.png" alt="Instagram"></a>
+                    <a href="https://www.x.com" target="_blank"><img src="../images/twitter_icon.png" alt="Twitter"></a>
                 </div>
             </div>
         </div>
@@ -136,6 +141,16 @@
         </div>
     </footer>
 
-    <script src="../js/logica.js"></script>
+    <!-- Inclui o VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="../js/vlibras.js"></script>
+    <script src="../js/carousel.js"></script>
+    <script src="../js/fontAccessibility.js"></script>
 </body>
 </html>

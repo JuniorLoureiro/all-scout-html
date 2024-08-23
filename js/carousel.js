@@ -1,3 +1,4 @@
+// Script para ativar o Carrossel
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
 const totalSlides = slides.length;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre os Criadores</title>
-    <link rel="stylesheet" href="../css/homestyle.css">
+    <link rel="stylesheet" href="../css/styles.css">
        
 </head>
 <body>
@@ -15,9 +15,9 @@
                 <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
                 <nav class="main-nav">
                     <a href="home.html">Início</a>
-                    <a href="#">Clubes</a>
-                    <a href="#">Atletas</a>
-                    <a href="#">Sobre Nós</a>
+                    <a href="clubes.html">Clubes</a>
+                    <a href="atletas.html">Atletas</a>
+                    <a href="sobrenos.html">Sobre Nós</a>
                 </nav>
             </div>
             <!-- Parte central -->
@@ -29,10 +29,11 @@
                 <a href="#" class="favorites">
                     <img src="../images/heart_icon.png" alt="Favoritos">
                 </a>
-                <a href="#" class="account-button">Minha Conta</a>
+                <a href="login.html" class="account-button">Minha Conta</a>
             </div>
         </div>
     </header>
+  
     <nav>
     <section id="home">
         <center><h1>Bem-vindo ao Projeto All-Scout</h1></center>
@@ -76,17 +77,18 @@
            </p>
         </div>
     </selection>
+  
     </nav>
 
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">
                 <h4>Sobre Nós</h4>
-                <p>Informações sobre a empresa, história e missão.</p>
+                <p>Informações sobre a AllScout, história e missão.</p>
             </div>
             <div class="footer-section">
                 <h4>Contato</h4>
-                <p>Email: contato@exemplo.com</p>
+                <p>Email: contato@allscout.com</p>
                 <p>Telefone: (00) 1234-5678</p>
             </div>
             <div class="footer-section">
@@ -100,15 +102,26 @@
             <div class="footer-section">
                 <h4>Siga-nos</h4>
                 <div class="social-media-icons">
-                    <a href="#"><img src="../images/facebook_icon.png" alt="Facebook"></a>
-                    <a href="#"><img src="../images/instagram_icon.png" alt="Instagram"></a>
-                    <a href="#"><img src="../images/twitter_icon.png" alt="Twitter"></a>
+                    <a href="https://www.facebook.com" target="_blank"><img src="../images/facebook_icon.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="../images/instagram_icon.png" alt="Instagram"></a>
+                    <a href="https://www.x.com" target="_blank"><img src="../images/twitter_icon.png" alt="Twitter"></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Seu Site. Todos os direitos reservados.</p>
+            <p>&copy; 2024 AllScout. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- Inclui o VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="../js/vlibras.js"></script>
+    <script src="../js/fontAccessibility.js"></script>
 </body>
 </html>

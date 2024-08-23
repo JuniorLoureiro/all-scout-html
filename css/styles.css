@@ -42,18 +42,19 @@ body, html {
 
 .mini-logo {
     width: 110px;
-    margin-right: 20px; /* Espaço entre a logo e os links */
 }
 
 .main-nav {
     display: flex;
     gap: 15px; /* Espaço entre os links */
+    align-items: center;
 }
 
 .main-nav a {
     color: white;
     text-decoration: none;
     font-size: 16px;
+    white-space: nowrap; /* Impede quebra de linha dentro dos links */
 }
 
 .main-nav a:hover {
@@ -188,7 +189,7 @@ body, html {
     padding: 0; /* Remove padding para garantir a largura total */
     position: relative;
     overflow: hidden; /* Garante que o conteúdo não ultrapasse o contêiner */
-    height: 550px; /* Ajuste a altura conforme necessário */
+    height: 600px; /* Ajuste a altura conforme necessário */
     box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
@@ -248,12 +249,15 @@ body, html {
 .carousel-prev, .carousel-next {
     position: absolute;
     top: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%); /* Centraliza verticalmente */
+    background-color: rgb(0, 0, 0);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 15px; /* Aumenta o tamanho do padding para dar mais espaço para as setas */
     cursor: pointer;
     z-index: 1000;
+    font-size: 24px; /* Aumenta o tamanho da fonte para as setas serem mais visíveis */
+    border-radius: 5px;
 }
 
 .carousel-prev {
@@ -273,16 +277,29 @@ body, html {
 
 .news-item {
     display: flex;
-    align-items: center; /* Alinha a imagem e o conteúdo verticalmente */
     padding: 20px;
     background-color: black;
+    position: relative; /* Necessário para posicionar a linha */
+}
+
+.news-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* Posiciona a linha no fundo do item */
+    left: 2%; /* Define a margem esquerda */
+    width: 96%; /* Define a largura da linha */
+    height: 2px; /* Espessura da linha */
+    background-color: #006eff; /* Cor da linha */
+}
+
+.news-item:last-child::after {
+    content: none; /* Remove a linha após a última notícia */
 }
 
 .news-thumb {
-    width: 150px;
-    height: 100px;
+    width: 220px;
+    height: 130px;
     margin-right: 20px;
-    border-radius: 8px;
 }
 
 .news-content h2 {
@@ -326,15 +343,21 @@ body, html {
 .login-container h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: black;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
+.form-footer p {
+    color: black;
+}
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    color: black;
 }
 
 .form-group input {
@@ -395,6 +418,7 @@ body, html {
 .register-container h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: black;
 }
 
 .form-group {
@@ -428,32 +452,299 @@ body, html {
     background-color: #0056cc;
 }
 
-/*estilo pagina sobre nos*/
+/* Contêiner dos cards */
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
 
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards se movam para a linha de baixo, se necessário */
+    justify-content: space-between; /* Espaçamento igual entre os cards */
+    margin: 0 -10px; /* Espaçamento negativo para compensar o padding nos cards */
+}
+
+.col-md-3 {
+    flex: 0 0 23%; /* Ajuste o tamanho da coluna */
+    max-width: 23%;
+    margin-bottom: 20px; /* Espaçamento entre as linhas de cards */
+    padding: 0 10px; /* Espaçamento horizontal entre os cards */
+}
+
+.card {
+    width: 290px; /* Garante que o card ocupe a largura completa da coluna */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 335px; /* Altura fixa para os cards */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+aside {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo da página sobre nós*/
 nav{
     color:white;
     margin: 5% ;
 }
+
 #creators {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Ajuste a altura conforme necessário */
     text-align: center; /* Opcional: centraliza o texto */
-  }
+}
   
-  .creator {
+.creator {
     display: flex;
     flex-direction: column;
     align-items: center; /* Alinha o conteúdo horizontalmente no centro */
     text-align: center; /* Opcional: centraliza o texto */
-  }
+}
   
-  .creator img {
+.creator img {
     max-width: 100%; /* Garante que a imagem não ultrapasse o container */
     height: auto; /* Mantém a proporção da imagem */
-  }
+}
   
-  h3, p {
+h3, p {
     margin: 0.5em 0; /* Ajuste a margem conforme necessário */
-  }
+}
+
+/* Estilo exibir atleta */
+.content-wrapper-atleta {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+}
+
+h1 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 20px;
+}
+
+.player-info, .player-stats {
+    margin-bottom: 30px;
+}
+
+.player-info h2, .player-stats h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.player-info p, .player-stats p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.player-info img {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+    height: 200px;
+    width: 190px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #006eff;
+}
+
+.player-info label, .player-stats label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+}
+/*css exibição de clubes*/
+body, html, .club-info, .club-titles, .club-squad, .club-history {
+    color: white;
+}
+
+.club-info h2, .club-titles h2, .club-squad h2, .club-history h2 {
+    color: #006eff; /* Mantém a cor do título em azul */
+}
+
+label {
+    color: #1c31f0; /* Mantém a cor do label em azul */
+    font-weight: bold;
+}
+.content-wrapper-club {
+    flex: 1;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 93px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Adicionado espaçamento entre a content-wrapper e o footer */
+}
+
+/* Cabeçalho do clube */
+.club-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.club-logo {
+    width: 200px;
+    height: 230px;
+    border-radius: 8px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+.stadium-photo{
+    width: 700px;
+    height: 225px;
+    border-radius: 8px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+/* Divisão das informações gerais, títulos e estatísticas */
+.club-details {
+    display: flex;
+    align-items: flex-start;
+}
+
+.left-info, .middle-info, .right-info {
+    flex: 1;
+    padding: 0 20px;
+    box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+.left-info, .middle-info {
+    border-right: 2px solid #006eff;
+}
+
+.middle-info {
+    border-left: 2px solid #006eff;
+    border-right: 2px solid #006eff;
+}
+
+.right-info {
+    border-left: 2px solid #006eff;
+}
+
+/* Estilo do título */
+h1 {
+    text-align: center;
+    color: #006eff;
+    margin-bottom: 20px;
+}
+
+/* Estilo da linha horizontal */
+.horizontal-line {
+    border: none;
+    border-top: 2px solid #006eff;
+    margin: 20px 0;
+}
+
+/* Estilo das seções */
+.club-section {
+    margin-bottom: 30px;
+}
+
+.club-section h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.club-section p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.club-section label {
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    color: #006eff; /* Cor do label em azul */
+}
+
+/* Estilo para acessibilidade de fonte*/
+/* Estilizando os botões de controle de fonte */
+.font-controls {
+    position: fixed;
+    top: 10%;
+    right: 25px;
+    display: flex;
+    gap: 5px;
+    z-index: 1000; /* Certifique-se de que está acima de outros conteúdos */
+}
+
+.font-controls button {
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.font-controls button:focus {
+    outline: 2px solid rgb(25, 135, 84); /* Destaque ao focar */
+}
+
+/* Tamanhos de fonte ajustáveis */
+body.large-font {
+    font-size: 18px;
+}
+
+body.extra-large-font {
+    font-size: 20px;
+}
