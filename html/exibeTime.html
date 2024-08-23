@@ -40,18 +40,22 @@
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
    
+
+<main class="exibe-time">
     <!-- Conteúdo Principal -->
-    <main class="content-wrapper-club">
-        <h1>Informações do Clube</h1>
-    
-        <!-- Informações do Clube -->
-        <section class="club-info">
-            <div class="club-header">
-                <img src="../images/TIMES/madrid.jpg" alt="Escudo do Clube" class="club-logo">
-                <img src="../images/TIMES/bernabeu.jpg" alt="Foto do Estádio" class="stadium-photo">
-            </div>
-            <hr class="horizontal-line">
-    
+
+    <section class="club-info">
+        <div class="club-header">
+            <h5 class="tituloClube">FC Bayern München</h5>
+            <img src="../images/TIMES/madrid.jpg" alt="Escudo do Clube" class="club-logo">
+            <img src="../images/TIMES/bernabeu.jpg" alt="Foto do Estádio" class="stadium-photo">
+            
+        </div>
+        <hr class="horizontal-line">
+     <table>
+        <tr>
+            <td>
+    <div class="content-wrapper-club">     
             <div class="club-details">
                 <div class="left-info">
                     <h2>Informações Gerais</h2>
@@ -86,8 +90,40 @@
                     <p><label>Pontos na liga:</label> 3</p>
                 </div>
             </div>
-        </section>
-    </main>
+            </div>
+            </td>
+            <td>
+
+                <h2>Elenco Atual</h2>
+                <div class="scrollable-buttons">
+                    <button class="custom-button button1" onclick="window.location.href='exibeAtleta.html';">
+                        <img src="../images/kane.png" alt="" class="button-icon"> Harry Kane
+                    </button>
+                    <button class="custom-button button2">
+                        <img src="../images/icon2.png" alt="" class="button-icon"> Jamal Musiala
+                    </button>
+                    <button class="custom-button button3">
+                        <img src="../images/icon3.png" alt="" class="button-icon"> Manuel Neuer
+                    </button>
+                    <button class="custom-button button1">
+                        <img src="../images/icon1.png" alt="" class="button-icon"> Button 1
+                    </button>
+                    <button class="custom-button button2">
+                        <img src="../images/icon2.png" alt="" class="button-icon"> Button 2
+                    </button>
+                    <button class="custom-button button3">
+                        <img src="../images/icon3.png" alt="" class="button-icon"> Button 3
+                    </button>
+                </div>
+                
+            </td>
+        </tr>
+        </table>
+
+        </section> 
+
+       
+</main>
 
 
     <!-- Rodapé -->
