@@ -819,8 +819,9 @@ h1 {
 }
 
 .button-icon {
-    width: 45px; /* Tamanho da imagem */
+    width: 55px; /* Tamanho da imagem */
     height: 50px;
+    border-radius: 30%;
     margin-right: 20px;
     vertical-align: middle;
 }
