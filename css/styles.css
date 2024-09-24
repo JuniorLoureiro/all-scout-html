@@ -321,6 +321,40 @@ body, html {
     text-decoration: underline;
 }
 
+/* Estilo para acessibilidade de fonte*/
+/* Estilizando os botões de controle de fonte */
+.font-controls {
+    position: fixed;
+    top: 10%;
+    right: 25px;
+    display: flex;
+    gap: 5px;
+    z-index: 1000; /* Certifique-se de que está acima de outros conteúdos */
+}
+
+.font-controls button {
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.font-controls button:focus {
+    outline: 2px solid rgb(25, 135, 84); /* Destaque ao focar */
+}
+
+/* Tamanhos de fonte ajustáveis */
+body.large-font {
+    font-size: 18px;
+}
+
+body.extra-large-font {
+    font-size: 20px;
+}
+
 /* Estilo do Login */
 .login-wrapper {
     flex: 1;
@@ -592,7 +626,7 @@ h1 {
 
 .player-info img {
     display: block;
-    margin: 0 auto;
+    margin-left: 0 auto;
     max-width: 200px;
     height: 200px;
     width: 190px;
@@ -688,7 +722,7 @@ label {
 
 /* Estilo do título */
 h1 {
-    text-align: center;
+    text-align: left;
     color: #006eff;
     margin-bottom: 20px;
 }
@@ -785,8 +819,14 @@ h1 {
 }
 
 .button-icon {
+<<<<<<< HEAD
     width: 45px; /* Tamanho da imagem */
     height: 50px;
+=======
+    width: 55px; /* Tamanho da imagem */
+    height: 50px;
+    border-radius: 30%;
+>>>>>>> main
     margin-right: 20px;
     vertical-align: middle;
 }
@@ -808,4 +848,8 @@ td {
     margin-top: 70px;
     font-size: 50px;
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
