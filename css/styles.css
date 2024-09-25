@@ -1,7 +1,6 @@
 * {
-    box-sizing: border-box; /* Inclui padding e bordas na largura total */
+    box-sizing: border-box;
 }
-
 body, html {
     margin: 0;
     padding: 0;
@@ -13,6 +12,7 @@ body, html {
     align-items: center;
     background-color: #00101E;
     overflow-x: hidden; /* Remove qualquer rolagem horizontal */
+    margin-top: 50px;
 }
 
 /* Estilo do cabeçalho */
@@ -431,6 +431,7 @@ body.extra-large-font {
 }
 
 /* Estilo do Registro */
+
 .register-wrapper {
     flex: 1;
     display: flex;
@@ -441,18 +442,78 @@ body.extra-large-font {
 }
 
 .register-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Define duas colunas */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
+    gap: 20px; /* Adiciona espaço entre as colunas */
 }
 
-.register-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+
+.ambasColunas {
+    grid-column: 1 / -1; /* Faz o título ocupar as duas colunas */
+    text-align: center; /* Centraliza o texto do título */
     color: black;
+    margin-top: 0px;
+    margin-bottom: 20px; /* Margem abaixo da div */
+}
+
+.ambasColunas label {
+    display: block; /* Faz o label ocupar uma linha inteira */
+    margin-bottom: 8px; /* Espaço abaixo do label */
+}
+
+.ambasColunas input {
+    margin-bottom: 40px; /* Espaço abaixo do input */
+    padding: 10px; /* Espaço interno no input */
+    width: calc(100% - 22px); /* Ajuste para a largura do botão */
+}
+
+.ambasColunas button {
+    padding: 10px; /* Espaço interno no botão */
+}
+
+/* Centraliza o título */
+.register-container h2 {
+    grid-column: 1 / -1; /* Faz o título ocupar as duas colunas */
+    text-align: center; /* Centraliza o texto do título */
+    margin-bottom: 5px; /* Espaçamento abaixo do título */
+    color: black;
+}
+
+/* Estiliza as labels e inputs */
+.register-container label {
+    margin-bottom: 5px; /* Espaçamento abaixo das labels */
+    color: black; /* Define a cor da fonte das labels como preto */
+    text-align: center; /* Centraliza o texto das labels */
+    display: block; /* Faz com que as labels ocupem a largura total da coluna */
+}
+
+
+/* Faz as inputs ocuparem a largura total da coluna */
+.register-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Estilo opcional para espaçamento entre linhas */
+.register-container div {
+}
+
+/* Define a posição das labels e inputs */
+.register-container .left {
+    grid-column: 1; /* Coluna da esquerda */
+}
+
+.register-container .right {
+    grid-column: 2; /* Coluna da direita */
 }
 
 .form-group {
@@ -472,6 +533,7 @@ body.extra-large-font {
 }
 
 .register-button {
+    
     width: 100%;
     padding: 10px;
     background-color: #006eff;
@@ -485,6 +547,7 @@ body.extra-large-font {
 .register-button:hover {
     background-color: #0056cc;
 }
+
 
 /* Contêiner dos cards */
 .container {
@@ -626,7 +689,7 @@ h1 {
 
 .player-info img {
     display: block;
-    margin-left: 0 auto;
+    margin: 0 auto;
     max-width: 200px;
     height: 200px;
     width: 190px;
@@ -722,7 +785,7 @@ label {
 
 /* Estilo do título */
 h1 {
-    text-align: left;
+    text-align: center;
     color: #006eff;
     margin-bottom: 20px;
 }
@@ -819,14 +882,8 @@ h1 {
 }
 
 .button-icon {
-<<<<<<< HEAD
     width: 45px; /* Tamanho da imagem */
     height: 50px;
-=======
-    width: 55px; /* Tamanho da imagem */
-    height: 50px;
-    border-radius: 30%;
->>>>>>> main
     margin-right: 20px;
     vertical-align: middle;
 }
@@ -848,8 +905,4 @@ td {
     margin-top: 70px;
     font-size: 50px;
     
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main
