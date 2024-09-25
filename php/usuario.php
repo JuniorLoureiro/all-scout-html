@@ -57,5 +57,29 @@ class Usuario {
 
         return false;
     }
+    public function verificarSenha($senha_atual) {
+        $query = "SELECT senha FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $this->username);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return password_verify($senha_atual, $row['senha']);
+        }
+
+        return false;
+    }
+
+    public function atualizarSenha() {
+        $query = "UPDATE " . $this->table_name . " SET senha = :senha WHERE username = :username";
+        $stmt = $this->conn->prepare($query);
+
+        // bind
+        $stmt->bindParam(':senha', $this->senha);
+        $stmt->bindParam(':username', $this->username);
+
+        return $stmt->execute();
+    }
 }
 ?>
