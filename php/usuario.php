@@ -1,152 +1,61 @@
 <?php
+require_once 'Database.php';
 
 class Usuario {
-    private $id;
-    private $nome;
-    private $username;
-    private $email;
-    private $senha;
-    private $celular;
-    private $cpf;
-    private $dataNasc;
-    private $cep;
-    private $estado;
-    private $cidade;
-    private $bairro;
-    private $logradouro;
-    private $numEnd;
-    private $complemento;
+    private $conn;
+    private $table_name = "usuarios";
+
+    public $nome;
+    public $email;
+    public $cpf;
+    public $senha;
+    public $cep;
+    public $cidade;
+    public $logradouro;
+    public $complemento;
+    public $username;
+    public $celular;
+    public $data_nascimento;
+    public $estado;
+    public $bairro;
+    public $numEnd;
 
     // Construtor
-    public function __construct($nome, $username, $email, $senha, $celular, $cpf, $dataNasc, $cep, $estado, $cidade, $bairro, $logradouro, $numEnd, $complemento) {
-        $this->nome = $nome;
-        $this->username = $username;
-        $this->email = $email;
-        $this->senha = $senha;
-        $this->celular = $celular;
-        $this->cpf = $cpf;
-        $this->dataNasc = $dataNasc;
-        $this->cep = $cep;
-        $this->estado = $estado;
-        $this->cidade = $cidade;
-        $this->bairro = $bairro;
-        $this->logradouro = $logradouro;
-        $this->numEnd = $numEnd;
-        $this->complemento = $complemento;
+    public function __construct($db) {
+        $this->conn = $db;
     }
 
-    // Getters e Setters
-    public function getNome() {
-        return $this->nome;
-    }
+    // Método para registrar o usuário
+    public function registrar() {
+        $query = "INSERT INTO " . $this->table_name . " 
+            (nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd)
+            VALUES
+            (:nome, :email, :cpf, :senha, :cep, :cidade, :logradouro, :complemento, :username, :celular, :data_nascimento, :estado, :bairro, :numEnd)";
+        
+        $stmt = $this->conn->prepare($query);
 
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
+        // Ligação dos parâmetros
+        $stmt->bindParam(':nome', $this->nome);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':cpf', $this->cpf);
+        $stmt->bindParam(':senha', $this->senha);
+        $stmt->bindParam(':cep', $this->cep);
+        $stmt->bindParam(':cidade', $this->cidade);
+        $stmt->bindParam(':logradouro', $this->logradouro);
+        $stmt->bindParam(':complemento', $this->complemento);
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':celular', $this->celular);
+        $stmt->bindParam(':data_nascimento', $this->data_nascimento);
+        $stmt->bindParam(':estado', $this->estado);
+        $stmt->bindParam(':bairro', $this->bairro);
+        $stmt->bindParam(':numEnd', $this->numEnd);
 
-    public function getUsername() {
-        return $this->username;
-    }
+        // Executa a query
+        if ($stmt->execute()) {
+            return true;
+        }
 
-    public function setUsername($username) {
-        $this->username = $username;
-    }
-
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function setEmail($email) {
-        $this->email = $email;
-    }
-
-    public function getSenha() {
-        return $this->senha;
-    }
-
-    public function setSenha($senha) {
-        $this->senha = $senha;
-    }
-
-    public function getCelular() {
-        return $this->celular;
-    }
-
-    public function setCelular($celular) {
-        $this->celular = $celular;
-    }
-
-    public function getCpf() {
-        return $this->cpf;
-    }
-
-    public function setCpf($cpf) {
-        $this->cpf = $cpf;
-    }
-
-    public function getDataNasc() {
-        return $this->dataNasc;
-    }
-
-    public function setDataNasc($dataNasc) {
-        $this->dataNasc = $dataNasc;
-    }
-
-    public function getCep() {
-        return $this->cep;
-    }
-
-    public function setCep($cep) {
-        $this->cep = $cep;
-    }
-
-    public function getEstado() {
-        return $this->estado;
-    }
-
-    public function setEstado($estado) {
-        $this->estado = $estado;
-    }
-
-    public function getCidade() {
-        return $this->cidade;
-    }
-
-    public function setCidade($cidade) {
-        $this->cidade = $cidade;
-    }
-
-    public function getBairro() {
-        return $this->bairro;
-    }
-
-    public function setBairro($bairro) {
-        $this->bairro = $bairro;
-    }
-
-    public function getLogradouro() {
-        return $this->logradouro;
-    }
-
-    public function setLogradouro($logradouro) {
-        $this->logradouro = $logradouro;
-    }
-
-    public function getNumEnd() {
-        return $this->numEnd;
-    }
-
-    public function setNumEnd($numEnd) {
-        $this->numEnd = $numEnd;
-    }
-
-    public function getComplemento() {
-        return $this->complemento;
-    }
-
-    public function setComplemento($complemento) {
-        $this->complemento = $complemento;
+        return false;
     }
 }
-
 ?>

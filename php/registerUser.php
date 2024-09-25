@@ -1,49 +1,38 @@
 <?php
-// Inclua o arquivo de conexão com o banco de dados
-require 'conexao.php'; // Certifique-se de que o caminho está correto
+require_once 'Database.php';
+require_once 'Usuario.php';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Conexão com o banco de dados
+    $database = new Database();
+    $db = $database->getConnection();
 
-    // Recebe os dados do formulário
-    $nome = $_POST['nome'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-    $celular = $_POST['celular'];
-    $cpf = $_POST['cpf'];
-    $dataNasc = $_POST['data-nascimento'];
-    $cep = $_POST['cep'];
-    $estado = $_POST['estado'];
-    $cidade = $_POST['cidade'];
-    $bairro = $_POST['bairro'];
-    $logradouro = $_POST['logradouro'];
-    $numEnd = $_POST['numEnd'];
-    $complemento = $_POST['complemento'];
+    // Criação de um objeto Usuario
+    $usuario = new Usuario($db);
 
-    // Cria um novo objeto Database e abre a conexão
-    $conexao = $conn;
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    
+    // Atribuindo os valores do formulário
+    $usuario->nome = $_POST['nome'];
+    $usuario->email = $_POST['email'];
+    $usuario->cpf = $_POST['cpf'];
+    $usuario->senha = password_hash($_POST['senha'], PASSWORD_BCRYPT); // Criptografa a senha
+    $usuario->cep = $_POST['cep'];
+    $usuario->cidade = $_POST['cidade'];
+    $usuario->logradouro = $_POST['logradouro'];
+    $usuario->complemento = $_POST['complemento'];
+    $usuario->username = $_POST['username'];
+    $usuario->celular = $_POST['celular'];
+    $usuario->data_nascimento = $_POST['data-nascimento'];
+    $usuario->estado = $_POST['estado'];
+    $usuario->bairro = $_POST['bairro'];
+    $usuario->numEnd = $_POST['numEnd'];
 
-    // Prepara a query SQL
-    $sql = "INSERT INTO usuarios (nome, username, email, senha, celular, cpf, data_nascimento, cep, estado, cidade, bairro, logradouro, numero_endereco, complemento) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    // Prepara e executa a query
-    if ($stmt = $conexao->prepare($sql)) {
-        $stmt->bind_param("ssssssssssssss", $nome, $username, $email, $senha, $celular, $cpf, $dataNasc, $cep, $estado, $cidade, $bairro, $logradouro, $numEnd, $complemento);
-        
-        if ($stmt->execute()) {
-            echo "Cadastro realizado com sucesso!";
-        } else {
-            echo "Erro ao cadastrar: " . $stmt->error;
-        }
-
-        $stmt->close();
+    // Tenta registrar o usuário
+    if ($usuario->registrar()) {
+        // Redireciona para a página de login
+        header("Location: ../html/login.html");
+        exit();
     } else {
-        echo "Erro ao preparar a consulta: " . $conexao->error;
+        echo "Erro ao registrar o usuário.";
     }
-
-    // Fecha a conexão
-    $conn->close();
-
+}
 ?>
