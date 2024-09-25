@@ -1,39 +1,27 @@
 <?php
 
-require '';
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "all_scout";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-class Database {
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbname = "all_scout";
-    public $conn;
 
-    // Método para abrir a conexão
-    public function openConnection() {
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
-        // Verifica se houve algum erro durante a conexão
-        if ($this->conn->connect_error) {
-            die("Falha na conexão com o banco de dados: " . $this->conn->connect_error);
-        }
-
-        echo "Conexão com o banco de dados efetuada com sucesso!\n";
-    }
-
-    // Método para fechar a conexão
-    public function closeConnection() {
-        if ($this->conn) {
-            $this->conn->close();
+    
+        // Abre a conexão
+        //$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);    
+        // Verifica se houve erro na conexão
+        if ($conn->connect_error) {
+            die("Falha na conexão com o banco de dados: " . $conn->connect_error);
+        } else {
+            echo "Conexão com o banco de dados efetuada com sucesso!\n";
+        }   
+        // Fecha a conexão se ela estiver aberta
+       
+            $conn->close();
             echo "Conexão fechada.\n";
-        }
-    }
-}
-
-// Exemplo de uso da classe Database
-$db = new Database();
-$db->openConnection();
-// Aqui você pode chamar suas funções de insert, select, etc.
-$db->closeConnection();
-
+        
+    
+   
 ?>
