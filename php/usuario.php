@@ -81,5 +81,79 @@ class Usuario {
 
         return $stmt->execute();
     }
+
+    public function buscarPorUsername($username) {
+    
+   
+        // Cria a query para buscar o usuário pelo username
+        $query = "SELECT id FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
+            
+            
+            
+           
+        
+            
+        // Prepara a consulta
+        $stmt = $this->conn->prepare($query);
+            
+            
+            
+           
+        
+            
+        // Liga o parâmetro do username
+        $stmt->bindParam(':username', $username);
+            
+            
+            
+           
+        
+            
+        // Executa a consulta
+        $stmt->execute();
+            
+            
+            
+           
+        
+            
+        // Verifica se encontrou algum resultado
+        if ($stmt->rowCount() > 0) {
+                return true; // O username já existe
+            }
+        else{
+            return false; // O username não existe
+        }
+        
+            
+            
+        
+           
+        
+    }
+
+    public function obterDadosPorUsername($username) {
+        $query = "SELECT senha FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->senha = $row['senha']; // Armazena a senha para verificação
+            return true;
+        }
+        return false; // Retorna falso se não encontrar
+    }
+    
+
+    
+        
+        
+           
 }
+        
+        
+
+
 ?>
