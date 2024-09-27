@@ -25,9 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Login bem-sucedido, cria a sessão
                 $_SESSION['username'] = $usuario->username;
                 $_SESSION['loggedin'] = true;
+                
 
                 // Redireciona para a página inicial ou painel do usuário
-                header("Location: ../html/clubes.html");
+                header("Location: ../html/clubes.php");
                 exit();
             } else {
                 echo "Senha incorreta.";

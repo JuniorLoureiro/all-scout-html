@@ -63,10 +63,12 @@
             <p><label>Número:</label> </p>
         </section>
     
+
         <!-- Estatísticas do Jogador -->
         <section class="player-stats">
             <h2>Estatísticas:</h2>
-            <p><label>Em andamento...</label></p>
+            <div><p><label>Em andamento...</label></p></div>
+            
             
         </section>
     </main>

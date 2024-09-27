@@ -28,7 +28,16 @@
                 <a href="#" class="favorites">
                     <img src="../images/heart_icon.png" alt="Favoritos">
                 </a>
-                <a href="login.html" class="account-button">Minha Conta</a>
+                <?php
+                session_start();
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                    // Usuário logado, exibe o nome de usuário
+                    echo '<a href="perfilUser.html" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
+                } else {
+                    // Usuário não logado, exibe "Minha Conta"
+                    echo '<a href="login.html" class="account-button">Minha Conta</a>';
+                }
+                ?>
             </div>
         </div>
     </header>
