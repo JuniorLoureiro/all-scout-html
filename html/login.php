@@ -55,12 +55,19 @@
                     <button type="submit" class="login-button">Entrar</button>
                 </div>
                 <div class="form-footer">
-                    <p><a href="trocarSenha.php">Esqueceu sua senha?</a></p>
+                    <p><a href="trocarSenhaHTML.php">Esqueceu sua senha?</a></p>
                     <p>Não tem uma conta? <a href="register.php">Registre-se</a></p>
                 </div>
             </form>
         </div>
     </main>
+
+    <?php if (isset($_SESSION['mensagem'])): ?>
+        <div class="alert">
+            <p><?php echo htmlspecialchars($_SESSION['mensagem']); ?></p>
+        </div>
+        <?php unset($_SESSION['mensagem']); // Limpa a mensagem após exibir ?>
+    <?php endif; ?>
 
     <footer class="site-footer">
         <div class="footer-container">

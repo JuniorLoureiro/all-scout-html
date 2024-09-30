@@ -28,16 +28,8 @@
                     <a href="#" class="favorites">
                         <img src="../images/heart_icon.png" alt="Favoritos">
                     </a>
-                    <?php
-                    session_start();
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                        // Usuário logado, exibe o nome de usuário
-                        echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
-                    } else {
-                        // Usuário não logado, exibe "Minha Conta"
-                        echo '<a href="login.php" class="account-button">Minha Conta</a>';
-                    }
-                    ?>
+                    <a href="login.php" class="account-button">Minha Conta</a>
+                    
                 </div>
             </div>
         </header>
@@ -50,11 +42,6 @@
         <div class="login-container">
             <h2>Trocar Senha</h2>
             <!-- Exibir mensagens de erro -->
-            <?php if (isset($_GET['error'])): ?>
-                <div class="error-message">
-                    <p><?php echo htmlspecialchars($_GET['error']); ?></p>
-                </div>
-            <?php endif; ?>
             <form action="../php/trocarSenha.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username:</label>

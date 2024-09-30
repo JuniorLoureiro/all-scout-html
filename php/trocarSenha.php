@@ -1,39 +1,40 @@
 <?php
-require_once 'Database.php';
-require_once 'Usuario.php';
-
 session_start();
+require_once 'Database.php'; // Inclua sua classe de conexão com o banco de dados
+require_once 'Usuario.php'; // Inclua sua classe de manipulação de usuários
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conexão com o banco de dados
+    // Cria uma nova conexão com o banco de dados
     $database = new Database();
     $db = $database->getConnection();
-
-    // Criação de um objeto Usuario
+    
+    // Cria uma nova instância da classe Usuario
     $usuario = new Usuario($db);
 
-    // Atribuindo os valores do formulário
-    $usuario->username = $_SESSION['username']; // Assume que o username está na sessão
+    // Atribuir os valores do formulário às propriedades do objeto
+    $usuario->username = $_POST['username'];
     $senha_atual = $_POST['senha_atual'];
     $nova_senha = $_POST['nova_senha'];
 
-    // Verificar se o usuário e a senha atual estão corretos
+    // Verificar se a senha atual está correta
     if ($usuario->verificarSenha($senha_atual)) {
-        // Atualiza a senha
-        $usuario->senha = password_hash($nova_senha, PASSWORD_BCRYPT); // Criptografa a nova senha
+        // Criptografa a nova senha
+        $usuario->senha = password_hash($nova_senha, PASSWORD_BCRYPT);
+        
+        // Atualizar a senha
         if ($usuario->atualizarSenha()) {
-            // Mensagem de sucesso
-            echo "<script>alert('Senha alterada com sucesso!'); window.location.href = '../html/login.php';</script>";
+            $_SESSION['mensagem'] = "Senha alterada com sucesso!";
+            header("Location: ../html/login.php"); // Redireciona para uma página de sucesso
             exit();
         } else {
-            // Mensagem de erro ao atualizar a senha
-            echo "<script>alert('Erro ao alterar a senha.'); window.history.back();</script>";
+            $_SESSION['mensagem'] = "Erro ao alterar senha.";
+            header("Location: ../html/trocarSenhaHTML.php");
             exit();
         }
     } else {
-        // Mensagem de erro se a senha atual estiver incorreta
-        echo "<script>alert('Usuário ou senha atual incorretos.'); window.history.back();</script>";
-        exit();
+            $_SESSION['mensagem'] = "Usuário ou senha atual incorreta.";
+            header("Location: ../html/trocarSenhaHTML.php");
+            exit();
     }
 }
 ?>
