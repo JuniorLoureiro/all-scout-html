@@ -40,65 +40,86 @@
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
 
-    <main class="register-wrapper">
-        <form action="../php/registerUser.php" method="POST">
-            <div class="register-container">
-                <h2>Cadastro</h2>
+    <main class="form-wrapper">
+        <form action="../php/registerUser.php" method="POST" class="form-container">
+            <h2 class="form-title">Cadastro</h2>
 
-                <div class="left">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome">
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email">
-
-                    <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf">
-
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha">
-
-                    <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep">
-                    <button type="button" id="buscar-endereco">Buscar Endereço</button>
-
-                    <label for="cidade">Cidade:</label>
-                    <input type="text" id="cidade" name="cidade">
-
-                    <label for="logradouro">Logradouro:</label>
-                    <input type="text" id="logradouro" name="logradouro">
-
-                    <label for="complemento">Complemento:</label>
-                    <input type="text" id="complemento" name="complemento">
-                </div>
-
-                <div class="right">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username">
-
-                    <label for="celular">Celular:</label>
-                    <input type="tel" id="celular" name="celular">
-
-                    <label for="data-nascimento">Data de Nascimento:</label>
-                    <input type="date" id="data-nascimento" name="data-nascimento">
-
-                    <label for="confirmasenha">Confirmar Senha:</label>
-                    <input type="password" id="confirmasenha" name="confirmasenha">
-
-                    <label for="estado">Estado:</label>
-                    <input type="text" id="estado" name="estado">
-
-                    <label for="bairro">Bairro:</label>
-                    <input type="text" id="bairro" name="bairro">
-
-                    <label for="numEnd">Número:</label>
-                    <input type="text" id="numEnd" name="numEnd">
-                </div>
-
-                <div class="ambasColunas">
-                    <button type="submit" class="register-button">Registrar</button>
-                </div>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
             </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu username">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email">
+            </div>
+
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input type="tel" id="celular" name="celular" placeholder="Digite seu celular">
+            </div>
+
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF">
+            </div>
+
+            <div class="form-group">
+                <label for="data-nascimento">Data de Nascimento:</label>
+                <input type="date" id="data-nascimento" name="data-nascimento">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmasenha">Confirmar Senha:</label>
+                <input type="password" id="confirmasenha" name="confirmasenha" placeholder="Confirme sua senha">
+            </div>
+
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" placeholder="Digite seu CEP">
+            </div>
+
+            <div class="form-group">
+                <label for="logradouro">Logradouro:</label>
+                <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" placeholder="Bairro" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" placeholder="Estado" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="numEnd">Número:</label>
+                <input type="text" id="numEnd" name="numEnd" placeholder="Número">
+            </div>
+
+            <div class="form-group">
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento" name="complemento" placeholder="Complemento">
+            </div>
+
+            <button type="submit" class="form-button">Registrar</button>
         </form>
     </main>
 
