@@ -136,5 +136,22 @@ class Usuario {
     public function getTableName() {
         return $this->table_name;
     }
+    public function deletar($username) {
+        // Query para deletar o usuário
+        $query = "DELETE FROM " . $this->table_name . " WHERE username = :username";
+        
+        // Preparação da consulta
+        $stmt = $this->conn->prepare($query);
+        
+        // Bind do parâmetro
+        $stmt->bindParam(':username', $username);
+    
+        // Executa a query e retorna o resultado
+        if ($stmt->execute()) {
+            return true;
+        }
+        
+        return false;
+    }
 }
 ?>

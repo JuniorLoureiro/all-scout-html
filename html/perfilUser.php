@@ -109,10 +109,10 @@ $numEnd = isset($_SESSION['numEnd']) ? $_SESSION['numEnd'] : 'Não disponível';
             <form method="POST" action="/all-scout-html/php/logout.php">
                 <button type="submit" class="login-button">Sair da Conta</button>
             </form>
-            <form method="POST" action="delete.php">  <!-- Arruma para o arquivo para deletar -->
-                <button type="submit" class="login-button">Deletar Usuário</button> 
+            <form method="POST" action="/all-scout-html/php/deleteuser.php">
+                <input type="hidden" name="username" value="<?php echo htmlspecialchars($username); ?>"> <!-- Incluindo o campo hidden -->
+                <button type="submit" class="login-button">Deletar Usuário</button>
             </form>
-        
         </div>
     </div>
 
