@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#buscar-endereco').click(function() {
+    $('#cep').on('blur', function() {
         var cep = $('#cep').val().replace(/\D/g, ''); // Remove caracteres não numéricos
 
         if (cep.length === 8) { // Verifica se o CEP tem 8 dígitos

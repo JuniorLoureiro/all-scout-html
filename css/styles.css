@@ -11,14 +11,13 @@ body, html {
     flex-direction: column;
     align-items: center;
     background-color: #00101E;
-    overflow-x: hidden; /* Remove qualquer rolagem horizontal */
-    margin-top: 50px;
 }
 
 /* Estilo do cabeçalho */
 .top-nav {
     width: 100%;
-    padding: 3px 20px;
+    height: 68px; /* Ajuste a altura conforme necessário */
+    padding: 1px 20px;
     background: radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 100%);
     position: fixed;
     top: 0;
@@ -98,7 +97,7 @@ body, html {
 
 .content-wrapper {
     flex: 1;
-    margin-top: 80px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+    margin-top: 68px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
     padding: 0 20px;
 }
 
@@ -954,5 +953,68 @@ td {
     margin-left: 50px;
     margin-top: 70px;
     font-size: 50px;
-    
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+    width: 100%;
+    margin-top: 68px; /* Ajuste conforme necessário para compensar o tamanho do header fixo */
+}
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    border-color: #006eff;
+    outline: none;
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #006eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
 }
