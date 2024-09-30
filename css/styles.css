@@ -714,6 +714,7 @@ h1 {
 
 .player-info, .player-stats {
     margin-bottom: 30px;
+    
 }
 
 .player-info h2, .player-stats h2 {
@@ -884,6 +885,14 @@ h1 {
 }
 
 .info-players {
+    
+    width: 800px;
+    height: 200px;
+    background-color: black;  /* Apenas para visualização */        /* Centraliza horizontalmente */   
+    border-radius: 8px;         /* Arredonda os cantos */
+}
+
+.info-user {
     
     width: 800px;
     height: 200px;

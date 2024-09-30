@@ -4,35 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <title>Login</title>
+    <title>Trocar Senha</title>
 </head>
 <body>
-    <header class="top-nav">
-        <div class="top-nav-container">
-            <!-- Parte esquerda -->
-            <div class="left-nav">
-                <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-                <nav class="main-nav">
-                    <a href="home.html">Início</a>
-                    <a href="clubes.html">Clubes</a>
-                    <a href="atletas.html">Atletas</a>
-                    <a href="sobrenos.html">Sobre Nós</a>
-                </nav>
+<header class="top-nav">
+            <div class="top-nav-container">
+                <!-- Parte esquerda -->
+                <div class="left-nav">
+                    <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+                    <nav class="main-nav">
+                        <a href="home.php">Início</a>
+                        <a href="clubes.php">Clubes</a>
+                        <a href="atletas.php">Atletas</a>
+                        <a href="sobrenos.php">Sobre Nós</a>
+                    </nav>
+                </div>
+                <!-- Parte central -->
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Pesquise...">
+                </div>
+                <!-- Parte direita -->
+                <div class="right-nav">
+                    <a href="#" class="favorites">
+                        <img src="../images/heart_icon.png" alt="Favoritos">
+                    </a>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                        // Usuário logado, exibe o nome de usuário
+                        echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
+                    } else {
+                        // Usuário não logado, exibe "Minha Conta"
+                        echo '<a href="login.php" class="account-button">Minha Conta</a>';
+                    }
+                    ?>
+                </div>
             </div>
-            <!-- Parte central -->
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Pesquise...">
-            </div>
-            <!-- Parte direita -->
-            <div class="right-nav">
-                <a href="#" class="favorites">
-                    <img src="../images/heart_icon.png" alt="Favoritos">
-                </a>
-                <a href="login.html" class="account-button">Minha Conta</a>
-            </div>
-        </div>
-    </header>
-
+        </header>
     <div class="font-controls">
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
@@ -40,22 +48,28 @@
 
     <main class="login-wrapper">
         <div class="login-container">
-            <h2>Login</h2>
-            <form action="../php/loginUser.php" method="POST">
+            <h2>Trocar Senha</h2>
+            <!-- Exibir mensagens de erro -->
+            <?php if (isset($_GET['error'])): ?>
+                <div class="error-message">
+                    <p><?php echo htmlspecialchars($_GET['error']); ?></p>
+                </div>
+            <?php endif; ?>
+            <form action="../php/trocarSenha.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="senha_atual">Senha Atual:</label>
+                    <input type="password" id="senha_atual" name="senha_atual" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="login-button">Entrar</button>
+                    <label for="nova_senha">Nova Senha:</label>
+                    <input type="password" id="nova_senha" name="nova_senha" required>
                 </div>
-                <div class="form-footer">
-                    <p><a href="trocarSenha.html">Esqueceu sua senha?</a></p>
-                    <p>Não tem uma conta? <a href="register.html">Registre-se</a></p>
+                <div class="form-group">
+                    <button type="submit" class="login-button">Trocar Senha</button>
                 </div>
             </form>
         </div>
@@ -101,7 +115,6 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
 </body>

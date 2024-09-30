@@ -2,6 +2,8 @@
 require_once 'Database.php';
 require_once 'Usuario.php';
 
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Conexão com o banco de dados
     $database = new Database();
@@ -11,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = new Usuario($db);
 
     // Atribuindo os valores do formulário
-    $usuario->username = $_POST['username'];
+    $usuario->username = $_SESSION['username']; // Assume que o username está na sessão
     $senha_atual = $_POST['senha_atual'];
     $nova_senha = $_POST['nova_senha'];
 
@@ -21,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario->senha = password_hash($nova_senha, PASSWORD_BCRYPT); // Criptografa a nova senha
         if ($usuario->atualizarSenha()) {
             // Mensagem de sucesso
-            echo "<script>alert('Senha alterada com sucesso!'); window.location.href = '../html/login.html';</script>";
+            echo "<script>alert('Senha alterada com sucesso!'); window.location.href = '../html/login.php';</script>";
             exit();
         } else {
             // Mensagem de erro ao atualizar a senha

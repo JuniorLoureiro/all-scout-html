@@ -7,16 +7,16 @@
     <title>Atletas</title>
 </head>
 <body>
-    <header class="top-nav">
+<header class="top-nav">
         <div class="top-nav-container">
             <!-- Parte esquerda -->
             <div class="left-nav">
-                <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+                <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
                 <nav class="main-nav">
-                    <a href="home.html">Início</a>
-                    <a href="clubes.html">Clubes</a>
-                    <a href="atletas.html">Atletas</a>
-                    <a href="sobrenos.html">Sobre Nós</a>
+                    <a href="home.php">Início</a>
+                    <a href="clubes.php">Clubes</a>
+                    <a href="atletas.php">Atletas</a>
+                    <a href="sobrenos.php">Sobre Nós</a>
                 </nav>
             </div>
             <!-- Parte central -->
@@ -28,7 +28,16 @@
                 <a href="#" class="favorites">
                     <img src="../images/heart_icon.png" alt="Favoritos">
                 </a>
-                <a href="login.html" class="account-button">Minha Conta</a>
+                <?php
+                session_start();
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                    // Usuário logado, exibe o nome de usuário
+                    echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
+                } else {
+                    // Usuário não logado, exibe "Minha Conta"
+                    echo '<a href="login.php" class="account-button">Minha Conta</a>';
+                }
+                ?>
             </div>
         </div>
     </header>
