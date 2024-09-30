@@ -4,34 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <title>Atletas</title>
+    <title>Clubes</title>
 </head>
 <body>
     <header class="top-nav">
-        <div class="top-nav-container">
-            <!-- Parte esquerda -->
-            <div class="left-nav">
-                <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-                <nav class="main-nav">
-                    <a href="home.html">Início</a>
-                    <a href="clubes.html">Clubes</a>
-                    <a href="atletas.html">Atletas</a>
-                    <a href="sobrenos.html">Sobre Nós</a>
-                </nav>
+            <div class="top-nav-container">
+                <!-- Parte esquerda -->
+                <div class="left-nav">
+                    <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+                    <nav class="main-nav">
+                        <a href="home.php">Início</a>
+                        <a href="clubes.php">Clubes</a>
+                        <a href="atletas.php">Atletas</a>
+                        <a href="sobrenos.php">Sobre Nós</a>
+                    </nav>
+                </div>
+                <!-- Parte central -->
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Pesquise...">
+                </div>
+                <!-- Parte direita -->
+                <div class="right-nav">
+                    <a href="#" class="favorites">
+                        <img src="../images/heart_icon.png" alt="Favoritos">
+                    </a>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                        // Usuário logado, exibe o nome de usuário
+                        echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
+                    } else {
+                        // Usuário não logado, exibe "Minha Conta"
+                        echo '<a href="login.php" class="account-button">Minha Conta</a>';
+                    }
+                    ?>
+                </div>
             </div>
-            <!-- Parte central -->
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Pesquise...">
-            </div>
-            <!-- Parte direita -->
-            <div class="right-nav">
-                <a href="#" class="favorites">
-                    <img src="../images/heart_icon.png" alt="Favoritos">
-                </a>
-                <a href="login.html" class="account-button">Minha Conta</a>
-            </div>
-        </div>
-    </header>
+        </header>
     
     <div class="font-controls">
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
@@ -43,9 +52,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/kylian.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/barca.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">kylian Mbappé</h5>
+                            <h5 class="card-title">Futbol Club Barcelona</h5>
                             <p class="card-text"></p>
                             <a href="#" class="btn">informações</a>
                         </div>
@@ -53,19 +62,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/ney.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/liver.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Neymar Jr</h5>
-                            <p class="card-text"> </p>
-                            <a href="exibeAtleta.html" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/haaland.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Erling Haaland</h5>
+                            <h5 class="card-title">Sociedade Esportiva Palmeiras</h5>
                             <p class="card-text"> </p>
                             <a href="#" class="btn">informações</a>
                         </div>
@@ -73,9 +72,19 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/arra.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/real.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">De Arrascaeta</h5>
+                            <h5 class="card-title">FC Bayern München</h5>
+                            <p class="card-text"> </p>
+                            <a href="exibeTime.php" class="btn">informações</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="../images/TIMES/sp.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">São Paulo Futebol Clube</h5>
                             <p class="card-text"></p>
                             <a href="#" class="btn">informações</a>
                         </div>
@@ -86,9 +95,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/yamal.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/megau.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Lamine Yamal</h5>
+                            <h5 class="card-title">Clube de Regatas do Flamengo</h5>
                             <p class="card-text"></p>
                             <a href="#" class="btn">informações</a>
                         </div>
@@ -96,9 +105,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/Valverde.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/river.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Valverde</h5>
+                            <h5 class="card-title">Club Atlético River Plate</h5>
                             <p class="card-text"></p>
                             <a href="#" class="btn">informações</a>
                         </div>
@@ -106,9 +115,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/james.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/boca.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">James Rodríguez</h5>
+                            <h5 class="card-title">Club Atlético Boca Juniors</h5>
                             <p class="card-text"></p>
                             <a href="#" class="btn">informações</a>
                         </div>
@@ -116,9 +125,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="../images/ATLETAS/suarez.jpg" class="card-img-top" alt="...">
+                        <img src="../images/TIMES/cor.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Luis Suárez</h5>
+                            <h5 class="card-title">Sport Club Corinthians Paulista</h5>
                             <p class="card-text"></p>
                             <a href="#" class="btn">informações</a>
                         </div>

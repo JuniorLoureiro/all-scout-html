@@ -9,30 +9,31 @@
 </head>
 <body class="register-body">
     <header class="top-nav">
-        <div class="top-nav-container">
-            <!-- Parte esquerda -->
-            <div class="left-nav">
-                <a href="home.html"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-                <nav class="main-nav">
-                    <a href="home.html">Início</a>
-                    <a href="clubes.html">Clubes</a>
-                    <a href="atletas.html">Atletas</a>
-                    <a href="sobrenos.html">Sobre Nós</a>
-                </nav>
+            <div class="top-nav-container">
+                <!-- Parte esquerda -->
+                <div class="left-nav">
+                    <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+                    <nav class="main-nav">
+                        <a href="home.php">Início</a>
+                        <a href="clubes.php">Clubes</a>
+                        <a href="atletas.php">Atletas</a>
+                        <a href="sobrenos.php">Sobre Nós</a>
+                    </nav>
+                </div>
+                <!-- Parte central -->
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Pesquise...">
+                </div>
+                <!-- Parte direita -->
+                <div class="right-nav">
+                    <a href="#" class="favorites">
+                        <img src="../images/heart_icon.png" alt="Favoritos">
+                    </a>
+                    <a href="login.php" class="account-button">Minha Conta</a>
+
+                </div>
             </div>
-            <!-- Parte central -->
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Pesquise...">
-            </div>
-            <!-- Parte direita -->
-            <div class="right-nav">
-                <a href="#" class="favorites">
-                    <img src="../images/heart_icon.png" alt="Favoritos">
-                </a>
-                <a href="login.html" class="account-button">Minha Conta</a>
-            </div>
-        </div>
-    </header>
+        </header>
 
     <div class="font-controls">
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
