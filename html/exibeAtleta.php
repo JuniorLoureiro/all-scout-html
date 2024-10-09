@@ -49,36 +49,61 @@
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
 
+    <?php
+    // Verificar se o ID foi passado pela URL
+    if (isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+
+        // Conexão com o banco de dados
+        include('../php/Database.php');
+        $conn = new Database();
+        $db = $conn->getConnection();
+
+        // Consulta para obter os dados do jogador
+        $query = "SELECT * FROM atletas WHERE id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Verificar se o jogador foi encontrado
+        $jogador = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$jogador) {
+            echo "Jogador não encontrado.";
+            exit;
+        }
+    } else {
+        echo "ID do jogador não informado.";
+        exit;
+    }
+    ?>
+
     <!-- Conteúdo Principal -->
     <main class="content-wrapper-atleta">
 
         <div class="player-name-image">
-        <div class="left"> <h1>Neymar Jr</h1> </div>  
-        <div class="right"> <img src="../images/Design sem nome.jpg"> </div>       
+            <div class="left"> <h1><?php echo htmlspecialchars($jogador['nome']); ?></h1> </div>     
         </div>
 
         <!-- Informações do Jogador -->
         <section class="player-info">
             <h2>Informações do Jogador</h2>
-            <p><label>Nome:</label> </p>
-            <p><label>Nacionalidade:</label></p>
-            <p><label>Data de Nascimento:</label></p>
-            <p><label>Altura:</label></p>
-            <p><label>Perna Dominante:</label></p>
-            <p><label>Posição:</label> </p>
-            <p><label>Clube Atual:</label> </p>
-            <p><label>Número:</label> </p>
+            <p><label>Nacionalidade:</label> <?php echo htmlspecialchars($jogador['nacionalidade']); ?></p>
+            <p><label>Data de Nascimento:</label> <?php echo htmlspecialchars($jogador['data_nascimento']); ?></p>
+            <p><label>Altura:</label> <?php echo htmlspecialchars($jogador['altura']); ?></p>
+            <p><label>Perna Dominante:</label> <?php echo htmlspecialchars($jogador['perna_dominante']); ?></p>
+            <p><label>Posição:</label> <?php echo htmlspecialchars($jogador['posicao']); ?></p>
+            <p><label>Clube:</label> <?php echo htmlspecialchars($jogador['clube']); ?></p>
+            <p><label>Número:</label> <?php echo htmlspecialchars($jogador['numero']); ?></p>
         </section>
-    
 
         <!-- Estatísticas do Jogador -->
         <section class="player-stats">
             <h2>Estatísticas:</h2>
             <div><p><label>Em andamento...</label></p></div>
-            
-            
         </section>
     </main>
+
+
     <!-- Rodapé -->
     <footer class="site-footer">
         <div class="footer-container">
