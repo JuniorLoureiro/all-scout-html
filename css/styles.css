@@ -502,10 +502,6 @@ body.extra-large-font {
     margin-bottom: 20px;
 }
 
-/* Estilo opcional para espaçamento entre linhas */
-.register-container div {
-}
-
 /* Define a posição das labels e inputs */
 .register-container .left {
     grid-column: 1; /* Coluna da esquerda */
@@ -614,11 +610,13 @@ body.extra-large-font {
 }
 
 aside {
-    margin-top: 100px;
+    margin-top: 100px; /* Espaço acima do cabeçalho */
+    margin-bottom: 20px; /* Espaço abaixo do aside */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    flex-direction: column; /* Organiza verticalmente */
+    width: 100%; /* Garante que o aside ocupe 100% da largura */
 }
 
 /* Estilo da página sobre nós*/
@@ -649,6 +647,51 @@ nav{
   
 h3, p {
     margin: 0.5em 0; /* Ajuste a margem conforme necessário */
+}
+
+/* Estilo atletas */
+.atletas-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: black; /* Fundo preto */
+    color: white; /* Letras brancas */
+    max-height: 500px; /* Define uma altura máxima para a tabela */
+    overflow-y: auto; /* Permite rolagem vertical */
+    margin-bottom: 20px; /* Espaçamento entre a tabela e o footer */
+}
+
+.atletas-table th, 
+.atletas-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid white; /* Linha inferior das células */
+}
+
+.atletas-table th {
+    background-color: #007bff; /* Fundo um pouco mais claro para cabeçalho */
+}
+
+.atletas-table a {
+    color: white; /* Links brancos */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+.atletas-table a:hover {
+    text-decoration: underline; /* Sublinha os links ao passar o mouse */
+}
+
+/* Novos nomes para o contêiner e linha */
+.atletas-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto; /* Centraliza o contêiner */
+}
+
+.atletas-row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards se movam para a linha de baixo, se necessário */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    margin: 0 -10px; /* Espaçamento negativo para compensar o padding nos cards */
 }
 
 /* Estilo exibir atleta */

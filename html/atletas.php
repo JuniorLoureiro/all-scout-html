@@ -48,96 +48,48 @@
     </div>
 
     <aside>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/kylian.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">kylian Mbappé</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/ney.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Neymar Jr</h5>
-                            <p class="card-text"> </p>
-                            <a href="../html/exibeAtleta.php" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/haaland.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Erling Haaland</h5>
-                            <p class="card-text"> </p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/arra.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">De Arrascaeta</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/yamal.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Lamine Yamal</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/Valverde.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Valverde</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/james.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">James Rodríguez</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/ATLETAS/suarez.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Luis Suárez</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
+        <div class="atletas-container">
+            <div class="atletas-row">
+                <div class="col-md-12">
+                    <h2>Lista de Atletas</h2>
+                    <table class="atletas-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Posição</th>
+                                <th>Clube Atual</th>
+                                <th>Número</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Conexão com o banco de dados
+                            include('../php/Database.php');
+                            $conn = new Database();
+                            $db = $conn->getConnection();
+
+                            // Consulta para buscar atletas
+                            $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
+                            $stmt = $db->prepare($query);
+                            $stmt->execute();
+
+                            // Exibindo os dados dos atletas com links para a página de detalhes
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<tr>';
+                                echo '<td><a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['nome']) . '</a></td>';
+                                echo '<td>' . htmlspecialchars($row['posicao']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['clube']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['numero']) . '</td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </aside>
-    
-    
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">
