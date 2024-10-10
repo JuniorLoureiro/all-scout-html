@@ -654,8 +654,20 @@ h3, p {
     width: 900px; /* Largura total */
     padding: 10px; /* Preenchimento */
     margin-bottom: 20px; /* Espaço abaixo */
-    border: 1px solid #ccc; /* Borda */
+    border: 1px solid #007bff; /* Borda */
+    background-color: #007bff;
+    color: white;
     border-radius: 4px; /* Cantos arredondados */
+    font-family: Arial, sans-serif; /* Fonte do texto digitado */
+    font-size: 16px; /* Tamanho da fonte do texto digitado */
+    outline: none; /* Remove o contorno ao clicar */
+}
+
+#searchInput::placeholder {
+    color: white; /* Cor do texto do placeholder */
+    opacity: 1; /* Deixa o placeholder totalmente opaco */
+    font-family: 'Arial', sans-serif; /* Fonte do texto do placeholder */
+    font-size: 16px; /* Tamanho da fonte do texto do placeholder */
 }
 
 .aside-atletas {
@@ -679,16 +691,15 @@ h3, p {
 
 .button-atleta {
     display: block; /* Permite que o link ocupe todo o espaço */
-    width: 900px; /* Botão ocupa toda a largura */
-     
-    background-color: #007bff; /* Cor de fundo do botão */
+    width: 900px; /* Botão ocupa toda a largura */   
+    background-color: #000000; /* Fundo preto */
     color: white; /* Cor do texto */
     padding: 15px; /* Espaçamento interno do botão */
-    border: none; /* Remove borda padrão */
+    border: 3px solid #006eff; /* Borda fina azul */
     border-radius: 5px; /* Bordas arredondadas */
     text-align: left; /* Alinhamento do texto à esquerda */
     text-decoration: none; /* Remove o sublinhado do link */
-    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave para cor de fundo e borda */
 }
 .button-content-atleta {
     display: flex;
@@ -698,17 +709,18 @@ h3, p {
 .button-title-atleta {
     font-size: 18px;
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .button-info-atleta {
-    margin: 2px 0;
+    margin: 1px 0;
     font-size: 14px;
     color: #e0e0e0; /* Ajuste de cor para o texto informativo */
 }
 
 .button-atleta:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+    background-color: #006eff; /* Fundo mais claro no hover */
+    border-color: #006eff; /* Cor da borda no hover */
 }
 
 

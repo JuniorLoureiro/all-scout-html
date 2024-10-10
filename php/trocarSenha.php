@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Atualizar a senha
         if ($usuario->atualizarSenha()) {
             $_SESSION['mensagem'] = "Senha alterada com sucesso!";
-            header("Location: ../html/login.php"); // Redireciona para uma página de sucesso
+            header("Location: ../html/login.php"); 
             exit();
         } else {
             $_SESSION['mensagem'] = "Erro ao alterar senha.";

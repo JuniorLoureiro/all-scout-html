@@ -69,9 +69,9 @@
                         echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta">';
                         echo '    <div class="button-content-atleta">';
                         echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
-                        echo '        <p class="button-info-atleta">Posição: ' . htmlspecialchars($row['posicao']) . '</p>';
-                        echo '        <p class="button-info-atleta">Clube: <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) . '</p>';
-                        echo '        <p class="button-info-atleta">Número: ' . htmlspecialchars($row['numero']) . '</p>';
+                        echo '        <p class="button-info-atleta">'. htmlspecialchars($row['posicao']) . 
+                             ' | <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) .  
+                             ' | <class="button-info-atleta"> NÚMERO: ' . htmlspecialchars($row['numero']) .'</p>';
                         echo '    </div>';
                         echo '</a>';
                     }
