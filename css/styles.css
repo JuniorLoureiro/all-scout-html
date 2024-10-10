@@ -649,20 +649,38 @@ h3, p {
     margin: 0.5em 0; /* Ajuste a margem conforme necessário */
 }
 
-.atletas-container {
-    padding: 20px; /* Espaçamento ao redor do contêiner */
+#searchInput {
+    display: block;
+    width: 900px; /* Largura total */
+    padding: 10px; /* Preenchimento */
+    margin-bottom: 20px; /* Espaço abaixo */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Cantos arredondados */
 }
 
+.aside-atletas {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%; /* Garante que o aside ocupe toda a largura */
+}
+
+
+
 .atletas-buttons {
-    display: flex; /* Flexbox para alinhar os botões */
-    flex-direction: column; /* Coloca os botões em coluna */
+    display: flex;
+    flex-direction: column;
     gap: 10px; /* Espaçamento entre os botões */
+    width: 100%;
 }
 
 .button-atleta {
     display: block; /* Permite que o link ocupe todo o espaço */
-    width: 100%; /* Botão ocupa toda a largura */
-    max-width: 500px; /* Largura máxima do botão */
+    width: 900px; /* Botão ocupa toda a largura */
+     
     background-color: #007bff; /* Cor de fundo do botão */
     color: white; /* Cor do texto */
     padding: 15px; /* Espaçamento interno do botão */
@@ -672,24 +690,27 @@ h3, p {
     text-decoration: none; /* Remove o sublinhado do link */
     transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
 }
+.button-content-atleta {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-title-atleta {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.button-info-atleta {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #e0e0e0; /* Ajuste de cor para o texto informativo */
+}
 
 .button-atleta:hover {
     background-color: #0056b3; /* Cor de fundo ao passar o mouse */
 }
 
-.button-content-atleta {
-    display: flex; /* Flexbox para o conteúdo do botão */
-    flex-direction: column; /* Alinha os elementos verticalmente */
-}
-
-.button-title-atleta {
-    font-size: 18px; /* Tamanho da fonte do título */
-    margin: 0; /* Remove margens do título */
-}
-
-.button-info-atleta {
-    margin: 5px 0; /* Margem vertical entre as informações */
-}
 
 /* Estilo exibir atleta */
 .content-wrapper-atleta {
@@ -722,6 +743,7 @@ h3, p {
     grid-column: 1; /* Coluna da esquerda */
     margin-top: 75px;
     font-size: 30px;
+    margin-left: 45px;
     
 }
 
@@ -749,6 +771,12 @@ h1 {
     text-align: center;
     color: #006eff;
     margin-bottom: 20px;
+}
+
+.left-title-atleta { /* Aumenta a especificidade */
+    text-align: left;
+    color: #006eff;
+    margin-bottom: 30px;
 }
 
 .player-info, .player-stats {

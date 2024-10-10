@@ -47,12 +47,12 @@
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
 
-    <aside>
+    <aside class="aside-atletas">
     <div class="atletas-container">
         <div class="atletas-row">
             <div class="col-md-12">
-                <h2>Lista de Atletas</h2>
-                <div class="atletas-buttons"> <!-- Novo contêiner para os botões -->
+                <input type="text" id="searchInput" placeholder="Pesquisar atleta..." onkeyup="filterAtletas()" />
+                <div class="atletas-buttons">
                     <?php
                     // Conexão com o banco de dados
                     include('../php/Database.php');
@@ -70,7 +70,7 @@
                         echo '    <div class="button-content-atleta">';
                         echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
                         echo '        <p class="button-info-atleta">Posição: ' . htmlspecialchars($row['posicao']) . '</p>';
-                        echo '        <p class="button-info-atleta">Clube: ' . htmlspecialchars($row['clube']) . '</p>';
+                        echo '        <p class="button-info-atleta">Clube: <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) . '</p>';
                         echo '        <p class="button-info-atleta">Número: ' . htmlspecialchars($row['numero']) . '</p>';
                         echo '    </div>';
                         echo '</a>';
@@ -125,5 +125,6 @@
 
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
+    <script src="../js/buscaAtleta.js"></script>
 </body>
 </html>

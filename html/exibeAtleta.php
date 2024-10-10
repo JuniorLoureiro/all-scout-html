@@ -81,14 +81,32 @@
     <main class="content-wrapper-atleta">
 
         <div class="player-name-image">
-            <div class="left"> <h1><?php echo htmlspecialchars($jogador['nome']); ?></h1> </div>     
+            <div class="left"> <h1 class="left-title-atleta"><?php echo htmlspecialchars($jogador['nome']); ?></h1> </div>     
+            <div class="right"> <img src="../images/atletaSemFoto.jpg"> </div>  
         </div>
+
 
         <!-- Informações do Jogador -->
         <section class="player-info">
             <h2>Informações do Jogador</h2>
             <p><label>Nacionalidade:</label> <?php echo htmlspecialchars($jogador['nacionalidade']); ?></p>
-            <p><label>Data de Nascimento:</label> <?php echo htmlspecialchars($jogador['data_nascimento']); ?></p>
+            <?php
+                // Supondo que a variável $dataNascimento armazena a data de nascimento no formato 'YYYY-MM-DD'
+                $dataNascimento = $jogador['data_nascimento'];
+
+                // Converte a data de nascimento em um objeto DateTime
+                $dataNascimentoObj = new DateTime($dataNascimento);
+
+                $dataFormatada = $dataNascimentoObj->format('d / m / Y');
+
+                // Obtém a data atual
+                $dataAtual = new DateTime();
+
+                // Calcula a diferença entre a data de nascimento e a data atual
+                $idade = $dataNascimentoObj->diff($dataAtual)->y;
+            ?>
+            <p><label>Idade:</label> <?php echo $idade," ANOS"; ?></p>
+            <p><label>Data de Nascimento:</label> <?php echo $dataFormatada; ?></p>
             <p><label>Altura:</label> <?php echo htmlspecialchars($jogador['altura']); ?></p>
             <p><label>Perna Dominante:</label> <?php echo htmlspecialchars($jogador['perna_dominante']); ?></p>
             <p><label>Posição:</label> <?php echo htmlspecialchars($jogador['posicao']); ?></p>
@@ -148,5 +166,6 @@
 
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
+    <script src="../js/buscaAtleta.js"></script>
 </body>
 </html>
