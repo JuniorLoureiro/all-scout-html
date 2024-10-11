@@ -51,61 +51,61 @@
    
 
     <?php
-// Conexão com o banco de dados
-include('../php/Database.php');
-$conn = new Database();
-$db = $conn->getConnection();
+    // Conexão com o banco de dados
+    include('../php/Database.php');
+    $conn = new Database();
+    $db = $conn->getConnection();
 
-// Obtendo o ID do clube a ser exibido
-$clube_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+    // Obtendo o ID do clube a ser exibido
+    $clube_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
-// Consulta para obter os detalhes do clube
-$query_clube = "SELECT c.nome, c.fundacao, c.estadio, c.capacidade, c.presidente, c.treinador, c.localizacao, c.capitao, c.tam_elenco, l.nome AS liga_nome 
-                FROM clubes c 
-                JOIN liga l ON c.liga_id = l.id 
-                WHERE c.id = :clube_id";
-$stmt_clube = $db->prepare($query_clube);
-$stmt_clube->bindParam(':clube_id', $clube_id);
-$stmt_clube->execute();
-$clube = $stmt_clube->fetch(PDO::FETCH_ASSOC);
+    // Consulta para obter os detalhes do clube
+    $query_clube = "SELECT c.nome, c.fundacao, c.estadio, c.capacidade, c.presidente, c.treinador, c.localizacao, c.capitao, c.tam_elenco, c.imagem, c.estadio_img, l.nome AS liga_nome 
+                    FROM clubes c 
+                    JOIN liga l ON c.liga_id = l.id 
+                    WHERE c.id = :clube_id";
+    $stmt_clube = $db->prepare($query_clube);
+    $stmt_clube->bindParam(':clube_id', $clube_id);
+    $stmt_clube->execute();
+    $clube = $stmt_clube->fetch(PDO::FETCH_ASSOC);
 
-// Consulta para obter os títulos do clube
-$query_titulos = "SELECT t.internacional, t.nacional, t.continental, t.municipal, t.mundial 
-                  FROM titulos t 
-                  JOIN titulos_clubes tc ON t.id = tc.titulos_id 
-                  WHERE tc.clube_id = :clube_id";
-$stmt_titulos = $db->prepare($query_titulos);
-$stmt_titulos->bindParam(':clube_id', $clube_id);
-$stmt_titulos->execute();
-$titulos = $stmt_titulos->fetch(PDO::FETCH_ASSOC);
+    // Consulta para obter os títulos do clube
+    $query_titulos = "SELECT t.internacional, t.nacional, t.continental, t.municipal, t.mundial 
+                    FROM titulos t 
+                    JOIN titulos_clubes tc ON t.id = tc.titulos_id 
+                    WHERE tc.clube_id = :clube_id";
+    $stmt_titulos = $db->prepare($query_titulos);
+    $stmt_titulos->bindParam(':clube_id', $clube_id);
+    $stmt_titulos->execute();
+    $titulos = $stmt_titulos->fetch(PDO::FETCH_ASSOC);
 
-// Consulta para obter as estatísticas do clube
-$query_estatisticas = "SELECT e.jogos, e.vitorias, e.empates, e.derrotas, e.gols_marcados, e.gols_sofridos, e.pontos 
-                       FROM estatisticas e 
-                       JOIN estatisticas_clubes ec ON e.id = ec.estatisticas_id 
-                       WHERE ec.clube_id = :clube_id";
-$stmt_estatisticas = $db->prepare($query_estatisticas);
-$stmt_estatisticas->bindParam(':clube_id', $clube_id);
-$stmt_estatisticas->execute();
-$estatisticas = $stmt_estatisticas->fetch(PDO::FETCH_ASSOC);
+    // Consulta para obter as estatísticas do clube
+    $query_estatisticas = "SELECT e.jogos, e.vitorias, e.empates, e.derrotas, e.gols_marcados, e.gols_sofridos, e.pontos 
+                        FROM estatisticas e 
+                        JOIN estatisticas_clubes ec ON e.id = ec.estatisticas_id 
+                        WHERE ec.clube_id = :clube_id";
+    $stmt_estatisticas = $db->prepare($query_estatisticas);
+    $stmt_estatisticas->bindParam(':clube_id', $clube_id);
+    $stmt_estatisticas->execute();
+    $estatisticas = $stmt_estatisticas->fetch(PDO::FETCH_ASSOC);
 
-// Consulta para obter o elenco atual do clube
-$query_elenco = "SELECT a.nome, a.imagem FROM atletas a 
-                 JOIN clube_atleta ca ON a.id = ca.atleta_id 
-                 WHERE ca.clube_id = :clube_id";
-$stmt_elenco = $db->prepare($query_elenco);
-$stmt_elenco->bindParam(':clube_id', $clube_id);
-$stmt_elenco->execute();
-$elenco = $stmt_elenco->fetchAll(PDO::FETCH_ASSOC);
+    // Consulta para obter o elenco atual do clube
+    $query_atletas = "SELECT a.id, a.nome, a.imagem FROM atletas a 
+    JOIN clube_atleta ca ON a.id = ca.atleta_id 
+    WHERE ca.clube_id = :clube_id";
+    $stmt_atletas = $db->prepare($query_atletas);
+    $stmt_atletas->bindParam(':clube_id', $clube_id);
+    $stmt_atletas->execute();
+    $atletas = $stmt_atletas->fetchAll(PDO::FETCH_ASSOC);
 
-?>
+    ?>
 
     <main class="exibe-time">
         <section class="club-info">
             <div class="club-header">
                 <h5 class="tituloClube"><?= htmlspecialchars($clube['nome']) ?></h5>
-                <img src="../images/TIMES/<?= htmlspecialchars($clube['nome']) ?>.jpg" alt="Escudo do Clube" class="club-logo">
-                <img src="../images/TIMES/<?= htmlspecialchars($clube['estadio']) ?>.jpg" alt="Foto do Estádio" class="stadium-photo">
+                <img src="<?= htmlspecialchars($clube['imagem']) ?>" alt="Escudo do Clube" class="club-logo">
+                <img src="<?= htmlspecialchars($clube['estadio_img']) ?>" alt="Foto do Estádio" class="stadium-photo">
             </div>
             <hr class="horizontal-line">
             <table>
@@ -151,9 +151,9 @@ $elenco = $stmt_elenco->fetchAll(PDO::FETCH_ASSOC);
                     <td>
                         <h2>Elenco Atual</h2>
                         <div class="scrollable-buttons">
-                            <?php foreach ($elenco as $atleta): ?>
+                            <?php foreach ($atletas as $atleta): ?>
                                 <button class="custom-button" onclick="window.location.href='exibeAtleta.php?id=<?= htmlspecialchars($atleta['id']) ?>';">
-                                    <img src="../images/ELENCO/<?= htmlspecialchars($atleta['imagem']) ?>" alt="<?= htmlspecialchars($atleta['nome']) ?>" class="button-icon"> 
+                                    <img src="<?= htmlspecialchars($atleta['imagem']) ?>" alt="<?= htmlspecialchars($atleta['nome']) ?>" class="button-icon"> 
                                     <?= htmlspecialchars($atleta['nome']) ?>
                                 </button>
                             <?php endforeach; ?>

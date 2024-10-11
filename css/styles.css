@@ -680,8 +680,6 @@ h3, p {
     width: 100%; /* Garante que o aside ocupe toda a largura */
 }
 
-
-
 .atletas-buttons {
     display: flex;
     flex-direction: column;
