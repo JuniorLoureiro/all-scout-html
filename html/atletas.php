@@ -48,39 +48,39 @@
     </div>
 
     <aside class="aside-atletas">
-    <div class="atletas-container">
-        <div class="atletas-row">
-            <div class="col-md-12">
-                <input type="text" id="searchInput" placeholder="Pesquisar atleta..." onkeyup="filterAtletas()" />
-                <div class="atletas-buttons">
-                    <?php
-                    // Conexão com o banco de dados
-                    include('../php/Database.php');
-                    $conn = new Database();
-                    $db = $conn->getConnection();
+        <div class="atletas-container">
+            <div class="atletas-row">
+                <div class="col-md-12">
+                    <input type="text" id="searchInput" placeholder="Pesquisar atleta..." onkeyup="filterAtletas()" />
+                    <div class="atletas-buttons">
+                        <?php
+                        // Conexão com o banco de dados
+                        include('../php/Database.php');
+                        $conn = new Database();
+                        $db = $conn->getConnection();
 
-                    // Consulta para buscar atletas
-                    $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
-                    $stmt = $db->prepare($query);
-                    $stmt->execute();
+                        // Consulta para buscar atletas
+                        $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
+                        $stmt = $db->prepare($query);
+                        $stmt->execute();
 
-                    // Exibindo os dados dos atletas como botões
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta">';
-                        echo '    <div class="button-content-atleta">';
-                        echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
-                        echo '        <p class="button-info-atleta">'. htmlspecialchars($row['posicao']) . 
-                             ' | <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) .  
-                             ' | <class="button-info-atleta"> NÚMERO: ' . htmlspecialchars($row['numero']) .'</p>';
-                        echo '    </div>';
-                        echo '</a>';
-                    }
-                    ?>
+                        // Exibindo os dados dos atletas como botões
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta">';
+                            echo '    <div class="button-content-atleta">';
+                            echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
+                            echo '        <p class="button-info-atleta">'. htmlspecialchars($row['posicao']) . 
+                                ' | <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) .  
+                                ' | <class="button-info-atleta"> NÚMERO: ' . htmlspecialchars($row['numero']) .'</p>';
+                            echo '    </div>';
+                            echo '</a>';
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</aside>
+    </aside>
 
     <footer class="site-footer">
         <div class="footer-container">

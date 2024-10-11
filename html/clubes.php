@@ -47,96 +47,38 @@
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
 
-    <aside>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/barca.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Futbol Club Barcelona</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/liver.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Sociedade Esportiva Palmeiras</h5>
-                            <p class="card-text"> </p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/real.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">FC Bayern München</h5>
-                            <p class="card-text"> </p>
-                            <a href="exibeTime.php" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/sp.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">São Paulo Futebol Clube</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/megau.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Clube de Regatas do Flamengo</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/river.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Club Atlético River Plate</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/boca.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Club Atlético Boca Juniors</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="../images/TIMES/cor.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Sport Club Corinthians Paulista</h5>
-                            <p class="card-text"></p>
-                            <a href="#" class="btn">informações</a>
-                        </div>
+    <aside class="aside-clubes">
+        <div class="clubes-container">
+            <div class="clubes-row">
+                <div class="col-md-12">
+                    <input type="text" id="searchInput" placeholder="Pesquisar clube..." onkeyup="filterClubes()" />
+                    <div class="clubes-buttons">
+                    <?php
+                    // Conexão com o banco de dados
+                    include('../php/Database.php');
+                    $conn = new Database();
+                    $db = $conn->getConnection();
+
+                    // Consulta para buscar clubes
+                    $query = "SELECT id, nome, imagem FROM clubes";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute();
+
+                    // Exibindo os clubes como botões com imagem e nome
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<a href="exibeClube.php?id=' . htmlspecialchars($row['id']) . '" class="button-clube">';
+                        echo '    <div class="button-content-clube">';
+                        echo '        <img src="' . htmlspecialchars($row['imagem']) . '" alt="' . htmlspecialchars($row['nome']) . '" class="button-img-clube">';
+                        echo '        <h3 class="button-title-clube">' . htmlspecialchars($row['nome']) . '</h3>';
+                        echo '    </div>';
+                        echo '</a>';
+                    }
+                    ?>
                     </div>
                 </div>
             </div>
         </div>
     </aside>
-    
     
     <footer class="site-footer">
         <div class="footer-container">
