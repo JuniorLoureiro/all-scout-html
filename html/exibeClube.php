@@ -60,7 +60,7 @@
     $clube_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
     // Consulta para obter os detalhes do clube
-    $query_clube = "SELECT c.nome, c.fundacao, c.estadio, c.capacidade, c.presidente, c.treinador, c.localizacao, c.capitao, c.tam_elenco, c.imagem, c.estadio_img, l.nome AS liga_nome 
+    $query_clube = "SELECT c.nome, c.nomeCompleto, c.fundacao, c.estadio, c.capacidade, c.presidente, c.treinador, c.localizacao, c.capitao, c.tam_elenco, c.imagem, c.estadio_img, l.nome AS liga_nome 
                     FROM clubes c 
                     JOIN liga l ON c.liga_id = l.id 
                     WHERE c.id = :clube_id";
@@ -81,18 +81,19 @@
 
     // Consulta para obter as estatísticas do clube
     $query_estatisticas = "SELECT e.jogos, e.vitorias, e.empates, e.derrotas, e.gols_marcados, e.gols_sofridos, e.pontos 
-                        FROM estatisticas e 
-                        JOIN estatisticas_clubes ec ON e.id = ec.estatisticas_id 
-                        WHERE ec.clube_id = :clube_id";
+                    FROM estatisticas e 
+                    JOIN estatisticas_clubes ec ON e.id = ec.estatisticas_id 
+                    WHERE ec.clube_id = :clube_id";
     $stmt_estatisticas = $db->prepare($query_estatisticas);
     $stmt_estatisticas->bindParam(':clube_id', $clube_id);
     $stmt_estatisticas->execute();
     $estatisticas = $stmt_estatisticas->fetch(PDO::FETCH_ASSOC);
 
     // Consulta para obter o elenco atual do clube
-    $query_atletas = "SELECT a.id, a.nome, a.imagem FROM atletas a 
-    JOIN clube_atleta ca ON a.id = ca.atleta_id 
-    WHERE ca.clube_id = :clube_id";
+    $query_atletas = "SELECT a.id, a.nome, a.imagem 
+                    FROM atletas a 
+                    JOIN clube_atleta ca ON a.id = ca.atleta_id 
+                    WHERE ca.clube_id = :clube_id";
     $stmt_atletas = $db->prepare($query_atletas);
     $stmt_atletas->bindParam(':clube_id', $clube_id);
     $stmt_atletas->execute();
@@ -115,7 +116,7 @@
                             <div class="club-details">
                                 <div class="left-info">
                                     <h2>Informações Gerais</h2>
-                                    <p><label>Nome do Clube:</label> <?= htmlspecialchars($clube['nome']) ?></p>
+                                    <p><label>Nome do Clube:</label> <?= htmlspecialchars($clube['nomeCompleto']) ?></p>
                                     <p><label>Fundação:</label> <?= htmlspecialchars($clube['fundacao']) ?></p>
                                     <p><label>Estádio:</label> <?= htmlspecialchars($clube['estadio']) ?></p>
                                     <p><label>Capacidade:</label> <?= htmlspecialchars($clube['capacidade']) ?> pessoas</p>
@@ -124,6 +125,7 @@
                                     <p><label>Localização:</label> <?= htmlspecialchars($clube['localizacao']) ?></p>
                                     <p><label>Capitão:</label> <?= htmlspecialchars($clube['capitao']) ?></p>
                                     <p><label>Tamanho do elenco:</label> <?= htmlspecialchars($clube['tam_elenco']) ?> jogadores</p>
+                                    <p><label>Liga Nacional:</label> <?= htmlspecialchars($clube['liga_nome']) ?></p>
                                 </div>
                                 <div class="divider"></div>
                                 <div class="middle-info">

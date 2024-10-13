@@ -48,11 +48,12 @@
     </div>
 
     <aside class="aside-clubes">
-        <div class="clubes-container">
-            <div class="clubes-row">
-                <div class="col-md-12">
-                    <input type="text" id="searchInput" placeholder="Pesquisar clube..." onkeyup="filterClubes()" />
-                    <div class="clubes-buttons">
+    <div class="clubes-container">
+        <div class="clubes-row">
+                <div class="search-container"> <!-- Contêiner para a barra de pesquisa -->
+                    <input type="text" id="searchClube" placeholder="Pesquisar clube..." onkeyup="filterClubes()" />
+                </div>
+                <div class="clubes-buttons">
                     <?php
                     // Conexão com o banco de dados
                     include('../php/Database.php');
@@ -60,12 +61,12 @@
                     $db = $conn->getConnection();
 
                     // Consulta para buscar clubes
-                    $query = "SELECT id, nome, imagem FROM clubes";
-                    $stmt = $db->prepare($query);
-                    $stmt->execute();
+                    $query_clube = "SELECT c.id, c.nome, c.imagem FROM clubes c";
+                    $stmt_clube = $db->prepare($query_clube);
+                    $stmt_clube->execute();
 
                     // Exibindo os clubes como botões com imagem e nome
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row = $stmt_clube->fetch(PDO::FETCH_ASSOC)) {
                         echo '<a href="exibeClube.php?id=' . htmlspecialchars($row['id']) . '" class="button-clube">';
                         echo '    <div class="button-content-clube">';
                         echo '        <img src="' . htmlspecialchars($row['imagem']) . '" alt="' . htmlspecialchars($row['nome']) . '" class="button-img-clube">';
@@ -74,11 +75,11 @@
                         echo '</a>';
                     }
                     ?>
-                    </div>
                 </div>
             </div>
         </div>
-    </aside>
+    </div>
+</aside>
     
     <footer class="site-footer">
         <div class="footer-container">
@@ -123,5 +124,6 @@
 
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
+    <script src="../js/buscaClube.js"></script>
 </body>
 </html>

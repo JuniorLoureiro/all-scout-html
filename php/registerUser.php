@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Tenta registrar o usuário
     if ($usuario->registrar()) {
         // Redireciona para a página de login
-        header("Location: ../html/login.html");
+        header("Location: ../html/login.php");
         exit();
     } else {
         echo "Erro ao registrar o usuário.";

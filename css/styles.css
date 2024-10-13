@@ -823,6 +823,86 @@ h1 {
     font-weight: bold;
 }
 /*css exibição de clubes*/
+
+.aside-clubes {
+    margin-top: 100px; /* Espaço acima do cabeçalho */
+    margin-bottom: 20px; /* Espaço abaixo do aside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Organiza verticalmente */
+    width: 100%; /* Garante que o aside ocupe 100% da largura */
+}
+.clubes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Organiza verticalmente */
+    width: 100%; /* Largura total do container */
+    max-width: 1200px; /* Largura máxima do container */
+    padding: 20px; /* Espaçamento interno */
+}
+
+
+.clubes-buttons {
+    display: grid; /* Usando grid layout */
+    grid-template-columns: repeat(4, 1fr); /* Define três colunas iguais */
+    gap: 20px; /* Espaço entre as colunas */
+    padding: 20px; /* Espaçamento interno */
+    max-width: 1500px; /* Largura máxima da grid */
+    margin: 0 auto; /* Centraliza o contêiner */
+    justify-items: center; /* Centraliza os itens dentro de cada célula da grid */
+    
+}
+
+.search-container {
+    display: flex; /* Usar flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo da barra de pesquisa */
+}
+
+#searchClube {
+    grid-column: span 4; /* Faz a barra de pesquisa ocupar todas as colunas */
+    width: 900px; /* Largura fixa */
+    min-width: 300px; /* Largura mínima */
+    max-width: 1300px; /* Largura mínima */
+    padding: 10px; /* Preenchimento */
+    margin: 0 auto 20px; /* Centraliza e adiciona espaço abaixo */
+    border: 1px solid #007bff; /* Borda padrão */
+    color: black; /* Cor do texto */
+    background-color: white; /* Cor de fundo */
+    border-radius: 4px; /* Cantos arredondados */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: border-color 0.3s ease; /* Transição suave da borda */
+}
+
+#searchClube:focus {
+    outline: none; /* Remove o contorno padrão do foco */
+    border-color: #007bff; /* Mantém a borda azul ao focar */
+    box-shadow: none; /* Remove qualquer sombra que possa aparecer */
+}
+
+.button-clube {
+    background-color: #000;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.button-title-clube {
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.button-clube:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
 body, html, .club-info, .club-titles, .club-squad, .club-history {
     color: white;
 }
