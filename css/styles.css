@@ -883,7 +883,7 @@ h1 {
 }
 
 .button-clube {
-    background-color: #000;
+    background-color: #000000;/*background-color: #00101E;*/
     border: 1px solid #007bff;
     border-radius: 4px;
     text-decoration: none;
@@ -897,6 +897,21 @@ h1 {
 .button-title-clube {
     margin-top: 10px;
     font-size: 25px;
+}
+
+.club-logo {
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.button-img-clube {
+    width: 275px; /* Largura desejada */
+    height: 275px; /* Altura desejada */
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    border-radius: 8px; /* Adiciona cantos arredondados, se desejado */
 }
 
 .button-clube:hover {
@@ -939,13 +954,7 @@ label {
     margin-top: 20px;
 }
 
-.club-logo {
-    width: 150px;
-    height: 200px;
-    margin-left: auto;
-    border-radius: 8px;
-    object-fit: cover; /* Mantém a proporção da imagem */
-}
+
 .stadium-photo{
     width: 700px;
     height: 200px;
