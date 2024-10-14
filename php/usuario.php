@@ -19,6 +19,7 @@ class Usuario {
     public $estado;
     public $bairro;
     public $numEnd;
+    public $tipo_usuario;
 
     // Construtor
     public function __construct($db) {
@@ -28,9 +29,9 @@ class Usuario {
     // Método para registrar o usuário
     public function registrar() {
         $query = "INSERT INTO " . $this->table_name . " 
-            (nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd)
+            (nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd, tipo_usuario)
             VALUES
-            (:nome, :email, :cpf, :senha, :cep, :cidade, :logradouro, :complemento, :username, :celular, :data_nascimento, :estado, :bairro, :numEnd)";
+            (:nome, :email, :cpf, :senha, :cep, :cidade, :logradouro, :complemento, :username, :celular, :data_nascimento, :estado, :bairro, :numEnd, :tipo_usuario)";
         
         $stmt = $this->conn->prepare($query);
 
@@ -49,6 +50,7 @@ class Usuario {
         $stmt->bindParam(':estado', $this->estado);
         $stmt->bindParam(':bairro', $this->bairro);
         $stmt->bindParam(':numEnd', $this->numEnd);
+        $stmt->bindParam(':tipo_usuario', $this->tipo_usuario); // Ligação do tipo_usuario
 
         // Executa a query
         if ($stmt->execute()) {
@@ -57,6 +59,7 @@ class Usuario {
 
         return false;
     }
+    
     public function verificarSenha($senha_atual) {
         $query = "SELECT senha FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
         $stmt = $this->conn->prepare($query);
