@@ -46,11 +46,12 @@
     <div class="favoritos-container">
     <h2>Favoritados</h2>
     <div class="atletas-buttons"> <!-- Adicionando a classe para aplicar o estilo -->
-        <?php
+    <?php
         if (isset($_SESSION['favoritos']) && !empty($_SESSION['favoritos'])) {
             foreach ($_SESSION['favoritos'] as $atleta) {
                 echo '<div class="favorito-item">'; // Classe nova para item
-                echo '    <a href="#" class="button-atleta">'; // Usando link para manter o estilo
+                // Alteração aqui para adicionar o link para a página exibeAtleta.php com o id do atleta
+                echo '    <a href="exibeAtleta.php?id=' . htmlspecialchars($atleta['id']) . '" class="button-atleta">';
                 echo '        <div class="button-content-atleta">'; // Mantendo estrutura para conteúdo
                 echo '            <h3 class="button-title-atleta">' . htmlspecialchars($atleta['nome']) . '</h3>';
                 echo '            <p class="button-info-atleta">Posição: ' . htmlspecialchars($atleta['posicao']) . '</p>';
@@ -63,7 +64,8 @@
         } else {
             echo '<p>Nenhum atleta favorito encontrado.</p>';
         }
-        ?>
+?>
+
     </div>
 </div>
 
