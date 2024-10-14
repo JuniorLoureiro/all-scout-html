@@ -29,9 +29,9 @@ class Usuario {
     // Método para registrar o usuário
     public function registrar() {
         $query = "INSERT INTO " . $this->table_name . " 
-            (nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd, tipo_usuario)
+            (nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd)
             VALUES
-            (:nome, :email, :cpf, :senha, :cep, :cidade, :logradouro, :complemento, :username, :celular, :data_nascimento, :estado, :bairro, :numEnd, :tipo_usuario)";
+            (:nome, :email, :cpf, :senha, :cep, :cidade, :logradouro, :complemento, :username, :celular, :data_nascimento, :estado, :bairro, :numEnd)";
         
         $stmt = $this->conn->prepare($query);
 
@@ -50,7 +50,6 @@ class Usuario {
         $stmt->bindParam(':estado', $this->estado);
         $stmt->bindParam(':bairro', $this->bairro);
         $stmt->bindParam(':numEnd', $this->numEnd);
-        $stmt->bindParam(':tipo_usuario', $this->tipo_usuario); // Ligação do tipo_usuario
 
         // Executa a query
         if ($stmt->execute()) {
