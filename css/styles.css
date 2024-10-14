@@ -775,6 +775,7 @@ h3, p {
     margin-bottom: 0; /* Remove a margem inferior */
     border-radius: 10px; /* Arredonda as bordas da imagem */
     border-color: #006eff;
+    background-color: #006eff;
 }
 
 h1 {
@@ -1098,7 +1099,7 @@ h1 {
 }
 
 .button-icon {
-    width: 45px; /* Tamanho da imagem */
+    width: 50px; /* Tamanho da imagem */
     height: 50px;
     margin-right: 20px;
     vertical-align: middle;

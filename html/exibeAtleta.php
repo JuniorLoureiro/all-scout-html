@@ -81,8 +81,12 @@
     <main class="content-wrapper-atleta">
 
         <div class="player-name-image">
-            <div class="left"> <h1 class="left-title-atleta"><?php echo htmlspecialchars($jogador['nome']); ?></h1> </div>     
-            <div class="right"> <img src="../images/atletaSemFoto.jpg"> </div>  
+            <div class="left"> 
+                <h1 class="left-title-atleta"><?php echo htmlspecialchars($jogador['nome']); ?></h1> 
+            </div>     
+            <div class="right">
+    <img src="<?= htmlspecialchars($jogador['imagem']) ?>" alt="Imagem do Atleta">
+</div>
         </div>
 
 
