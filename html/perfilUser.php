@@ -98,7 +98,14 @@ $numEnd = isset($_SESSION['numEnd']) ? $_SESSION['numEnd'] : 'Não disponível';
         <div><p><label>Logradouro:</label><span class="value"><?php echo $logradouro; ?></span></p></div>
         <div><p><label>Complemento:</label><span class="value"><?php echo $complemento; ?></span></p></div>
         <div><p><label>Celular:</label><span class="value"><?php echo $celular; ?></span></p></div>
-        <div><p><label>Data de Nascimento:</label><span class="value"><?php echo $data_nascimento; ?></span></p></div>
+        <?php
+            // Supondo que a variável $dataNascimento armazena a data de nascimento no formato 'YYYY-MM-DD'
+            $dataNascimento = $_SESSION['data_nascimento'];
+            // Converte a data de nascimento em um objeto DateTime
+            $dataNascimentoObj = new DateTime($dataNascimento);
+            $dataFormatada = $dataNascimentoObj->format('d / m / Y');
+        ?>
+        <div><p><label>Data de Nascimento:</label><span class="value"><?php echo $dataFormatada; ?></span></p></div>
         <div><p><label>Estado:</label><span class="value"><?php echo $estado; ?></span></p></div>
         <div><p><label>Bairro:</label><span class="value"><?php echo $bairro; ?></span></p></div>
         <div><p><label>Número:</label><span class="value"><?php echo $numEnd; ?></span></p></div>
