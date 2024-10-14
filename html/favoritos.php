@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <title>Clubes</title>
+    <title>Favoritos</title>
 </head>
 <body>
-    <header class="top-nav">
+<header class="top-nav">
         <div class="top-nav-container">
-            <!-- Parte esquerda -->
             <div class="left-nav">
                 <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
                 <nav class="main-nav">
@@ -19,68 +18,57 @@
                     <a href="sobrenos.php">Sobre Nós</a>
                 </nav>
             </div>
-            <!-- Parte central -->
             <div class="search-container">
                 <input type="text" class="search-bar" placeholder="Pesquise...">
             </div>
-            <!-- Parte direita -->
             <div class="right-nav">
-                <a href="favoritos.php" class="favorites">
-                    <img src="../images/heart_icon.png" alt="Favoritos">
-                </a>
                 <?php
-                session_start();
+                 // Verifica se a sessão já está iniciada
+                 if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                    // Usuário logado, exibe o nome de usuário
                     echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
                 } else {
-                    // Usuário não logado, exibe "Minha Conta"
                     echo '<a href="login.php" class="account-button">Minha Conta</a>';
                 }
                 ?>
             </div>
         </div>
     </header>
-    
+
     <div class="font-controls">
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
 
-    <aside class="aside-clubes">
-    <div class="clubes-container">
-        <div class="clubes-row">
-                <div class="search-container"> <!-- Contêiner para a barra de pesquisa -->
-                    <input type="text" id="searchClube" placeholder="Pesquisar clube..." onkeyup="filterClubes()" />
-                </div>
-                <div class="clubes-buttons">
-                    <?php
-                    // Conexão com o banco de dados
-                    include('../php/Database.php');
-                    $conn = new Database();
-                    $db = $conn->getConnection();
-
-                    // Consulta para buscar clubes
-                    $query_clube = "SELECT c.id, c.nome, c.imagem FROM clubes c";
-                    $stmt_clube = $db->prepare($query_clube);
-                    $stmt_clube->execute();
-
-                    // Exibindo os clubes como botões com imagem e nome
-                    while ($row = $stmt_clube->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<a href="exibeClube.php?id=' . htmlspecialchars($row['id']) . '" class="button-clube">';
-                        echo '    <div class="button-content-clube">';
-                        echo '        <img src="' . htmlspecialchars($row['imagem']) . '" alt="' . htmlspecialchars($row['nome']) . '" class="button-img-clube">';
-                        echo '        <h3 class="button-title-clube">' . htmlspecialchars($row['nome']) . '</h3>';
-                        echo '    </div>';
-                        echo '</a>';
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
+    <aside class="aside-favoritos">
+    <div class="favoritos-container">
+    <h2>Favoritados</h2>
+    <div class="atletas-buttons"> <!-- Adicionando a classe para aplicar o estilo -->
+        <?php
+        if (isset($_SESSION['favoritos']) && !empty($_SESSION['favoritos'])) {
+            foreach ($_SESSION['favoritos'] as $atleta) {
+                echo '<div class="favorito-item">'; // Classe nova para item
+                echo '    <a href="#" class="button-atleta">'; // Usando link para manter o estilo
+                echo '        <div class="button-content-atleta">'; // Mantendo estrutura para conteúdo
+                echo '            <h3 class="button-title-atleta">' . htmlspecialchars($atleta['nome']) . '</h3>';
+                echo '            <p class="button-info-atleta">Posição: ' . htmlspecialchars($atleta['posicao']) . '</p>';
+                echo '            <p class="button-info-atleta">Clube: ' . htmlspecialchars($atleta['clube']) . '</p>';
+                echo '            <p class="button-info-atleta">Número: ' . htmlspecialchars($atleta['numero']) . '</p>';
+                echo '        </div>';
+                echo '    </a>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>Nenhum atleta favorito encontrado.</p>';
+        }
+        ?>
     </div>
-</aside>
-    
+</div>
+
+    </aside>
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -114,7 +102,6 @@
         </div>
     </footer>
     
-    <!-- Inclui o VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
@@ -124,6 +111,5 @@
 
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
-    <script src="../js/buscaClube.js"></script>
 </body>
 </html>

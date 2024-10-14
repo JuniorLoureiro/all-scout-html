@@ -775,6 +775,7 @@ h3, p {
     margin-bottom: 0; /* Remove a margem inferior */
     border-radius: 10px; /* Arredonda as bordas da imagem */
     border-color: #006eff;
+    background-color: #006eff;
 }
 
 h1 {
@@ -883,7 +884,7 @@ h1 {
 }
 
 .button-clube {
-    background-color: #000;
+    background-color: #000000;/*background-color: #00101E;*/
     border: 1px solid #007bff;
     border-radius: 4px;
     text-decoration: none;
@@ -897,6 +898,21 @@ h1 {
 .button-title-clube {
     margin-top: 10px;
     font-size: 25px;
+}
+
+.club-logo {
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.button-img-clube {
+    width: 275px; /* Largura desejada */
+    height: 275px; /* Altura desejada */
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    border-radius: 8px; /* Adiciona cantos arredondados, se desejado */
 }
 
 .button-clube:hover {
@@ -939,13 +955,7 @@ label {
     margin-top: 20px;
 }
 
-.club-logo {
-    width: 150px;
-    height: 200px;
-    margin-left: auto;
-    border-radius: 8px;
-    object-fit: cover; /* Mantém a proporção da imagem */
-}
+
 .stadium-photo{
     width: 700px;
     height: 200px;
@@ -1089,7 +1099,7 @@ h1 {
 }
 
 .button-icon {
-    width: 45px; /* Tamanho da imagem */
+    width: 50px; /* Tamanho da imagem */
     height: 50px;
     margin-right: 20px;
     vertical-align: middle;
@@ -1176,3 +1186,56 @@ td {
 .form-button:hover {
     background-color: #0056b3;
 }
+
+/* estilo favoritos.php */
+
+.favoritos-container {
+    margin-top: 20px; /* Espaçamento superior */
+}
+
+.atletas-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre os botões */
+    width: 100%; /* Largura total */
+}
+
+.button-atleta {
+    display: block; /* Permite que o link ocupe todo o espaço */
+    width: 900px; /* Largura do botão */
+    background-color: #000000; /* Fundo preto */
+    color: white; /* Cor do texto */
+    padding: 15px; /* Espaçamento interno do botão */
+    border: 3px solid #006eff; /* Borda fina azul */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-align: left; /* Alinhamento do texto à esquerda */
+    text-decoration: none; /* Remove o sublinhado do link */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave */
+}
+
+.button-content-atleta {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-title-atleta {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.button-info-atleta {
+    margin: 1px 0;
+    font-size: 14px;
+    color: #e0e0e0; /* Ajuste de cor para o texto informativo */
+}
+
+.button-atleta:hover {
+    background-color: #006eff; /* Fundo mais claro no hover */
+    border-color: #006eff; /* Cor da borda no hover */
+}
+
+
+/* botao favoritar estilo */ 
+
+

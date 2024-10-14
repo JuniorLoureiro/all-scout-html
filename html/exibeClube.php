@@ -27,7 +27,7 @@
             </div>
             <!-- Parte direita -->
             <div class="right-nav">
-                <a href="#" class="favorites">
+                <a href="favoritos.php" class="favorites">
                     <img src="../images/heart_icon.png" alt="Favoritos">
                 </a>
                 <?php
@@ -90,7 +90,7 @@
     $estatisticas = $stmt_estatisticas->fetch(PDO::FETCH_ASSOC);
 
     // Consulta para obter o elenco atual do clube
-    $query_atletas = "SELECT a.id, a.nome, a.imagem 
+    $query_atletas = "SELECT a.id, a.nome, a.imagem, a.posicao 
                     FROM atletas a 
                     JOIN clube_atleta ca ON a.id = ca.atleta_id 
                     WHERE ca.clube_id = :clube_id";
@@ -157,6 +157,7 @@
                                 <button class="custom-button" onclick="window.location.href='exibeAtleta.php?id=<?= htmlspecialchars($atleta['id']) ?>';">
                                     <img src="<?= htmlspecialchars($atleta['imagem']) ?>" alt="<?= htmlspecialchars($atleta['nome']) ?>" class="button-icon"> 
                                     <?= htmlspecialchars($atleta['nome']) ?>
+                                    <?= "(",htmlspecialchars($atleta['posicao']) ,")"?>
                                 </button>
                             <?php endforeach; ?>
                         </div>

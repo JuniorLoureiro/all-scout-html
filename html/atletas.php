@@ -1,3 +1,34 @@
+<?php
+// Início do arquivo PHP
+// Verifica se a sessão já está iniciada
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Conexão com o banco de dados
+include('../php/Database.php');
+$conn = new Database();
+$db = $conn->getConnection();
+
+// Verifica se o formulário de favoritos foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
+    // Verifica se a sessão de favoritos já existe, se não, cria uma
+    if (!isset($_SESSION['favoritos'])) {
+        $_SESSION['favoritos'] = [];
+    }
+    // Adiciona o atleta aos favoritos
+    $_SESSION['favoritos'][] = [
+        'id' => $_POST['id'],
+        'nome' => $_POST['nome'],
+        'posicao' => $_POST['posicao'],
+        'clube' => $_POST['clube'],
+        'numero' => $_POST['numero']
+    ];
+    // Redireciona para evitar reenvio do formulário
+    header("Location: atletas.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
@@ -9,7 +40,6 @@
 <body>
 <header class="top-nav">
         <div class="top-nav-container">
-            <!-- Parte esquerda -->
             <div class="left-nav">
                 <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
                 <nav class="main-nav">
@@ -19,22 +49,17 @@
                     <a href="sobrenos.php">Sobre Nós</a>
                 </nav>
             </div>
-            <!-- Parte central -->
             <div class="search-container">
                 <input type="text" class="search-bar" placeholder="Pesquise...">
             </div>
-            <!-- Parte direita -->
             <div class="right-nav">
-                <a href="#" class="favorites">
+                <a href="favoritos.php" class="favorites">
                     <img src="../images/heart_icon.png" alt="Favoritos">
                 </a>
                 <?php
-                session_start();
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                    // Usuário logado, exibe o nome de usuário
                     echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
                 } else {
-                    // Usuário não logado, exibe "Minha Conta"
                     echo '<a href="login.php" class="account-button">Minha Conta</a>';
                 }
                 ?>
@@ -53,30 +78,37 @@
                 <div class="col-md-12">
                     <input type="text" id="searchInput" placeholder="Pesquisar atleta..." onkeyup="filterAtletas()" />
                     <div class="atletas-buttons">
-                        <?php
-                        // Conexão com o banco de dados
-                        include('../php/Database.php');
-                        $conn = new Database();
-                        $db = $conn->getConnection();
+                    <?php
+                    // Consulta para buscar atletas
+                    $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute();
 
-                        // Consulta para buscar atletas
-                        $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
-                        $stmt = $db->prepare($query);
-                        $stmt->execute();
-
-                        // Exibindo os dados dos atletas como botões
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta">';
-                            echo '    <div class="button-content-atleta">';
-                            echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
-                            echo '        <p class="button-info-atleta">'. htmlspecialchars($row['posicao']) . 
-                                ' | <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) .  
-                                ' | <class="button-info-atleta"> NÚMERO: ' . htmlspecialchars($row['numero']) .'</p>';
-                            echo '    </div>';
-                            echo '</a>';
-                        }
-                        ?>
-                    </div>
+                    // Exibindo os dados dos atletas como botões
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<div class="atleta-item">';
+                        echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta">';
+                        echo '    <div class="button-content-atleta">';
+                        echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
+                        echo '        <p class="button-info-atleta">'. htmlspecialchars($row['posicao']) . 
+                            ' | <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) .  
+                            ' | NÚMERO: ' . htmlspecialchars($row['numero']) .'</span></p>';
+                        echo '    </div>';
+                        echo '</a>';
+                        
+                        // Formulário para enviar os dados para favoritos.php
+                        echo '<form action="atletas.php" method="POST" class="favoritos-form">';
+                        echo '    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
+                        echo '    <input type="hidden" name="nome" value="' . htmlspecialchars($row['nome']) . '">';
+                        echo '    <input type="hidden" name="posicao" value="' . htmlspecialchars($row['posicao']) . '">';
+                        echo '    <input type="hidden" name="clube" value="' . htmlspecialchars($row['clube']) . '">';
+                        echo '    <input type="hidden" name="numero" value="' . htmlspecialchars($row['numero']) . '">';
+                        echo '    <button type="submit" class="button-favorito">Adicionar aos Favoritos</button>';
+                        echo '</form>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
                 </div>
             </div>
         </div>
@@ -115,7 +147,6 @@
         </div>
     </footer>
     
-    <!-- Inclui o VLibras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
