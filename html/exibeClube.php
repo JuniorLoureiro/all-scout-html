@@ -27,7 +27,7 @@
             </div>
             <!-- Parte direita -->
             <div class="right-nav">
-                <a href="#" class="favorites">
+                <a href="favoritos.php" class="favorites">
                     <img src="../images/heart_icon.png" alt="Favoritos">
                 </a>
                 <?php
