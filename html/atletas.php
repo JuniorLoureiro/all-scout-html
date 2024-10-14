@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                         echo '    <input type="hidden" name="posicao" value="' . htmlspecialchars($row['posicao']) . '">';
                         echo '    <input type="hidden" name="clube" value="' . htmlspecialchars($row['clube']) . '">';
                         echo '    <input type="hidden" name="numero" value="' . htmlspecialchars($row['numero']) . '">';
-                        echo '    <button type="submit" class="button-favorito">Adicionar aos Favoritos</button>';
+                        echo '    <button type="submit" class="button-favorito"><img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito"></button>';
                         echo '</form>';
                         echo '</div>';
                     }
