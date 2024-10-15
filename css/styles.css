@@ -1261,5 +1261,17 @@ td {
     margin-right: 5px; /* Espaço entre a imagem e o texto */
 }
 
+.icon-favorito2 {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px; /* Espaço entre a imagem e o texto */
+}
+.icon-favorito2:hover {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px; /* Espaço entre a imagem e o texto */
+}
+
 
 

@@ -107,19 +107,33 @@
         </section>
 
         <!-- Formulário para favoritar o atleta -->
-        <section class="favoritar-atleta">
-            <h2>Adicionar aos Favoritos</h2>
-            <form action="atletas.php" method="POST" class="favoritos-form">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($jogador['id']) ?>">
-                <input type="hidden" name="nome" value="<?= htmlspecialchars($jogador['nome']) ?>">
-                <input type="hidden" name="posicao" value="<?= htmlspecialchars($jogador['posicao']) ?>">
-                <input type="hidden" name="clube" value="<?= htmlspecialchars($jogador['clube']) ?>">
-                <input type="hidden" name="numero" value="<?= htmlspecialchars($jogador['numero']) ?>">
-                <button type="submit" class="button-favorito">
-                    <img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito">
-                </button>
-            </form>
-        </section>
+       <!-- Formulário para favoritar o atleta -->
+    <section class="favoritar-atleta">
+        <h2>Adicionar aos Favoritos</h2>
+        <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                // Exibir o formulário de favoritos se o usuário estiver logado
+                echo '
+                <form action="atletas.php" method="POST" class="favoritos-form">
+                    <input type="hidden" name="id" value="' . htmlspecialchars($jogador['id']) . '">
+                    <input type="hidden" name="nome" value="' . htmlspecialchars($jogador['nome']) . '">
+                    <input type="hidden" name="posicao" value="' . htmlspecialchars($jogador['posicao']) . '">
+                    <input type="hidden" name="clube" value="' . htmlspecialchars($jogador['clube']) . '">
+                    <input type="hidden" name="numero" value="' . htmlspecialchars($jogador['numero']) . '">
+                    <button type="submit" class="button-favorito">
+                        <img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito">
+                    </button>
+                </form>';
+            } else {
+                // Redirecionar para a página de login se o usuário não estiver logado
+                echo '
+                <a href="login.php" class="button-favorito">
+                    <img src="../images/heart_icon.png" alt="Login para favoritar" class="icon-favorito">
+                </a>';
+            }
+        ?>
+    </section>
+
 
         <!-- Estatísticas do Jogador -->
         <section class="player-stats">
