@@ -16,14 +16,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     if (!isset($_SESSION['favoritos'])) {
         $_SESSION['favoritos'] = [];
     }
-    // Adiciona o atleta aos favoritos
-    $_SESSION['favoritos'][] = [
-        'id' => $_POST['id'],
-        'nome' => $_POST['nome'],
-        'posicao' => $_POST['posicao'],
-        'clube' => $_POST['clube'],
-        'numero' => $_POST['numero']
-    ];
+    
+    // Adiciona o atleta aos favoritos se ele não estiver presente
+    $isDuplicate = false;
+    foreach ($_SESSION['favoritos'] as $favorito) {
+        if ($favorito['id'] == $_POST['id']) {
+            $isDuplicate = true;
+            break;
+        }
+    }
+    
+    if (!$isDuplicate) {
+        $_SESSION['favoritos'][] = [
+            'id' => $_POST['id'],
+            'nome' => $_POST['nome'],
+            'posicao' => $_POST['posicao'],
+            'clube' => $_POST['clube'],
+            'numero' => $_POST['numero']
+        ];
+    }
+
     // Redireciona para evitar reenvio do formulário
     header("Location: atletas.php");
     exit();
