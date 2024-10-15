@@ -96,16 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                         echo '    </div>';
                         echo '</a>';
                         
-                        // Formulário para enviar os dados para favoritos.php
-                        echo '<form action="atletas.php" method="POST" class="favoritos-form">';
-                        echo '    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
-                        echo '    <input type="hidden" name="nome" value="' . htmlspecialchars($row['nome']) . '">';
-                        echo '    <input type="hidden" name="posicao" value="' . htmlspecialchars($row['posicao']) . '">';
-                        echo '    <input type="hidden" name="clube" value="' . htmlspecialchars($row['clube']) . '">';
-                        echo '    <input type="hidden" name="numero" value="' . htmlspecialchars($row['numero']) . '">';
-                        echo '    <button type="submit" class="button-favorito"><img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito"></button>';
-                        echo '</form>';
-                        echo '</div>';
                     }
                     ?>
                 </div>

@@ -33,10 +33,8 @@
                 <?php
                 session_start();
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                    // Usuário logado, exibe o nome de usuário
                     echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
                 } else {
-                    // Usuário não logado, exibe "Minha Conta"
                     echo '<a href="login.php" class="account-button">Minha Conta</a>';
                 }
                 ?>
@@ -79,34 +77,24 @@
 
     <!-- Conteúdo Principal -->
     <main class="content-wrapper-atleta">
-
         <div class="player-name-image">
             <div class="left"> 
                 <h1 class="left-title-atleta"><?php echo htmlspecialchars($jogador['nome']); ?></h1> 
             </div>     
             <div class="right">
-    <img src="<?= htmlspecialchars($jogador['imagem']) ?>" alt="Imagem do Atleta">
-</div>
+                <img src="<?= htmlspecialchars($jogador['imagem']) ?>" alt="Imagem do Atleta">
+            </div>
         </div>
-
 
         <!-- Informações do Jogador -->
         <section class="player-info">
             <h2>Informações do Jogador</h2>
             <p><label>Nacionalidade:</label> <?php echo htmlspecialchars($jogador['nacionalidade']); ?></p>
             <?php
-                // Supondo que a variável $dataNascimento armazena a data de nascimento no formato 'YYYY-MM-DD'
                 $dataNascimento = $jogador['data_nascimento'];
-
-                // Converte a data de nascimento em um objeto DateTime
                 $dataNascimentoObj = new DateTime($dataNascimento);
-
                 $dataFormatada = $dataNascimentoObj->format('d / m / Y');
-
-                // Obtém a data atual
                 $dataAtual = new DateTime();
-
-                // Calcula a diferença entre a data de nascimento e a data atual
                 $idade = $dataNascimentoObj->diff($dataAtual)->y;
             ?>
             <p><label>Idade:</label> <?php echo $idade," ANOS"; ?></p>
@@ -118,13 +106,27 @@
             <p><label>Número:</label> <?php echo htmlspecialchars($jogador['numero']); ?></p>
         </section>
 
+        <!-- Formulário para favoritar o atleta -->
+        <section class="favoritar-atleta">
+            <h2>Adicionar aos Favoritos</h2>
+            <form action="atletas.php" method="POST" class="favoritos-form">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($jogador['id']) ?>">
+                <input type="hidden" name="nome" value="<?= htmlspecialchars($jogador['nome']) ?>">
+                <input type="hidden" name="posicao" value="<?= htmlspecialchars($jogador['posicao']) ?>">
+                <input type="hidden" name="clube" value="<?= htmlspecialchars($jogador['clube']) ?>">
+                <input type="hidden" name="numero" value="<?= htmlspecialchars($jogador['numero']) ?>">
+                <button type="submit" class="button-favorito">
+                    <img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito">
+                </button>
+            </form>
+        </section>
+
         <!-- Estatísticas do Jogador -->
         <section class="player-stats">
             <h2>Estatísticas:</h2>
             <div><p><label>Em andamento...</label></p></div>
         </section>
     </main>
-
 
     <!-- Rodapé -->
     <footer class="site-footer">
