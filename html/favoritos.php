@@ -48,23 +48,33 @@
     <div class="atletas-buttons"> <!-- Adicionando a classe para aplicar o estilo -->
     <?php
         if (isset($_SESSION['favoritos']) && !empty($_SESSION['favoritos'])) {
+            // Array para rastrear IDs dos atletas exibidos
+            $exibidos = [];
+            
             foreach ($_SESSION['favoritos'] as $atleta) {
-                echo '<div class="favorito-item">'; // Classe nova para item
-                // Alteração aqui para adicionar o link para a página exibeAtleta.php com o id do atleta
-                echo '    <a href="exibeAtleta.php?id=' . htmlspecialchars($atleta['id']) . '" class="button-atleta">';
-                echo '        <div class="button-content-atleta">'; // Mantendo estrutura para conteúdo
-                echo '            <h3 class="button-title-atleta">' . htmlspecialchars($atleta['nome']) . '</h3>';
-                echo '            <p class="button-info-atleta">Posição: ' . htmlspecialchars($atleta['posicao']) . '</p>';
-                echo '            <p class="button-info-atleta">Clube: ' . htmlspecialchars($atleta['clube']) . '</p>';
-                echo '            <p class="button-info-atleta">Número: ' . htmlspecialchars($atleta['numero']) . '</p>';
-                echo '        </div>';
-                echo '    </a>';
-                echo '</div>';
+                // Verifica se o ID do atleta já foi exibido
+                if (!in_array($atleta['id'], $exibidos)) {
+                    echo '<div class="favorito-item">'; // Classe nova para item
+                    // Link para a página exibeAtleta.php com o id do atleta
+                    echo '    <a href="exibeAtleta.php?id=' . htmlspecialchars($atleta['id']) . '" class="button-atleta">';
+                    echo '        <div class="button-content-atleta">'; // Mantendo estrutura para conteúdo
+                    echo '            <h3 class="button-title-atleta">' . htmlspecialchars($atleta['nome']) . '</h3>';
+                    echo '            <p class="button-info-atleta">Posição: ' . htmlspecialchars($atleta['posicao']) . '</p>';
+                    echo '            <p class="button-info-atleta">Clube: ' . htmlspecialchars($atleta['clube']) . '</p>';
+                    echo '            <p class="button-info-atleta">Número: ' . htmlspecialchars($atleta['numero']) . '</p>';
+                    echo '        </div>';
+                    echo '    </a>';
+                    echo '</div>';
+
+                    // Adiciona o ID do atleta ao array de exibidos
+                    $exibidos[] = $atleta['id'];
+                }
             }
         } else {
             echo '<p>Nenhum atleta favorito encontrado.</p>';
         }
 ?>
+
 
     </div>
 </div>
