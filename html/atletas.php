@@ -16,26 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     if (!isset($_SESSION['favoritos'])) {
         $_SESSION['favoritos'] = [];
     }
-    
-    // Adiciona o atleta aos favoritos se ele não estiver presente
-    $isDuplicate = false;
-    foreach ($_SESSION['favoritos'] as $favorito) {
-        if ($favorito['id'] == $_POST['id']) {
-            $isDuplicate = true;
-            break;
-        }
-    }
-    
-    if (!$isDuplicate) {
-        $_SESSION['favoritos'][] = [
-            'id' => $_POST['id'],
-            'nome' => $_POST['nome'],
-            'posicao' => $_POST['posicao'],
-            'clube' => $_POST['clube'],
-            'numero' => $_POST['numero']
-        ];
-    }
-
+    // Adiciona o atleta aos favoritos
+    $_SESSION['favoritos'][] = [
+        'id' => $_POST['id'],
+        'nome' => $_POST['nome'],
+        'posicao' => $_POST['posicao'],
+        'clube' => $_POST['clube'],
+        'numero' => $_POST['numero']
+    ];
     // Redireciona para evitar reenvio do formulário
     header("Location: atletas.php");
     exit();
@@ -108,16 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                         echo '    </div>';
                         echo '</a>';
                         
-                        // Formulário para enviar os dados para favoritos.php
-                        echo '<form action="atletas.php" method="POST" class="favoritos-form">';
-                        echo '    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
-                        echo '    <input type="hidden" name="nome" value="' . htmlspecialchars($row['nome']) . '">';
-                        echo '    <input type="hidden" name="posicao" value="' . htmlspecialchars($row['posicao']) . '">';
-                        echo '    <input type="hidden" name="clube" value="' . htmlspecialchars($row['clube']) . '">';
-                        echo '    <input type="hidden" name="numero" value="' . htmlspecialchars($row['numero']) . '">';
-                        echo '    <button type="submit" class="button-favorito"><img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito"></button>';
-                        echo '</form>';
-                        echo '</div>';
                     }
                     ?>
                 </div>
