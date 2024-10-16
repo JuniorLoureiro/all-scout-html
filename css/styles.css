@@ -1279,5 +1279,12 @@ td {
     height: 20px;
     margin-right: 5px; /* Espaço entre a imagem e o texto */
 }
-
+.desfavoritar-button1{
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    font-size: arial;
+    font-weight: bold;
+    width: 39px;
+    border: 2px solid #006eff;
+}
 

@@ -67,8 +67,8 @@
                             echo '    </a>';
 
                             // Botão para desfavoritar com chamada AJAX
-                            echo '    <button class="desfavoritar-button" onclick="desfavoritar(' . $atletaId . ')">';
-                            echo '        <img src="../images/excluir.png" alt="desfav" class="desfavorito">';
+                            echo '    <button class="desfavoritar-button1" onclick="desfavoritar(' . $atletaId . ')">';
+                            echo '        <img src="../images/excluir.png" alt="desfav" class="desfavorito1">';
                             echo '    </button>';
 
                             echo '</div>';
