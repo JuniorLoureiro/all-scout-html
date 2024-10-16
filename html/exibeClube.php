@@ -70,7 +70,7 @@
     $clube = $stmt_clube->fetch(PDO::FETCH_ASSOC);
 
     // Consulta para obter os títulos do clube
-    $query_titulos = "SELECT t.internacional, t.nacional, t.continental, t.municipal, t.mundial 
+    $query_titulos = "SELECT t.internacional, t.nacional, t.continental, t.regional, t.mundial 
                     FROM titulos t 
                     JOIN titulos_clubes tc ON t.id = tc.titulos_id 
                     WHERE tc.clube_id = :clube_id";
@@ -131,10 +131,11 @@
                                 <div class="middle-info">
                                     <h2>Títulos Conquistados</h2>
                                     <p><label>Títulos Internacionais:</label> <?= htmlspecialchars($titulos['internacional']) ?></p>
-                                    <p><label>Títulos Nacionais:</label> <?= htmlspecialchars($titulos['nacional']) ?></p>
-                                    <p><label>Títulos Continentais:</label> <?= htmlspecialchars($titulos['continental']) ?></p>
-                                    <p><label>Títulos Municipais:</label> <?= htmlspecialchars($titulos['municipal']) ?></p>
                                     <p><label>Títulos Mundiais:</label> <?= htmlspecialchars($titulos['mundial']) ?></p>
+                                    <p><label>Títulos Continentais:</label> <?= htmlspecialchars($titulos['continental']) ?></p>
+                                    <p><label>Títulos Nacionais:</label> <?= htmlspecialchars($titulos['nacional']) ?></p>
+                                    <p><label>Títulos Regionais:</label> <?= htmlspecialchars($titulos['regional']) ?></p>
+                                    
                                 </div>
                                 <div class="divider"></div>
                                 <div class="right-info">
