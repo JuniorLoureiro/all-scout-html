@@ -33,10 +33,8 @@
                 <?php
                 session_start();
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                    // Usuário logado, exibe o nome de usuário
                     echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
                 } else {
-                    // Usuário não logado, exibe "Minha Conta"
                     echo '<a href="login.php" class="account-button">Minha Conta</a>';
                 }
                 ?>
@@ -79,34 +77,24 @@
 
     <!-- Conteúdo Principal -->
     <main class="content-wrapper-atleta">
-
         <div class="player-name-image">
             <div class="left"> 
                 <h1 class="left-title-atleta"><?php echo htmlspecialchars($jogador['nome']); ?></h1> 
             </div>     
             <div class="right">
-    <img src="<?= htmlspecialchars($jogador['imagem']) ?>" alt="Imagem do Atleta">
-</div>
+                <img src="<?= htmlspecialchars($jogador['imagem']) ?>" alt="Imagem do Atleta">
+            </div>
         </div>
-
 
         <!-- Informações do Jogador -->
         <section class="player-info">
             <h2>Informações do Jogador</h2>
             <p><label>Nacionalidade:</label> <?php echo htmlspecialchars($jogador['nacionalidade']); ?></p>
             <?php
-                // Supondo que a variável $dataNascimento armazena a data de nascimento no formato 'YYYY-MM-DD'
                 $dataNascimento = $jogador['data_nascimento'];
-
-                // Converte a data de nascimento em um objeto DateTime
                 $dataNascimentoObj = new DateTime($dataNascimento);
-
                 $dataFormatada = $dataNascimentoObj->format('d / m / Y');
-
-                // Obtém a data atual
                 $dataAtual = new DateTime();
-
-                // Calcula a diferença entre a data de nascimento e a data atual
                 $idade = $dataNascimentoObj->diff($dataAtual)->y;
             ?>
             <p><label>Idade:</label> <?php echo $idade," ANOS"; ?></p>
@@ -118,13 +106,55 @@
             <p><label>Número:</label> <?php echo htmlspecialchars($jogador['numero']); ?></p>
         </section>
 
+        <!-- Formulário para favoritar o atleta -->
+       <!-- Formulário para favoritar o atleta -->
+    <section class="favoritar-atleta">
+        <h2>Adicionar aos Favoritos</h2>
+            <?php
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                    // Verifica se o atleta já está nos favoritos
+                    $jaFavoritado = false;
+                    if (isset($_SESSION['favoritos'])) {
+                        foreach ($_SESSION['favoritos'] as $atleta) {
+                            if ($atleta['id'] == $jogador['id']) {
+                                $jaFavoritado = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Exibe o botão apropriado (favoritar ou desfavoritar)
+                    if ($jaFavoritado) {
+                        // Botão para desfavoritar
+                        echo '
+                        <button class="desfavoritar-button" onclick="desfavoritar(' . htmlspecialchars($jogador['id']) . ')">
+                            <img src="../images/excluir.png" alt="Desfavoritar" class="desfavorito">
+                        </button>';
+                    } else {
+                        // Botão para favoritar
+                        echo '
+                        <button class="button-favorito" onclick="favoritar(' . htmlspecialchars($jogador['id']) . ', \'' . htmlspecialchars($jogador['nome']) . '\', \'' . htmlspecialchars($jogador['posicao']) . '\', \'' . htmlspecialchars($jogador['clube']) . '\', ' . htmlspecialchars($jogador['numero']) . ')">
+                            <img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">
+                        </button>';
+                    }
+                } else {
+                    // Redirecionar para a página de login se o usuário não estiver logado
+                    echo '
+                    <a href="login.php" class="button-favorito">
+                        <img src="../images/heart_icon.png" alt="Login para favoritar" class="icon-favorito">
+                    </a>';
+                }
+            ?>
+    </section>
+
+
+
         <!-- Estatísticas do Jogador -->
         <section class="player-stats">
             <h2>Estatísticas:</h2>
             <div><p><label>Em andamento...</label></p></div>
         </section>
     </main>
-
 
     <!-- Rodapé -->
     <footer class="site-footer">
@@ -171,5 +201,7 @@
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
     <script src="../js/buscaAtleta.js"></script>
+    <script src="../js/favorito.js"></script>
+
 </body>
 </html>
