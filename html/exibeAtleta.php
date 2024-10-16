@@ -110,29 +110,43 @@
        <!-- Formulário para favoritar o atleta -->
     <section class="favoritar-atleta">
         <h2>Adicionar aos Favoritos</h2>
-        <?php
-            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                // Exibir o formulário de favoritos se o usuário estiver logado
-                echo '
-                <form action="atletas.php" method="POST" class="favoritos-form">
-                    <input type="hidden" name="id" value="' . htmlspecialchars($jogador['id']) . '">
-                    <input type="hidden" name="nome" value="' . htmlspecialchars($jogador['nome']) . '">
-                    <input type="hidden" name="posicao" value="' . htmlspecialchars($jogador['posicao']) . '">
-                    <input type="hidden" name="clube" value="' . htmlspecialchars($jogador['clube']) . '">
-                    <input type="hidden" name="numero" value="' . htmlspecialchars($jogador['numero']) . '">
-                    <button type="submit" class="button-favorito">
-                        <img src="../images/heart_icon.png" alt="Favorito" class="icon-favorito">
-                    </button>
-                </form>';
-            } else {
-                // Redirecionar para a página de login se o usuário não estiver logado
-                echo '
-                <a href="login.php" class="button-favorito">
-                    <img src="../images/heart_icon.png" alt="Login para favoritar" class="icon-favorito">
-                </a>';
-            }
-        ?>
+            <?php
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                    // Verifica se o atleta já está nos favoritos
+                    $jaFavoritado = false;
+                    if (isset($_SESSION['favoritos'])) {
+                        foreach ($_SESSION['favoritos'] as $atleta) {
+                            if ($atleta['id'] == $jogador['id']) {
+                                $jaFavoritado = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Exibe o botão apropriado (favoritar ou desfavoritar)
+                    if ($jaFavoritado) {
+                        // Botão para desfavoritar
+                        echo '
+                        <button class="desfavoritar-button" onclick="desfavoritar(' . htmlspecialchars($jogador['id']) . ')">
+                            <img src="../images/excluir.png" alt="Desfavoritar" class="desfavorito">
+                        </button>';
+                    } else {
+                        // Botão para favoritar
+                        echo '
+                        <button class="button-favorito" onclick="favoritar(' . htmlspecialchars($jogador['id']) . ', \'' . htmlspecialchars($jogador['nome']) . '\', \'' . htmlspecialchars($jogador['posicao']) . '\', \'' . htmlspecialchars($jogador['clube']) . '\', ' . htmlspecialchars($jogador['numero']) . ')">
+                            <img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">
+                        </button>';
+                    }
+                } else {
+                    // Redirecionar para a página de login se o usuário não estiver logado
+                    echo '
+                    <a href="login.php" class="button-favorito">
+                        <img src="../images/heart_icon.png" alt="Login para favoritar" class="icon-favorito">
+                    </a>';
+                }
+            ?>
     </section>
+
 
 
         <!-- Estatísticas do Jogador -->
@@ -187,5 +201,7 @@
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
     <script src="../js/buscaAtleta.js"></script>
+    <script src="../js/favorito.js"></script>
+
 </body>
 </html>
