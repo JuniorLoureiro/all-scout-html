@@ -20,8 +20,9 @@
                     </nav>
                 </div>
                 <!-- Parte central -->
-                <div class="search-container">
-                    <input type="text" class="search-bar" placeholder="Pesquise...">
+                <div class="searchGeral-container">
+                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+                    <div class="searchGeral-results" id="searchGeral-results"></div>
                 </div>
                 <!-- Parte direita -->
                 <div class="right-nav">
@@ -161,5 +162,6 @@
     <script src="../js/vlibras.js"></script>
     <script src="../js/carousel.js"></script>
     <script src="../js/fontAccessibility.js"></script>
+    <script src="../js/searchGeral.js"></script>
 </body>
 </html>

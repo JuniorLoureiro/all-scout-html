@@ -105,6 +105,57 @@ body, html {
     padding: 0 20px;
 }
 
+.searchGeral-container {
+    position: relative; /* Necessário para posicionar os resultados */
+    max-width: 500px; /* Ajuste conforme necessário */
+    margin: 0 auto; /* Centraliza o container */
+}
+
+#searchGeral-input {
+    width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 2px solid #007bff;
+    box-sizing: border-box; /* Inclui o padding dentro da largura */
+    font-family: Arial, sans-serif; /* Fonte do texto digitado */
+    font-size: 16px;
+    outline: none; /*remove o contorno branco ao clicar*/
+}
+
+.searchGeral-results {
+    position: absolute; /* Faz os resultados aparecerem abaixo do input */
+    top: 100%; /* Abaixo do input */
+    left: 0;
+    right: 0;
+    background: black;
+    border: 1px solid #007bff;
+    border-radius: 1px; /* Cantos arredondados */
+    max-height: 150px; /* Limita a altura dos resultados */
+    overflow-y: auto; /* Adiciona scroll se necessário */
+    z-index: 100; /* Mantém os resultados à frente de outros elementos */
+    font-family: Arial, sans-serif; /* Fonte do texto digitado */
+    display: none; /* Inicialmente oculto */
+    
+}
+
+.searchGeral-results div {
+    padding: 10px;
+    border-bottom: 1px solid #007bff;
+    cursor: pointer;
+}
+
+.searchGeral-results div:hover {
+    background: #007bff;
+    color: white;
+}
+
+
+
+
+
+
 /* Estilo do rodapé */
 .site-footer {
     background-color: black;
