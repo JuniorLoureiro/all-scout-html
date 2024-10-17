@@ -86,7 +86,7 @@ body, html {
 }
 
 .favorites img {
-    width: 18px;
+    width: 25px;
     margin-right: 20px; /* Espaço entre o ícone de favoritos e o botão Minha Conta */
 }
 
@@ -845,6 +845,73 @@ h1 {
     margin-bottom: 30px;
 }
 
+.player-info{
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Define duas colunas */
+    background-color: black;
+}
+
+.player-info .right{
+    position: relative; /* Torna o contêiner o ponto de referência para posicionamento absoluto */
+    
+    
+}
+
+/* botao favoritar estilo */ 
+.button-favorito{
+    background-color: black;
+    color: rgb(255, 255, 255);
+    height: 40px;
+    width: 40px;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+    position: relative; /* Posiciona o botão de forma absoluta em relação ao contêiner */
+    right: -20px; /* Alinha o botão à direita */
+    top: 35px; /* Centraliza o botão verticalmente */
+    transform: translateX(420px);    
+}
+
+.button-favorito .icon-favorito {
+    border: none;
+    width: 26px;
+    height: 26px;
+    margin-top: 5px; /* Ajuste este valor para mover a imagem para baixo */
+}
+
+
+.button-favorito:hover{
+    background-color: #0056b3;
+    color: rgb(255, 255, 255);
+}
+
+
+/* botao desfavoritar estilo */ 
+.desfavoritar-button{
+    background-color: black;
+    color: rgb(255, 255, 255);
+    height: 40px;
+    width: 40px;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+    position: relative; /* Posiciona o botão de forma absoluta em relação ao contêiner */
+    right: -20px; /* Alinha o botão à direita */
+    top: 35px; /* Centraliza o botão verticalmente */
+    transform: translateX(420px);       
+}
+.desfavoritar-button .desfavorito{
+    border: none;
+    width: 26px;
+    height: 26px;
+    margin-top: 5px; /* Ajuste este valor para mover a imagem para baixo */
+}
+
+.desfavoritar-button:hover{
+    background-color: #0056b3;
+    color: rgb(255, 255, 255);
+}
+
+
 .player-info, .player-stats {
     margin-bottom: 30px;
     
@@ -852,7 +919,7 @@ h1 {
 
 .player-info h2, .player-stats h2 {
     color: #ffffff;
-    border-bottom: 1px solid #006eff;
+   
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
@@ -860,6 +927,7 @@ h1 {
 .player-info p, .player-stats p {
     font-size: 18px;
     margin: 10px 0;
+    grid-column: span 2; /* Faz a barra de pesquisa ocupar todas as colunas */
 }
 
 .player-info img {
@@ -979,7 +1047,7 @@ body, html, .club-info, .club-titles, .club-squad, .club-history {
 }
 
 .club-info h2, .club-titles h2, .club-squad h2, .club-history h2 {
-    color: #006eff; /* Mantém a cor do título em azul */
+    color: #006eff; /* Mantém a cor do título em azul */ 
 }
 
 label {
@@ -1058,7 +1126,6 @@ h1 {
 .horizontal-line {
     border: none;
     border-top: 5px solid #006eff;
-    
 }
 
 /* Estilo das seções */
@@ -1291,51 +1358,4 @@ td {
 }
 
 
-/* botao favoritar estilo */ 
-.button-favorito{
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    font-size: arial;
-    font-weight: bold;
-    width: 39px;
-    border: 3px solid #000000;
-}
-.buttozn-favorito:hover{
-    background-color: #1713ee;
-    color: rgb(255, 255, 255);
-}
-.icon-favorito {
-    text-align: center;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px; /* Espaço entre a imagem e o texto */
-}
-.icon-favorito:hover {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px; /* Espaço entre a imagem e o texto */
-}
-/* botao desfavoritar estilo */ 
-.desfavoritar-button{
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    font-size: arial;
-    font-weight: bold;
-    width: 39px;
-    border: 3px solid#000000;
-}
-.desvaforito{
-    text-align: center;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px; /* Espaço entre a imagem e o texto */
-}
-.desfavoritar-button1{
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    font-size: arial;
-    font-weight: bold;
-    width: 39px;
-    border: 2px solid #006eff;
-}
 
