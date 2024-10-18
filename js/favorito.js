@@ -29,4 +29,27 @@ function favoritar(id, nome, posicao, clube, numero) {
     });
 }
 
+function desfavoritar(id) {
+    const data = new FormData();
+    data.append('id_atleta', id);
+
+    fetch('desfavoritar.php', {
+        method: 'POST',
+        body: data,
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert('Atleta desfavoritado!');
+
+        // Seleciona o botão de favoritar pelo data-id do atleta     
+        const button = document.querySelector(`button[data-id='${id}']`);
+        if (button) {
+       
+            button.className = 'button-favorito';
+            button.setAttribute('onclick', `favoritar(${id})`);
+            button.innerHTML = '<img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">';
+        }
+    });
+    
+}
 

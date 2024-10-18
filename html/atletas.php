@@ -49,8 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                     <a href="sobrenos.php">Sobre Nós</a>
                 </nav>
             </div>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Pesquise...">
+            <div class="searchGeral-container">
+                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+                    <div class="searchGeral-results" id="searchGeral-results"></div>
             </div>
             <div class="right-nav">
                 <a href="favoritos.php" class="favorites">
@@ -147,5 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
     <script src="../js/buscaAtleta.js"></script>
+    <script src="../js/searchGeral.js"></script>
 </body>
 </html>

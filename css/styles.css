@@ -912,6 +912,32 @@ h1 {
 }
 
 
+.desfavoritar-button1{
+    background-color: black;
+    color: rgb(255, 255, 255);
+    height: 40px;
+    width: 40px;
+    border: 1px solid #007bff;
+    border-radius: 3px;
+    position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
+    right: -436px; /* Alinha o botão à direita */
+    top: -112px; /* Centraliza o botão verticalmente */
+    transform: translateX(420px);       
+}
+.desfavoritar-button1 .desfavorito1{
+    border: none;
+    width: 26px;
+    height: 26px;
+    margin-top: 5px; /* Ajuste este valor para mover a imagem para baixo */
+}
+
+.desfavoritar-button1:hover{
+    background-color: #0056b3;
+    color: rgb(255, 255, 255);
+}
+
+
+
 .player-info, .player-stats {
     margin-bottom: 30px;
     
