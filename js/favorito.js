@@ -1,4 +1,5 @@
 function favoritar(id, nome, posicao, clube, numero) {
+    console.log(id, nome, posicao, clube, numero);
     const data = new FormData();
     data.append('id', id);
     data.append('nome', nome);
@@ -12,6 +13,7 @@ function favoritar(id, nome, posicao, clube, numero) {
     })
     .then(response => response.text())
     .then(data => {
+       
         alert('Atleta favoritado!');
         
         // Seleciona o botão de favoritar pelo data-id do atleta

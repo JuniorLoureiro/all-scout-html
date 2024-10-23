@@ -12,6 +12,9 @@ $db = $conn->getConnection();
 
 // Verifica se o formulário de favoritos foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
+    // Exibe os dados recebidos
+    var_dump($_POST);
+
     // Verifica se a sessão de favoritos já existe, se não, cria uma
     if (!isset($_SESSION['favoritos'])) {
         $_SESSION['favoritos'] = [];
