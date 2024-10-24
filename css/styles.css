@@ -1200,7 +1200,6 @@ h1 {
 }
 
 .info-players {
-    
     width: 800px;
     height: 200px;
     background-color: black;  /* Apenas para visualização */        /* Centraliza horizontalmente */   
@@ -1208,10 +1207,9 @@ h1 {
 }
 
 .info-user {
-    
     width: 800px;
     height: 200px;
-    background-color: black;  /* Apenas para visualização */        /* Centraliza horizontalmente */   
+    background-color: black;  /* Apenas para visualização */  
     border-radius: 8px;         /* Arredonda os cantos */
 }
 
@@ -1383,5 +1381,30 @@ td {
     border-color: #006eff; /* Cor da borda no hover */
 }
 
+.background-admin {
+    margin-top: 100px;
+    width: 800px;
+    height: 200px;
+    background-color: black;  /* Apenas para visualização */  
+    border-radius: 8px;         /* Arredonda os cantos */
+}
 
+.nav-admin {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
+.tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab-content {
+    display: none;
+}
+
+/* Estilizando o conteúdo ativo */
+.tab-content.active {
+    display: block;
+}
