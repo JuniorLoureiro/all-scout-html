@@ -47,6 +47,7 @@
 
 <!-- Conteúdo aqui -->
 <div class="background-admin">
+<h5 class="tituloAdm">Administrador</h5>
     <nav class="nav-admin">
         <!-- Botões para alterar a tela -->
         <button class="tab-button" onclick="showSection('atletas')">Atletas</button>
@@ -58,6 +59,36 @@
         <!-- Conteúdo que vai ser alterado -->
         <div class="tab-content" id="atletas">
             <h2>Atletas</h2>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+
+            <p>Conteúdo relacionado aos atletas vai aqui.</p><p>Conteúdo relacionado aos atletas vai aqui.</p>
             <p>Conteúdo relacionado aos atletas vai aqui.</p>
         </div>
         <div class="tab-content" id="clubes" style="display: none;">

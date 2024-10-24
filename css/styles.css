@@ -1382,22 +1382,43 @@ td {
 }
 
 .background-admin {
-    margin-top: 100px;
-    width: 800px;
-    height: 200px;
-    background-color: black;  /* Apenas para visualização */  
-    border-radius: 8px;         /* Arredonda os cantos */
+    margin-top: 100px;       /* Margem a partir do topo */
+    width: 900px;            /* Largura fixa */
+    max-height: 1500px ;  /* Altura máxima ajustada à tela, subtraindo o espaço reservado para o header e footer */
+    background-color: black; /* Cor de fundo para visualização */
+    border-radius: 8px;      /* Arredondamento das bordas */
+    position:relative;      /* Permite que ela se comporte em relação aos elementos ao redor */
+    padding: 20px;           /* Espaçamento interno */
+    margin-bottom: 20px; 
 }
 
 .nav-admin {
     display: flex;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
 }
 
 .tab-button {
+    width: 300px;
+    background-color: #000000; /* Fundo preto */
+    color: white; /* Cor do texto */
+    border: 1.5px solid #006eff; /* Borda fina azul */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-decoration: none; /* Remove o sublinhado do link */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transição suave para cor de fundo e borda */
     padding: 10px 20px;
     cursor: pointer;
+}
+
+.tab-button:hover{
+    background-color: #006eff; /* Fundo mais claro no hover */
+    border-color: #006eff; /* Cor da borda no hover */
+}
+
+.tab-button:active{
+    background-color: #006eff; /* Fundo mais claro no hover */
+    border-color: #006eff; /* Cor da borda no hover */
 }
 
 .tab-content {
@@ -1407,4 +1428,16 @@ td {
 /* Estilizando o conteúdo ativo */
 .tab-content.active {
     display: block;
+    
+}
+.section-admin{
+    margin-left: 50px;
+}
+
+.tituloAdm {
+    text-align: center;
+    color: #006eff;
+    margin-top: 20px;
+    margin-bottom: -10px;
+    font-size: 50px;
 }
