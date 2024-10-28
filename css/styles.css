@@ -1441,3 +1441,56 @@ td {
     margin-bottom: -10px;
     font-size: 50px;
 }
+
+#search-admin {
+    width: 800px;
+    height: 38px;
+    padding: 10px;
+    border: 2px solid #006eff;
+    border-radius: 4px;
+    background-color: black;
+    margin-top: 17px;
+    margin-bottom: -5px;
+    color: white;
+}
+
+.lista-atletas {
+    max-height: 300px; /* Altura máxima da lista */
+    overflow-y: auto; /* Permite rolar verticalmente */
+    border: 1px solid #006eff;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: black;
+    scrollbar-width: thin; /* Para navegadores compatíveis */
+    scrollbar-color: #006eff black; /* Cor da barra de rolagem */
+}
+
+.lista-atletas::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lista-atletas::-webkit-scrollbar-thumb {
+    background-color: #006eff;
+    border-radius: 5px;
+}
+
+.item-atleta {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    color: white;
+}
+
+.item-atleta:last-child {
+    border-bottom: none;
+}
+
+.item-atleta:hover {
+    background-color: #006eff;
+}
+
+.item-atleta.selecionado {
+    background-color: #006eff;
+    font-weight: bold;
+}

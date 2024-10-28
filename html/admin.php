@@ -57,40 +57,88 @@
 
     <section class="section-admin">
         <!-- Conteúdo que vai ser alterado -->
+        <!-- Conteúdo dos Atletas -->
         <div class="tab-content" id="atletas">
             <h2>Atletas</h2>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+            <input type="text" id="search-admin" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
+            <div class="lista-atletas">
+                <!-- Lista de atletas será preenchida aqui via PHP -->
+                <?php
+                // Conexão com o banco de dados usando PDO
+                include('../php/Database.php');
+                $conn = new Database();
+                $db = $conn->getConnection();
 
-            <p>Conteúdo relacionado aos atletas vai aqui.</p><p>Conteúdo relacionado aos atletas vai aqui.</p>
-            <p>Conteúdo relacionado aos atletas vai aqui.</p>
+                try {
+                    // Consulta para buscar todos os atletas
+                    $stmt = $db->prepare("SELECT id, nome, nacionalidade, data_nascimento, altura, perna_dominante, posicao, clube, numero, imagem FROM atletas");
+                    $stmt->execute();
+                    $atletas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                } catch (PDOException $e) {
+                    echo "<p>Erro ao carregar atletas: " . $e->getMessage() . "</p>";
+                    $atletas = [];
+                }                
+                ?>
+
+                <script>
+                    // Passando os dados de atletas para o JavaScript
+                    const atletas = <?php echo json_encode($atletas); ?>;
+                    const listaAtletas = document.querySelector('.lista-atletas');
+
+                    atletas.forEach(atleta => {
+                        const item = document.createElement('div');
+                        item.classList.add('item-atleta');
+                        item.setAttribute('data-id', atleta.id);
+                        item.innerHTML = `
+                            <strong>${atleta.nome}</strong> - ${atleta.posicao} - ${atleta.clube} - Nº ${atleta.numero}
+                        `;
+                        item.onclick = () => selecionarAtleta(item);
+                        item.ondblclick = () => editarAtleta(atleta.id);
+                        listaAtletas.appendChild(item);
+                    });
+
+                    function selecionarAtleta(item) {
+                        // Remove a seleção de todos os itens
+                        document.querySelectorAll('.item-atleta').forEach(i => i.classList.remove('selecionado'));
+                        // Adiciona a classe 'selecionado' ao item clicado
+                        item.classList.add('selecionado');
+                    }
+                </script>
+            </div>
+            <button class="tab-button" onclick="adicionarAtleta()">Adicionar Atleta</button>
+            <button class="tab-button" onclick="excluirAtleta()">Excluir Atleta</button>
         </div>
+
+        <!-- Tela de edição do atleta -->
+        <div class="tab-content" id="editar-atleta" style="display: none;">
+            <h2>Editar Atleta</h2>
+            <form id="editar-form" enctype="multipart/form-data">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" readonly><br>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome"><br>
+                <label for="nacionalidade">Nacionalidade:</label>
+                <input type="text" id="nacionalidade" name="nacionalidade"><br>
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento"><br>
+                <label for="altura">Altura:</label>
+                <input type="text" id="altura" name="altura"><br>
+                <label for="perna_dominante">Perna Dominante:</label>
+                <input type="text" id="perna_dominante" name="perna_dominante"><br>
+                <label for="posicao">Posição:</label>
+                <input type="text" id="posicao" name="posicao"><br>
+                <label for="clube">Clube:</label>
+                <input type="text" id="clube" name="clube"><br>
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero"><br>
+                <label for="imagem">Imagem:</label>
+                <input type="text" id="imagem" name="imagem" readonly>
+                <input type="file" id="upload-imagem" accept="image/*" onchange="uploadImagem()"><br>
+                <button type="button" onclick="salvarEdicao()">Salvar</button>
+                <button type="button" onclick="cancelarEdicao()">Cancelar</button>
+            </form>
+        </div>
+
         <div class="tab-content" id="clubes" style="display: none;">
             <h2>Clubes</h2>
             <p>Conteúdo relacionado aos clubes vai aqui.</p>
@@ -144,17 +192,7 @@
     </div>
 </div>
 
-<script>
-    function showSection(sectionId) {
-        // Esconde todos os conteúdos
-        const contents = document.querySelectorAll('.tab-content');
-        contents.forEach(content => content.style.display = 'none');
-
-        // Mostra o conteúdo selecionado
-        document.getElementById(sectionId).style.display = 'block';
-    }
-</script>
-
+<script src="../js/adminAtletas.js"></script>
 <script src="../js/vlibras.js"></script>
 <script src="../js/fontAccessibility.js"></script>
 <script src="../js/desfavorito.js"></script>
