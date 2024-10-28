@@ -1,11 +1,3 @@
-function showSection(sectionId) {
-    // Esconde todos os conteúdos
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => content.style.display = 'none');
-
-    // Mostra o conteúdo selecionado
-    document.getElementById(sectionId).style.display = 'block';
-}
 function filterAtletas() {
     const filter = document.getElementById('search-admin').value.toLowerCase();
     const items = document.querySelectorAll('.item-atleta');
@@ -22,8 +14,8 @@ function editarAtleta(id) {
 
     if (atleta) {
         // Preenche os campos do formulário com os dados do atleta
-        document.getElementById('id').value = atleta.id;
-        document.getElementById('nome').value = atleta.nome;
+        document.getElementById('atleta-id').value = atleta.id;
+        document.getElementById('atleta-nome').value = atleta.nome;
         document.getElementById('nacionalidade').value = atleta.nacionalidade;
         document.getElementById('data_nascimento').value = atleta.data_nascimento;
         document.getElementById('altura').value = atleta.altura;
@@ -31,7 +23,7 @@ function editarAtleta(id) {
         document.getElementById('posicao').value = atleta.posicao;
         document.getElementById('clube').value = atleta.clube;
         document.getElementById('numero').value = atleta.numero;
-        document.getElementById('imagem').value = atleta.imagem;
+        document.getElementById('atleta-imagem').value = atleta.imagem;
         
         // Mostra a seção de edição
         showSection('editar-atleta');
@@ -39,8 +31,8 @@ function editarAtleta(id) {
 }
 
 function salvarEdicao() {
-    const id = document.getElementById('id').value;
-    const nome = document.getElementById('nome').value;
+    const id = document.getElementById('atleta-id').value;
+    const nome = document.getElementById('atleta-nome').value;
     const nacionalidade = document.getElementById('nacionalidade').value;
     const dataNascimento = document.getElementById('data_nascimento').value;
     const altura = document.getElementById('altura').value;
@@ -48,7 +40,7 @@ function salvarEdicao() {
     const posicao = document.getElementById('posicao').value;
     const clube = document.getElementById('clube').value;
     const numero = document.getElementById('numero').value;
-    const imagem = document.getElementById('imagem').value;
+    const imagem = document.getElementById('atleta-imagem').value;
 
     // Determina a URL: edição ou adição
     const url = id ? '../php/editarAtleta.php' : '../php/adicionarAtleta.php';
@@ -134,8 +126,8 @@ function excluirAtleta() {
 
 function adicionarAtleta() {
     // Limpa os campos do formulário de edição
-    document.getElementById('id').value = '';
-    document.getElementById('nome').value = '';
+    document.getElementById('atleta-id').value = '';
+    document.getElementById('atleta-nome').value = '';
     document.getElementById('nacionalidade').value = '';
     document.getElementById('data_nascimento').value = '';
     document.getElementById('altura').value = '';
@@ -143,7 +135,7 @@ function adicionarAtleta() {
     document.getElementById('posicao').value = '';
     document.getElementById('clube').value = '';
     document.getElementById('numero').value = '';
-    document.getElementById('imagem').value = '';
+    document.getElementById('atleta-imagem').value = '';
 
     // Mostra a tela de edição
     showSection('editar-atleta');

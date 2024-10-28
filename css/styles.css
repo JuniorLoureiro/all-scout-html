@@ -1494,3 +1494,44 @@ td {
     background-color: #006eff;
     font-weight: bold;
 }
+
+.lista-clubes {
+    max-height: 300px; /* Altura máxima da lista */
+    overflow-y: auto; /* Permite rolar verticalmente */
+    border: 1px solid #006eff;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: black;
+    scrollbar-width: thin; /* Para navegadores compatíveis */
+    scrollbar-color: #006eff black; /* Cor da barra de rolagem */
+}
+
+.lista-clubes::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lista-clubes::-webkit-scrollbar-thumb {
+    background-color: #006eff;
+    border-radius: 5px;
+}
+
+.item-clube {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    color: white;
+}
+
+.item-clube:last-child {
+    border-bottom: none;
+}
+
+.item-clube:hover {
+    background-color: #006eff;
+}
+
+.item-clube.selecionado {
+    background-color: #006eff;
+    font-weight: bold;
+}
