@@ -60,7 +60,7 @@
         <!-- Conteúdo dos Atletas -->
         <div class="tab-content" id="atletas">
             <h2>Atletas</h2>
-            <input type="text" id="search-atleta" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
+            <input class="search-style" type="text" id="search-atleta" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
             <div class="lista-atletas">
                 <!-- Lista de atletas será preenchida aqui via PHP -->
                 <?php
@@ -141,7 +141,7 @@
         <!-- Conteúdo dos Clubes -->
         <div class="tab-content" id="clubes" style="display: none;">
             <h2>Clubes</h2>
-            <input type="text" id="search-clube" placeholder="Pesquisar clube..." oninput="filterClubes()">
+            <input class="search-style" type="text" id="search-clube" placeholder="Pesquisar clube..." oninput="filterClubes()">
             <div class="lista-clubes">
                 <!-- Lista de clubes será preenchida aqui via PHP -->
                 <?php

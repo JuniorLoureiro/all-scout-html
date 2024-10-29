@@ -1461,6 +1461,7 @@ td {
     border-radius: 3px;
     padding: 10px;
     margin-top: 10px;
+    margin-bottom: 5px;
     background-color: black;
     scrollbar-width: thin; /* Para navegadores compatíveis */
     scrollbar-color: #006eff black; /* Cor da barra de rolagem */
@@ -1583,3 +1584,25 @@ td {
 .button-edit-atleta:hover{
     background-color: #0056b3;
 }
+
+.search-style{
+    display: block;
+    width: 860px; /* Largura total */
+    padding: 10px; /* Preenchimento */
+    margin-bottom: -5px; /* Espaço abaixo */
+    border: 1px solid #007bff; /* Borda */
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px; /* Cantos arredondados */
+    font-family: Arial, sans-serif; /* Fonte do texto digitado */
+    font-size: 16px; /* Tamanho da fonte do texto digitado */
+    outline: none; /* Remove o contorno ao clicar */
+}
+
+.search-style::placeholder{
+    color: white; /* Cor do texto do placeholder */
+    opacity: 1; /* Deixa o placeholder totalmente opaco */
+    font-family: 'Arial', sans-serif; /* Fonte do texto do placeholder */
+    font-size: 16px; /* Tamanho da fonte do texto do placeholder */
+}
+
