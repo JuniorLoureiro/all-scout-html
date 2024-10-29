@@ -110,32 +110,31 @@
         </div>
 
         <!-- Tela de edição do atleta -->
-        <div class="tab-content" id="editar-atleta" style="display: none;">
-            <h2>Editar Atleta</h2>
-            <form id="editar-form" enctype="multipart/form-data">
-                <label for="id">ID:</label>
-                <input type="text" id="atleta-id" name="id" readonly><br>
-                <label for="nome">Nome:</label>
-                <input type="text" id="atleta-nome" name="nome"><br>
-                <label for="nacionalidade">Nacionalidade:</label>
-                <input type="text" id="nacionalidade" name="nacionalidade"><br>
-                <label for="data_nascimento">Data de Nascimento:</label>
-                <input type="date" id="data_nascimento" name="data_nascimento"><br>
-                <label for="altura">Altura:</label>
-                <input type="text" id="altura" name="altura"><br>
-                <label for="perna_dominante">Perna Dominante:</label>
-                <input type="text" id="perna_dominante" name="perna_dominante"><br>
-                <label for="posicao">Posição:</label>
-                <input type="text" id="posicao" name="posicao"><br>
-                <label for="clube">Clube:</label>
-                <input type="text" id="clube" name="clube"><br>
-                <label for="numero">Número:</label>
-                <input type="text" id="numero" name="numero"><br>
-                <label for="imagem">Imagem:</label>
-                <input type="text" id="atleta-imagem" name="imagem" readonly>
-                <input type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()"><br>
-                <button type="button" onclick="salvarAtleta()">Salvar</button>
-                <button type="button" onclick="cancelarAtleta()">Cancelar</button>
+        <div class="tab-content" id="editar-atleta" style="display: none;">   
+            <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
+                <label class="text-edit-atleta" for="id">ID:</label>
+                <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly><br>
+                <label class="text-edit-atleta" for="nome">Nome:</label>
+                <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome"><br>
+                <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
+                <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade"><br>
+                <label class="text-edit-atleta" for="data_nascimento">Data de Nascimento:</label>
+                <input class="input-edit-atleta" type="date" id="data_nascimento" name="data_nascimento"><br>
+                <label class="text-edit-atleta" for="altura">Altura:</label>
+                <input class="input-edit-atleta" type="text" id="altura" name="altura"><br>
+                <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
+                <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante"><br>
+                <label class="text-edit-atleta" for="posicao">Posição:</label>
+                <input class="input-edit-atleta" type="text" id="posicao" name="posicao"><br>
+                <label class="text-edit-atleta" for="clube">Clube:</label>
+                <input class="input-edit-atleta" type="text" id="clube" name="clube"><br>
+                <label class="text-edit-atleta" for="numero">Número:</label>
+                <input class="input-edit-atleta" type="text" id="numero" name="numero"><br>
+                <label class="text-edit-atleta" for="imagem">Imagem:</label>
+                <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
+                <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
+                <button class="button-edit-atleta" type="button" onclick="salvarEdicao()">Salvar</button>
+                <button class="button-edit-atleta" type="button" onclick="cancelarEdicao()">Cancelar</button>
             </form>
         </div>
 

@@ -1431,7 +1431,7 @@ td {
     
 }
 .section-admin{
-    margin-left: 50px;
+    margin-left: 0px;
 }
 
 .tituloAdm {
@@ -1443,13 +1443,13 @@ td {
 }
 
 #search-admin {
-    width: 800px;
+    width: 860px;
     height: 38px;
     padding: 10px;
     border: 2px solid #006eff;
     border-radius: 4px;
     background-color: black;
-    margin-top: 17px;
+    margin-top: 0px;
     margin-bottom: -5px;
     color: white;
 }
@@ -1534,4 +1534,52 @@ td {
 .item-clube.selecionado {
     background-color: #006eff;
     font-weight: bold;
+}
+
+.edit-atleta{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    text-align: right;
+    gap:10px;
+}
+
+.text-edit-atleta{
+    margin-top: 4px;
+    color: white;
+
+}
+.input-edit-atleta{
+    height: 25px;
+    margin-left: 0px;
+    color: black;
+    border-color: 1px white;
+    background-color: white;
+    border-radius: 4px;
+    outline: none; /* Remove o contorno padrão do foco */
+}
+
+.file-edit-atleta{
+    margin-left: -5px;
+    margin-top: 3px;
+    color: white;
+    
+}
+.button-edit-atleta{
+    background-color: #007bff;/*background-color: #00101E;*/
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
+    margin-top: 15px;
+    transform: translateX(150px);  
+}
+
+.button-edit-atleta:hover{
+    background-color: #0056b3;
 }
