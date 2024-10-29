@@ -60,7 +60,7 @@
         <!-- Conteúdo dos Atletas -->
         <div class="tab-content" id="atletas">
             <h2>Atletas</h2>
-            <input type="text" id="search-admin" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
+            <input type="text" id="search-atleta" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
             <div class="lista-atletas">
                 <!-- Lista de atletas será preenchida aqui via PHP -->
                 <?php
@@ -133,9 +133,9 @@
                 <input type="text" id="numero" name="numero"><br>
                 <label for="imagem">Imagem:</label>
                 <input type="text" id="atleta-imagem" name="imagem" readonly>
-                <input type="file" id="upload-imagem" accept="image/*" onchange="uploadImagem()"><br>
-                <button type="button" onclick="salvarEdicao()">Salvar</button>
-                <button type="button" onclick="cancelarEdicao()">Cancelar</button>
+                <input type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()"><br>
+                <button type="button" onclick="salvarAtleta()">Salvar</button>
+                <button type="button" onclick="cancelarAtleta()">Cancelar</button>
             </form>
         </div>
 
@@ -174,6 +174,13 @@
                         item.ondblclick = () => editarClube(clube.id);
                         listaClubes.appendChild(item);
                     });
+
+                    function selecionarClube(item) {
+                        // Remove a seleção de todos os itens
+                        document.querySelectorAll('.item-clube').forEach(i => i.classList.remove('selecionado'));
+                        // Adiciona a classe 'selecionado' ao item clicado
+                        item.classList.add('selecionado');
+                    }
                 </script>
             </div>
             <button class="tab-button" onclick="adicionarClube()">Adicionar Clube</button>
@@ -207,11 +214,13 @@
                 <input type="text" id="capitao" name="capitao"><br>
                 <label for="tam_elenco">Tamanho do Elenco:</label>
                 <input type="number" id="tam_elenco" name="tam_elenco"><br>
+                <label for="liga">Liga:</label>
+                <select id="liga-id" name="liga_id"></select><br>
                 <label for="imagem">Imagem:</label>
                 <input type="text" id="clube-imagem" name="imagem" readonly>
-                <input type="file" id="upload-imagem" accept="image/*" onchange="uploadImagem()"><br>
-                <button type="button" onclick="salvarEdicao()">Salvar</button>
-                <button type="button" onclick="cancelarEdicao()">Cancelar</button>
+                <input type="file" id="upload-imagem-clube" accept="image/*" onchange="uploadImagemClube()"><br>
+                <button type="button" onclick="salvarClube()">Salvar</button>
+                <button type="button" onclick="cancelarClube()">Cancelar</button>
             </form>
         </div>
 

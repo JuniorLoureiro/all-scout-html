@@ -1,5 +1,5 @@
 function filterAtletas() {
-    const filter = document.getElementById('search-admin').value.toLowerCase();
+    const filter = document.getElementById('search-atleta').value.toLowerCase();
     const items = document.querySelectorAll('.item-atleta');
 
     items.forEach(item => {
@@ -30,7 +30,7 @@ function editarAtleta(id) {
     }
 }
 
-function salvarEdicao() {
+function salvarAtleta() {
     const id = document.getElementById('atleta-id').value;
     const nome = document.getElementById('atleta-nome').value;
     const nacionalidade = document.getElementById('nacionalidade').value;
@@ -82,7 +82,7 @@ function salvarEdicao() {
     });
 }
 
-function cancelarEdicao() {
+function cancelarAtleta() {
     showSection('atletas');
 }
 
@@ -141,8 +141,8 @@ function adicionarAtleta() {
     showSection('editar-atleta');
 }
 
-function uploadImagem() {
-    const fileInput = document.getElementById('upload-imagem');
+function uploadImagemAtleta() {
+    const fileInput = document.getElementById('upload-imagem-atleta');
     const file = fileInput.files[0];
     if (!file) {
         alert('Por favor, selecione uma imagem.');
@@ -160,7 +160,7 @@ function uploadImagem() {
     .then(result => {
         if (result.success) {
             // Atualiza o campo de imagem com o caminho do arquivo salvo
-            document.getElementById('imagem').value = result.filePath;
+            document.getElementById('atleta-imagem').value = result.filePath;
             alert('Imagem carregada com sucesso!');
         } else {
             alert('Erro ao carregar a imagem: ' + result.message);

@@ -25,16 +25,16 @@ $treinador = $data['treinador'] ?? null;
 $localizacao = $data['localizacao'] ?? null;
 $capitao = $data['capitao'] ?? null;
 $tam_elenco = $data['tam_elenco'] ?? null;
-$liga_id = $data['liga_id'] ?? null; // Adicionei o campo liga_id
+$liga_id = $data['liga_id'] ?? null; // Adiciona o campo liga_id
 
 // Valida os dados recebidos
-if (!$nome || !$nomeCompleto || !$fundacao || !$estadio || !$presidente || !$treinador || !$localizacao || !$capitao || !$tam_elenco || !$liga_id) {
+if (!$nome || !$nomeCompleto || !$imagem || !$fundacao || !$estadio || !$capacidade || !$presidente || !$treinador || !$localizacao || !$capitao || !$tam_elenco || !$liga_id) {
     echo json_encode(['success' => false, 'message' => 'Todos os campos obrigatórios devem ser preenchidos.']);
     exit;
 }
 
 try {
-    // Insere o clube no banco de dados
+    // Insere o clube no banco de dados, incluindo liga_id
     $stmt = $db->prepare("INSERT INTO clubes (nome, nomeCompleto, imagem, fundacao, estadio, capacidade, presidente, treinador, localizacao, capitao, tam_elenco, liga_id) VALUES (:nome, :nomeCompleto, :imagem, :fundacao, :estadio, :capacidade, :presidente, :treinador, :localizacao, :capitao, :tam_elenco, :liga_id)");
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':nomeCompleto', $nomeCompleto);
@@ -47,10 +47,11 @@ try {
     $stmt->bindParam(':localizacao', $localizacao);
     $stmt->bindParam(':capitao', $capitao);
     $stmt->bindParam(':tam_elenco', $tam_elenco);
-    $stmt->bindParam(':liga_id', $liga_id);
+    $stmt->bindParam(':liga_id', $liga_id); // Adiciona o binding para liga_id
     $stmt->execute();
 
     echo json_encode(['success' => true]);
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => 'Erro ao adicionar clube: ' . $e->getMessage()]);
 }
+?>

@@ -1,5 +1,5 @@
 function filterClubes() {
-    const filter = document.getElementById('search-admin').value.toLowerCase();
+    const filter = document.getElementById('search-clube').value.toLowerCase();
     const items = document.querySelectorAll('.item-clube');
 
     items.forEach(item => {
@@ -32,11 +32,12 @@ function editarClube(id) {
     }
 }
 
-function salvarEdicao() {
+function salvarClube() {
     const id = document.getElementById('clube-id').value;
     const nome = document.getElementById('clube-nome').value;
     const imagem = document.getElementById('clube-imagem').value;
     const nomeCompleto = document.getElementById('nomeCompleto').value;
+    const ligaId = document.getElementById('liga-id').value;
     const fundacao = document.getElementById('fundacao').value;
     const estadio = document.getElementById('estadio').value;
     const capacidade = document.getElementById('capacidade').value;
@@ -44,7 +45,7 @@ function salvarEdicao() {
     const treinador = document.getElementById('treinador').value;
     const localizacao = document.getElementById('localizacao').value;
     const capitao = document.getElementById('capitao').value;
-    const tamElenco = document.getElementById('tam_elenco').value;
+    const tam_elenco = document.getElementById('tam_elenco').value;
 
     // Determina a URL: edição ou adição
     const url = id ? '../php/editarClube.php' : '../php/adicionarClube.php';
@@ -53,6 +54,7 @@ function salvarEdicao() {
         nome,
         imagem,
         nomeCompleto,
+        liga_id: ligaId,
         fundacao,
         estadio,
         capacidade,
@@ -60,7 +62,7 @@ function salvarEdicao() {
         treinador,
         localizacao,
         capitao,
-        tamElenco
+        tam_elenco
     };
 
     // Faz uma requisição AJAX para salvar ou editar
@@ -88,7 +90,7 @@ function salvarEdicao() {
     });
 }
 
-function cancelarEdicao() {
+function cancelarClube() {
     showSection('clubes');
 }
 
@@ -149,8 +151,30 @@ function adicionarClube() {
     showSection('editar-clube');
 }
 
-function uploadImagem() {
-    const fileInput = document.getElementById('upload-imagem');
+function carregarLigas() {
+    fetch('../php/obterLigas.php')
+        .then(response => response.json())
+        .then(data => {
+            const ligaSelect = document.getElementById('liga-id');
+            ligaSelect.innerHTML = ''; // Limpa as opções anteriores
+            data.forEach(liga => {
+                const option = document.createElement('option');
+                option.value = liga.id;
+                option.textContent = liga.nome; // Ou qualquer outra propriedade que represente o nome
+                ligaSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar ligas:', error);
+            alert('Ocorreu um erro ao carregar as ligas.');
+        });
+}
+
+// Chame essa função quando o formulário de edição for aberto
+document.addEventListener('DOMContentLoaded', carregarLigas);
+
+function uploadImagemClube() {
+    const fileInput = document.getElementById('upload-imagem-clube');
     const file = fileInput.files[0];
     if (!file) {
         alert('Por favor, selecione uma imagem.');
@@ -168,12 +192,12 @@ function uploadImagem() {
     .then(result => {
         if (result.success) {
             // Atualiza o campo de imagem com o caminho do arquivo salvo
-            document.getElementById('imagem').value = result.filePath;
+            document.getElementById('clube-imagem').value = result.filePath;
             alert('Imagem carregada com sucesso!');
         } else {
             alert('Erro ao carregar a imagem: ' + result.message);
         }
-    })
+    })  
     .catch(error => {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao tentar carregar a imagem.');
