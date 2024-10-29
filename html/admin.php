@@ -60,7 +60,7 @@
         <!-- Conteúdo dos Atletas -->
         <div class="tab-content" id="atletas">
             <h2>Atletas</h2>
-            <input type="text" id="search-admin" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
+            <input type="text" id="search-atleta" placeholder="Pesquisar atleta..." oninput="filterAtletas()">
             <div class="lista-atletas">
                 <!-- Lista de atletas será preenchida aqui via PHP -->
                 <?php
@@ -110,13 +110,12 @@
         </div>
 
         <!-- Tela de edição do atleta -->
-        <div class="tab-content" id="editar-atleta" style="display: none;">
-            
+        <div class="tab-content" id="editar-atleta" style="display: none;">   
             <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
                 <label class="text-edit-atleta" for="id">ID:</label>
-                <input class="input-edit-atleta" type="text" id="id" name="id" readonly><br>
+                <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly><br>
                 <label class="text-edit-atleta" for="nome">Nome:</label>
-                <input class="input-edit-atleta" type="text" id="nome" name="nome"><br>
+                <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome"><br>
                 <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
                 <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade"><br>
                 <label class="text-edit-atleta" for="data_nascimento">Data de Nascimento:</label>
@@ -132,17 +131,98 @@
                 <label class="text-edit-atleta" for="numero">Número:</label>
                 <input class="input-edit-atleta" type="text" id="numero" name="numero"><br>
                 <label class="text-edit-atleta" for="imagem">Imagem:</label>
-                <input class="input-edit-atleta" type="text" id="imagem" name="imagem" readonly>
-                <input class="file-edit-atleta" type="file" id="upload-imagem" accept="image/*" onchange="uploadImagem()">
+                <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
+                <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
                 <button class="button-edit-atleta" type="button" onclick="salvarEdicao()">Salvar</button>
                 <button class="button-edit-atleta" type="button" onclick="cancelarEdicao()">Cancelar</button>
             </form>
         </div>
 
+        <!-- Conteúdo dos Clubes -->
         <div class="tab-content" id="clubes" style="display: none;">
             <h2>Clubes</h2>
-            <p>Conteúdo relacionado aos clubes vai aqui.</p>
+            <input type="text" id="search-clube" placeholder="Pesquisar clube..." oninput="filterClubes()">
+            <div class="lista-clubes">
+                <!-- Lista de clubes será preenchida aqui via PHP -->
+                <?php
+                try {
+                    // Consulta para buscar todos os clubes
+                    $stmt = $db->prepare("SELECT id, nome, nomeCompleto, imagem, fundacao, estadio, estadio_img, capacidade, presidente, treinador, localizacao, capitao, tam_elenco FROM clubes");
+                    $stmt->execute();
+                    $clubes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                } catch (PDOException $e) {
+                    echo "<p>Erro ao carregar clubes: " . $e->getMessage() . "</p>";
+                    $clubes = [];
+                }
+                ?>
+
+                <script>
+                    // Passando os dados de clubes para o JavaScript
+                    const clubes = <?php echo json_encode($clubes); ?>;
+                    const listaClubes = document.querySelector('.lista-clubes');
+
+                    clubes.forEach(clube => {
+                        const item = document.createElement('div');
+                        item.classList.add('item-clube');
+                        item.setAttribute('data-id', clube.id);
+                        item.innerHTML = `
+                            <strong>ID: ${clube.id} - <strong>${clube.nome}</strong> - ${clube.nomeCompleto}<br>
+                            <img src="${clube.imagem}" alt="${clube.nome}" style="width: 100px; height: auto;"><br>
+                        `;
+                        item.onclick = () => selecionarClube(item);
+                        item.ondblclick = () => editarClube(clube.id);
+                        listaClubes.appendChild(item);
+                    });
+
+                    function selecionarClube(item) {
+                        // Remove a seleção de todos os itens
+                        document.querySelectorAll('.item-clube').forEach(i => i.classList.remove('selecionado'));
+                        // Adiciona a classe 'selecionado' ao item clicado
+                        item.classList.add('selecionado');
+                    }
+                </script>
+            </div>
+            <button class="tab-button" onclick="adicionarClube()">Adicionar Clube</button>
+            <button class="tab-button" onclick="excluirClube()">Excluir Clube</button>
         </div>
+
+
+        <!-- Tela de edição do clube -->
+        <div class="tab-content" id="editar-clube" style="display: none;">
+            <h2>Editar Clube</h2>
+            <form id="editar-form" enctype="multipart/form-data">
+                <label for="id">ID:</label>
+                <input type="text" id="clube-id" name="id" readonly><br>
+                <label for="nome">Nome:</label>
+                <input type="text" id="clube-nome" name="nome"><br>
+                <label for="nomeCompleto">Nome Completo:</label>
+                <input type="text" id="nomeCompleto" name="nomeCompleto"><br>
+                <label for="fundacao">Fundação:</label>
+                <input type="number" id="fundacao" name="fundacao"><br>
+                <label for="estadio">Estádio:</label>
+                <input type="text" id="estadio" name="estadio"><br>
+                <label for="capacidade">Capacidade:</label>
+                <input type="number" id="capacidade" name="capacidade"><br>
+                <label for="presidente">Presidente:</label>
+                <input type="text" id="presidente" name="presidente"><br>
+                <label for="treinador">Treinador:</label>
+                <input type="text" id="treinador" name="treinador"><br>
+                <label for="localizacao">Localização:</label>
+                <input type="text" id="localizacao" name="localizacao"><br>
+                <label for="capitao">Capitão:</label>
+                <input type="text" id="capitao" name="capitao"><br>
+                <label for="tam_elenco">Tamanho do Elenco:</label>
+                <input type="number" id="tam_elenco" name="tam_elenco"><br>
+                <label for="liga">Liga:</label>
+                <select id="liga-id" name="liga_id"></select><br>
+                <label for="imagem">Imagem:</label>
+                <input type="text" id="clube-imagem" name="imagem" readonly>
+                <input type="file" id="upload-imagem-clube" accept="image/*" onchange="uploadImagemClube()"><br>
+                <button type="button" onclick="salvarClube()">Salvar</button>
+                <button type="button" onclick="cancelarClube()">Cancelar</button>
+            </form>
+        </div>
+
         <div class="tab-content" id="usuarios" style="display: none;">
             <h2>Usuários</h2>
             <p>Conteúdo relacionado aos usuários vai aqui.</p>
@@ -192,6 +272,18 @@
     </div>
 </div>
 
+<script>
+    function showSection(sectionId) {
+    // Esconde todos os conteúdos
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.style.display = 'none');
+
+    // Mostra o conteúdo selecionado
+    document.getElementById(sectionId).style.display = 'block';
+    }
+</script>
+
+<script src="../js/adminClubes.js"></script>
 <script src="../js/adminAtletas.js"></script>
 <script src="../js/vlibras.js"></script>
 <script src="../js/fontAccessibility.js"></script>
