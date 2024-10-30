@@ -3,13 +3,6 @@ require '../php/Database.php';
 require '../php/usuario.php';
 session_start();
 
-/*
-// Debug: Exibir os dados da sessão
-echo "<pre>";
-print_r($_SESSION); // Isso vai mostrar todos os dados armazenados na sessão
-echo "</pre>";
-*/
-
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Usuário'; 
 $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Usuário';
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Não disponível';
@@ -23,7 +16,7 @@ $data_nascimento = isset($_SESSION['data_nascimento']) ? $_SESSION['data_nascime
 $estado = isset($_SESSION['estado']) ? $_SESSION['estado'] : 'Não disponível';
 $bairro = isset($_SESSION['bairro']) ? $_SESSION['bairro'] : 'Não disponível';
 $numEnd = isset($_SESSION['numEnd']) ? $_SESSION['numEnd'] : 'Não disponível';
-
+$tipo_usuario = isset($_SESSION['tipo_usuario']) ? $_SESSION['tipo_usuario'] : 'usuario';
 ?>
 
 <!DOCTYPE html>
@@ -50,11 +43,18 @@ $numEnd = isset($_SESSION['numEnd']) ? $_SESSION['numEnd'] : 'Não disponível';
                     </nav>
                 </div>
                 <!-- Parte central -->
-                <div class="search-container">
-                    <input type="text" class="search-bar" placeholder="Pesquise...">
+                <div class="searchGeral-container">
+                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+                    <div class="searchGeral-results" id="searchGeral-results"></div>
                 </div>
                 <!-- Parte direita -->
                 <div class="right-nav">
+                    <?php
+                    // Exibe o botão "Tela Admin" se o usuário for administrador
+                    if ($tipo_usuario === 'admin') {
+                        echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Favoritos"></a>';
+                    }
+                    ?>
                     <a href="favoritos.php" class="favorites">
                         <img src="../images/heart_icon.png" alt="Favoritos">
                     </a>
@@ -90,14 +90,14 @@ $numEnd = isset($_SESSION['numEnd']) ? $_SESSION['numEnd'] : 'Não disponível';
 <section class="user-info">
     <h2>Informações do Usuário</h2>
     <div class="user-info">
-        <div><p><label>Nome: </label><span class="value"><?php echo $nome; ?></span></p></div>
-        <div><p><label>Email: </label><span class="value"><?php echo $email; ?></span></p></div>
-        <div><p><label>CPF: </label><span class="value"><?php echo $cpf; ?></span></p></div>
-        <div><p><label>CEP: </label><span class="value"><?php echo $cep; ?></span></p></div>
-        <div><p><label>Cidade: </label><span class="value"><?php echo $cidade; ?></span></p></div>
-        <div><p><label>Logradouro: </label><span class="value"><?php echo $logradouro; ?></span></p></div>
-        <div><p><label>Complemento: </label><span class="value"><?php echo $complemento; ?></span></p></div>
-        <div><p><label>Celular: </label><span class="value"><?php echo $celular; ?></span></p></div>
+        <div><p><label>Nome:</label><span class="value"><?php echo $nome; ?></span></p></div>
+        <div><p><label>Email:</label><span class="value"><?php echo $email; ?></span></p></div>
+        <div><p><label>CPF:</label><span class="value"><?php echo $cpf; ?></span></p></div>
+        <div><p><label>CEP:</label><span class="value"><?php echo $cep; ?></span></p></div>
+        <div><p><label>Cidade:</label><span class="value"><?php echo $cidade; ?></span></p></div>
+        <div><p><label>Logradouro:</label><span class="value"><?php echo $logradouro; ?></span></p></div>
+        <div><p><label>Complemento:</label><span class="value"><?php echo $complemento; ?></span></p></div>
+        <div><p><label>Celular:</label><span class="value"><?php echo $celular; ?></span></p></div>
         <?php
             // Supondo que a variável $dataNascimento armazena a data de nascimento no formato 'YYYY-MM-DD'
             $dataNascimento = $_SESSION['data_nascimento'];
@@ -105,10 +105,10 @@ $numEnd = isset($_SESSION['numEnd']) ? $_SESSION['numEnd'] : 'Não disponível';
             $dataNascimentoObj = new DateTime($dataNascimento);
             $dataFormatada = $dataNascimentoObj->format('d / m / Y');
         ?>
-        <div><p><label>Data de Nascimento: </label><span class="value"><?php echo $dataFormatada; ?></span></p></div>
-        <div><p><label>Estado: </label><span class="value"><?php echo $estado; ?></span></p></div>
-        <div><p><label>Bairro: </label><span class="value"><?php echo $bairro; ?></span></p></div>
-        <div><p><label>Número: </label><span class="value"><?php echo $numEnd; ?></span></p></div>
+        <div><p><label>Data de Nascimento:</label><span class="value"><?php echo $dataFormatada; ?></span></p></div>
+        <div><p><label>Estado:</label><span class="value"><?php echo $estado; ?></span></p></div>
+        <div><p><label>Bairro:</label><span class="value"><?php echo $bairro; ?></span></p></div>
+        <div><p><label>Número:</label><span class="value"><?php echo $numEnd; ?></span></p></div>
 
         <h2></h2>
 

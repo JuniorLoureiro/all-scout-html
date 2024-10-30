@@ -41,15 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['bairro'] = $usuario->bairro;
                 $_SESSION['numEnd'] = $usuario->numEnd;
                 $_SESSION['tipo_usuario'] = $usuario->tipo_usuario; // Adiciona o tipo de usuário
-                // Redireciona para a página inicial ou painel do usuário
-                header("Location: ../html/clubes.php");
-
-                // Verifica se o usuário é administrador
-                if ($usuario->tipo_usuario == 'admin') {
-                    // Redireciona para o painel de administração
-                    header("Location: ../html/admin_dashboard.php");
+                
+                // Redireciona com base no tipo de usuário
+                if ($usuario->tipo_usuario === 'admin') {
+                    header("Location: ../html/admin.php");
                 } else {
-                    // Redireciona para a página inicial do usuário
                     header("Location: ../html/clubes.php");
                 }
                 exit();

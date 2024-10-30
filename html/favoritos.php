@@ -18,11 +18,16 @@
                     <a href="sobrenos.php">Sobre Nós</a>
                 </nav>
             </div>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Pesquise...">
+            <div class="searchGeral-container">
+                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+                    <div class="searchGeral-results" id="searchGeral-results"></div>
             </div>
             <div class="right-nav">
                 <?php
+                // Exibe o botão "Tela Admin" se o usuário for administrador
+                if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
+                    echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
+                }
                  // Verifica se a sessão já está iniciada
                  if (session_status() == PHP_SESSION_NONE) {
                     session_start();

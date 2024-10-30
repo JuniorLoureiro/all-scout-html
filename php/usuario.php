@@ -108,8 +108,12 @@ class Usuario {
         }     
 
     }
+
     public function obterDadosPorUsername($username) {
-        $query = "SELECT nome, email, cpf, cep, cidade, logradouro, complemento, celular, data_nascimento, estado, bairro, numEnd, senha FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
+        $query = "SELECT nome, email, cpf, cep, cidade, logradouro, complemento, celular, data_nascimento, estado, bairro, numEnd, senha, tipo_usuario 
+                  FROM " . $this->table_name . " 
+                  WHERE username = :username 
+                  LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
@@ -130,11 +134,12 @@ class Usuario {
             $this->bairro = $row['bairro'];
             $this->numEnd = $row['numEnd'];
             $this->senha = $row['senha']; // Armazena a senha para verificação
+            $this->tipo_usuario = $row['tipo_usuario']; // Armazena o tipo de usuário
             return true;
         }
         return false; // Retorna falso se não encontrar
     }
-
+    
     public function getTableName() {
         return $this->table_name;
     }
