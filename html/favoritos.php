@@ -24,14 +24,16 @@
             </div>
             <div class="right-nav">
                 <?php
+                session_start();
                 // Exibe o botão "Tela Admin" se o usuário for administrador
                 if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
                     echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
                 }
-                 // Verifica se a sessão já está iniciada
-                 if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
+                ?>
+                <a href="favoritos.php" class="favorites">
+                    <img src="../images/heart_icon.png" alt="Favoritos">
+                </a>
+                <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                     echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
                 } else {

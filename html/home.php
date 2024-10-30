@@ -27,6 +27,7 @@
                 <!-- Parte direita -->
                 <div class="right-nav">
                     <?php
+                    session_start();
                     // Exibe o botão "Tela Admin" se o usuário for administrador
                     if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
                         echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
@@ -36,7 +37,6 @@
                         <img src="../images/heart_icon.png" alt="Favoritos">
                     </a>
                     <?php
-                    session_start();
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                         // Usuário logado, exibe o nome de usuário
                         echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';

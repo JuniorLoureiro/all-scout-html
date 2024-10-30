@@ -20,18 +20,27 @@
                 <a href="sobrenos.php">Sobre Nós</a>
             </nav>
         </div>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Pesquise...">
+        <div class="searchGeral-container">
+                <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+                <div class="searchGeral-results" id="searchGeral-results"></div>
         </div>
         <div class="right-nav">
             <?php
-                // Verifica se a sessão já está iniciada
-                if (session_status() == PHP_SESSION_NONE) {
-                session_start();
+            session_start();
+            // Exibe o botão "Tela Admin" se o usuário for administrador
+            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
+                echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
             }
+            ?>
+            <a href="favoritos.php" class="favorites">
+                <img src="../images/heart_icon.png" alt="Favoritos">
+            </a>
+            <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                // Usuário logado, exibe o nome de usuário
                 echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
             } else {
+                // Usuário não logado, exibe "Minha Conta"
                 echo '<a href="login.php" class="account-button">Minha Conta</a>';
             }
             ?>
