@@ -142,8 +142,8 @@
                 <label class="text-edit-atleta" for="imagem">Imagem:</label>
                 <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
                 <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
-                <button class="button-edit-atleta" type="button" onclick="salvarEdicao()">Salvar</button>
-                <button class="button-edit-atleta" type="button" onclick="cancelarEdicao()">Cancelar</button>
+                <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
+                <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
             </form>
         </div>
 
