@@ -49,7 +49,10 @@
             </div>
         </div>
     </header>
-  
+    <div class="font-controls">
+        <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
+    </div>
     <nav>
     <section id="home">
         <center><h1>Bem-vindo ao Projeto All-Scout</h1></center>
@@ -136,7 +139,7 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-
+    <script src="../js/searchGeral.js"></script>
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
 </body>
