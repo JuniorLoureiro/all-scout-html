@@ -1033,7 +1033,7 @@ h1 {
 }
 
 .button-clube {
-    background-color: #000000;/*background-color: #00101E;*/
+    background-color: black;/*background-color: #00101E;*/
     border: 1px solid #007bff;
     border-radius: 4px;
     text-decoration: none;
@@ -1050,7 +1050,7 @@ h1 {
 }
 
 .club-logo {
-    width: 200px;
+    max-width: 200px;
     height: 200px;
     margin-left: auto;
     border-radius: 8px;
@@ -1058,12 +1058,18 @@ h1 {
 }
 
 .button-img-clube {
-    width: 275px; /* Largura desejada */
-    height: 275px; /* Altura desejada */
+    max-width: 275px; /* Largura desejada */
+    max-height: 275px; /* Altura desejada */
     object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
     border-radius: 8px; /* Adiciona cantos arredondados, se desejado */
 }
 
+.button-content-clube{
+    width: 300px; /* Largura desejada */
+    height: 325px; /* Altura desejada */
+    
+    border-radius: 8px; /* Adiciona cantos arredondados, se desejado */
+}
 .button-clube:hover {
     background-color: #0056b3; /* Cor de fundo ao passar o mouse */
 }
@@ -1220,8 +1226,9 @@ h1 {
     border: 1px solid black; /* Borda para visualização */
     border-radius: 8px; /* Arredonda os cantos */
     width: 550px; /* Largura do contêiner */
-    
     background-color: black;
+    scrollbar-width: thin; /* Para navegadores compatíveis */
+    scrollbar-color: #006eff black; /* Cor da barra de rolagem */
 }
 
 .custom-button {
@@ -1235,8 +1242,11 @@ h1 {
     border: none; /* Remove a borda padrão */
     border-radius: 5px; /* Arredonda os cantos */
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
-    text-align: left; /* Centraliza o texto no botão */
+    text-align: left; /* Alinha o texto à esquerda */
     font-size: 20px; /* Ajuste do tamanho da fonte, se necessário */
+    overflow: hidden; /* Oculta o conteúdo que transborda */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    text-overflow: ellipsis; /* Adiciona "..." no final do texto se ele for muito longo */
 }
 
 .custom-button:hover {
@@ -1476,11 +1486,13 @@ td {
     border-radius: 5px;
 }
 
-.item-atleta {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-    color: white;
+.atleta-item {
+    margin: 0; /* Remover margens se necessário */
+    transition: opacity 0.3s ease; /* Para um efeito mais suave */
+}
+
+.atleta-item[style*="display: none"] {
+    opacity: 0; /* Para uma transição mais suave ao ocultar */
 }
 
 .item-atleta:last-child {

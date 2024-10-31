@@ -1,6 +1,5 @@
 <?php
 // Início do arquivo PHP
-// Verifica se a sessão já está iniciada
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,11 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     // Exibe os dados recebidos
     var_dump($_POST);
 
-    // Verifica se a sessão de favoritos já existe, se não, cria uma
     if (!isset($_SESSION['favoritos'])) {
         $_SESSION['favoritos'] = [];
     }
-    // Adiciona o atleta aos favoritos
     $_SESSION['favoritos'][] = [
         'id' => $_POST['id'],
         'nome' => $_POST['nome'],
@@ -27,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         'clube' => $_POST['clube'],
         'numero' => $_POST['numero']
     ];
-    // Redireciona para evitar reenvio do formulário
     header("Location: atletas.php");
     exit();
 }
@@ -53,19 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
             </nav>
         </div>
         <div class="searchGeral-container">
-                <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
-                <div class="searchGeral-results" id="searchGeral-results"></div>
+            <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+            <div class="searchGeral-results" id="searchGeral-results"></div>
         </div>
         <div class="right-nav">
             <?php
-            // Exibe o botão "Tela Admin" se o usuário for administrador
             if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
                 echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
             }
             ?>
-            <a href="favoritos.php" class="favorites">
-                <img src="../images/heart_icon.png" alt="Favoritos">
-            </a>
+            <a href="favoritos.php" class="favorites"><img src="../images/heart_icon.png" alt="Favoritos"></a>
             <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                 echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
@@ -76,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
         </div>
     </div>
 </header>
-    
+
 <div class="font-controls">
     <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
     <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
@@ -89,26 +82,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 <input type="text" id="searchInput" placeholder="Pesquisar atleta..." onkeyup="filterAtletas()" />
                 <div class="atletas-buttons">
                 <?php
-                // Consulta para buscar atletas
                 $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
                 $stmt = $db->prepare($query);
                 $stmt->execute();
 
-                // Exibindo os dados dos atletas como botões
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="atleta-item">';
                     echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta">';
                     echo '    <div class="button-content-atleta">';
                     echo '        <h3 class="button-title-atleta">' . htmlspecialchars($row['nome']) . '</h3>';
-                    echo '        <p class="button-info-atleta">'. htmlspecialchars($row['posicao']) . 
+                    echo '        <p class="button-info-atleta">' . htmlspecialchars($row['posicao']) . 
                         ' | <span class="button-club-atleta"> ' . htmlspecialchars($row['clube']) .  
-                        ' | NÚMERO: ' . htmlspecialchars($row['numero']) .'</span></p>';
+                        ' | NÚMERO: ' . htmlspecialchars($row['numero']) . '</span></p>';
                     echo '    </div>';
                     echo '</a>';
-                    
+                    echo '</div>'; // Fechando div .atleta-item
                 }
                 ?>
-            </div>
+                </div>
             </div>
         </div>
     </div>
