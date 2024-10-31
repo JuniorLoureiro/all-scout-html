@@ -87,7 +87,7 @@
     $titulos = $stmt_titulos->fetch(PDO::FETCH_ASSOC);
 
     // Consulta para obter as estatísticas do clube
-    $query_estatisticas = "SELECT e.jogos, e.vitorias, e.empates, e.derrotas, e.gols_marcados, e.gols_sofridos, e.pontos 
+    $query_estatisticas = "SELECT e.jogos, e.vitorias, e.empates, e.derrotas, e.gols_marcados, e.gols_sofridos, e.aproveitamento
                     FROM estatisticas e 
                     JOIN estatisticas_clubes ec ON e.id = ec.estatisticas_id 
                     WHERE ec.clube_id = :clube_id";
@@ -153,7 +153,7 @@
                                     <p><label>Derrotas:</label> <?= htmlspecialchars($estatisticas['derrotas']) ?></p>
                                     <p><label>Gols Marcados:</label> <?= htmlspecialchars($estatisticas['gols_marcados']) ?></p>
                                     <p><label>Gols Sofridos:</label> <?= htmlspecialchars($estatisticas['gols_sofridos']) ?></p>
-                                    <p><label>Pontos na liga:</label> <?= htmlspecialchars($estatisticas['pontos']) ?></p>
+                                    <p><label>Aproveitamento (%):</label> <?= htmlspecialchars($estatisticas['aproveitamento']) ?></p>
                                 </div>
                             </div>
                         </div>

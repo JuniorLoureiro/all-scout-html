@@ -1,25 +1,20 @@
-function removeAcentos(str) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Remove acentos
 }
-function filterAtletas() {
-    // Obtém o valor da barra de pesquisa
-    const input = document.getElementById('searchInput');
-    const filter = removeAcentos(input.value).toLowerCase(); // Remove acentos da entrada do usuário e deixa minusculo
-    const buttons = document.querySelectorAll('.button-atleta'); // Seleciona todos os botões dos atletas
 
-    // Itera sobre os botões e os mostra ou oculta com base no filtro
-    buttons.forEach(button => {
-        const title = removeAcentos(button.querySelector('.button-title-atleta').textContent).toLowerCase();
-        const club = removeAcentos(button.querySelector('.button-club-atleta').textContent).toLowerCase();
-        if (title.includes(filter) || club.includes(filter)) {
-            button.style.display = ''; // Mostra o botão
-        } 
-        else {
-            button.style.display = 'none'; // Oculta o botão
+function filterAtletas() {
+    const input = document.getElementById('searchInput');
+    const filter = removeAccents(input.value.toLowerCase()); // Remove acentos da entrada
+    const atletaItems = document.querySelectorAll('.atleta-item');
+
+    atletaItems.forEach(atleta => {
+        const title = removeAccents(atleta.querySelector('.button-title-atleta').textContent.toLowerCase()); // Remove acentos do título
+        const info = removeAccents(atleta.querySelector('.button-info-atleta').textContent.toLowerCase()); // Remove acentos da informação
+        
+        if (title.includes(filter) || info.includes(filter)) {
+            atleta.style.display = ''; // Exibe o botão correspondente
+        } else {
+            atleta.style.display = 'none'; // Oculta o botão que não corresponde
         }
     });
-
-   
-
-   
 }
