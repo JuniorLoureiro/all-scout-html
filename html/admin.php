@@ -99,7 +99,7 @@
                         item.classList.add('item-atleta');
                         item.setAttribute('data-id', atleta.id);
                         item.innerHTML = `
-                            <strong>${atleta.nome}</strong> - ${atleta.posicao} - ${atleta.clube} - Nº ${atleta.numero}
+                            <strong>ID: ${atleta.id}</strong> | ${atleta.nome} - ${atleta.posicao} - ${atleta.clube} - Nº ${atleta.numero}
                         `;
                         item.onclick = () => selecionarAtleta(item);
                         item.ondblclick = () => editarAtleta(atleta.id);
@@ -175,7 +175,7 @@
                         item.classList.add('item-clube');
                         item.setAttribute('data-id', clube.id);
                         item.innerHTML = `
-                            <strong>ID: ${clube.id} - <strong>${clube.nome}</strong> - ${clube.nomeCompleto}<br>
+                            <strong>ID: ${clube.id}</strong> | ${clube.nome} - ${clube.nomeCompleto}<br>
                             <img src="${clube.imagem}" alt="${clube.nome}" style="width: 100px; height: auto;"><br>
                         `;
                         item.onclick = () => selecionarClube(item);
@@ -232,9 +232,90 @@
             </form>
         </div>
 
-        <div class="tab-content" id="usuarios" style="display: none;">
+        <!-- Conteúdo dos Usuários -->
+        <div class="tab-content" id="usuarios">
             <h2>Usuários</h2>
-            <p>Conteúdo relacionado aos usuários vai aqui.</p>
+            <input class="search-style" type="text" id="search-usuario" placeholder="Pesquisar usuário..." oninput="filterUsuarios()">
+            <div class="lista-usuarios">
+                <!-- Lista de usuários será preenchida aqui via PHP -->
+                <?php
+                try {
+                    // Consulta para buscar todos os usuários
+                    $stmt = $db->prepare("SELECT id, nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd, tipo_usuario FROM usuarios");
+                    $stmt->execute();
+                    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                } catch (PDOException $e) {
+                    echo "<p>Erro ao carregar usuários: " . $e->getMessage() . "</p>";
+                    $usuarios = [];
+                }
+                ?>
+
+                <script>
+                    // Passando os dados de usuários para o JavaScript
+                    const usuarios = <?php echo json_encode($usuarios); ?>;
+                    const listaUsuarios = document.querySelector('.lista-usuarios');
+
+                    usuarios.forEach(usuario => {
+                        const item = document.createElement('div');
+                        item.classList.add('item-usuario');
+                        item.setAttribute('data-id', usuario.id);
+                        item.innerHTML = `
+                            <strong>ID: ${usuario.id}</strong> | ${usuario.nome} - ${usuario.username} - ${usuario.tipo_usuario}
+                        `;
+                        item.onclick = () => selecionarUsuario(item);
+                        item.ondblclick = () => editarUsuario(usuario.id);
+                        listaUsuarios.appendChild(item);
+                    });
+
+                    function selecionarUsuario(item) {
+                        // Remove a seleção de todos os itens
+                        document.querySelectorAll('.item-usuario').forEach(i => i.classList.remove('selecionado'));
+                        // Adiciona a classe 'selecionado' ao item clicado
+                        item.classList.add('selecionado');
+                    }
+                </script>
+            </div>
+            <button class="tab-button" onclick="adicionarUsuario()">Adicionar Usuário</button>
+            <button class="tab-button" onclick="excluirUsuario()">Excluir Usuário</button>
+        </div>
+
+        <!-- Tela de edição do usuário -->
+        <div class="tab-content" id="editar-usuario" style="display: none;">   
+            <form class="edit-usuario" id="editar-form" enctype="multipart/form-data">
+                <label class="text-edit-usuario" for="id">ID:</label>
+                <input class="input-edit-usuario" type="text" id="usuario-id" name="id" readonly><br>
+                <label class="text-edit-usuario" for="nome">Nome:</label>
+                <input class="input-edit-usuario" type="text" id="usuario-nome" name="nome"><br>
+                <label class="text-edit-usuario" for="email">Email:</label>
+                <input class="input-edit-usuario" type="email" id="email" name="email"><br>
+                <label class="text-edit-usuario" for="username">Username:</label>
+                <input class="input-edit-usuario" type="text" id="username" name="username"><br>
+                <label class="text-edit-usuario" for="cpf">CPF:</label>
+                <input class="input-edit-usuario" type="text" id="cpf" name="cpf"><br>
+                <label class="text-edit-usuario" for="celular">Celular:</label>
+                <input class="input-edit-usuario" type="text" id="celular" name="celular"><br>
+                <label class="text-edit-usuario" for="cep">CEP:</label>
+                <input class="input-edit-usuario" type="text" id="cep" name="cep"><br>
+                <label class="text-edit-usuario" for="cidade">Cidade:</label>
+                <input class="input-edit-usuario" type="text" id="cidade" name="cidade"><br>
+                <label class="text-edit-usuario" for="estado">Estado:</label>
+                <input class="input-edit-usuario" type="text" id="estado" name="estado"><br>
+                <label class="text-edit-usuario" for="bairro">Bairro:</label>
+                <input class="input-edit-usuario" type="text" id="bairro" name="bairro"><br>
+                <label class="text-edit-usuario" for="logradouro">Logradouro:</label>
+                <input class="input-edit-usuario" type="text" id="logradouro" name="logradouro"><br>
+                <label class="text-edit-usuario" for="numEnd">Número:</label>
+                <input class="input-edit-usuario" type="text" id="numEnd" name="numEnd"><br>
+                <label class="text-edit-usuario" for="complemento">Complemento:</label>
+                <input class="input-edit-usuario" type="text" id="complemento" name="complemento"><br>
+                <label class="text-edit-usuario" for="tipo_usuario">Tipo de Usuário:</label>
+                <select class="input-edit-usuario" id="tipo_usuario" name="tipo_usuario">
+                    <option value="usuario">usuario</option>
+                    <option value="admin">admin</option>
+                </select><br>
+                <button class="button-edit-usuario" type="button" onclick="salvarUsuario()">Salvar</button>
+                <button class="button-edit-usuario" type="button" onclick="cancelarUsuario()">Cancelar</button>
+            </form>
         </div>
     </section>
 </div>
@@ -294,6 +375,7 @@
 
 <script src="../js/adminClubes.js"></script>
 <script src="../js/adminAtletas.js"></script>
+<script src="../js/adminUsuarios.js"></script>
 <script src="../js/vlibras.js"></script>
 <script src="../js/fontAccessibility.js"></script>
 <script src="../js/desfavorito.js"></script>
