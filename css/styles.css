@@ -1464,6 +1464,7 @@ td {
     color: white;
 }
 
+/* Tela admin de atletas */
 .lista-atletas {
     max-height: 300px; /* Altura máxima da lista */
     overflow-y: auto; /* Permite rolar verticalmente */
@@ -1594,6 +1595,89 @@ td {
 }
 
 .button-edit-atleta:hover{
+    background-color: #0056b3;
+}
+
+/* Tela admin de Usuários */
+.lista-usuarios {
+    max-height: 300px; /* Altura máxima da lista */
+    overflow-y: auto; /* Permite rolar verticalmente */
+    border: 1px solid #006eff;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: black;
+    scrollbar-width: thin; /* Para navegadores compatíveis */
+    scrollbar-color: #006eff black; /* Cor da barra de rolagem */
+}
+
+.lista-usuarios::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lista-usuarios::-webkit-scrollbar-thumb {
+    background-color: #006eff;
+    border-radius: 5px;
+}
+
+.item-usuario {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    color: white;
+}
+
+.item-usuario:last-child {
+    border-bottom: none;
+}
+
+.item-usuario:hover {
+    background-color: #006eff;
+}
+
+.item-usuario.selecionado {
+    background-color: #006eff;
+    font-weight: bold;
+}
+
+/* CSS para o formulário de edição do usuário */
+.edit-usuario {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    text-align: right;
+    gap: 10px;
+}
+
+.text-edit-usuario {
+    margin-top: 4px;
+    color: white;
+}
+
+.input-edit-usuario {
+    height: 25px;
+    color: black;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 4px;
+    outline: none;
+}
+
+.button-edit-usuario {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    position: relative !important;
+    margin-top: 15px;
+    transform: translateX(150px);
+}
+
+.button-edit-usuario:hover {
     background-color: #0056b3;
 }
 
