@@ -20,9 +20,10 @@
                 </nav>
             </div>
             <!-- Parte central -->
+           <!-- Parte central -->
             <div class="searchGeral-container">
-                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
-                    <div class="searchGeral-results" id="searchGeral-results"></div>
+                <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." oninput="filterClubes()" />
+                <div class="searchGeral-results" id="searchGeral-results"></div>
             </div>
             <!-- Parte direita -->
             <div class="right-nav">

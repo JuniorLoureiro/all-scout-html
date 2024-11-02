@@ -151,9 +151,21 @@ body, html {
     color: white;
 }
 
+.result-item {
+    padding: 8px;              /* Espaço em volta do texto */
+    color: #ffffff;               /* Cor do texto */
+    font-size: 16px;           /* Tamanho da fonte */
+    border-bottom: 1px solid #e0e0e0; /* Linha separadora */
+    text-transform: uppercase;  /* Transforma o texto em maiúsculas */
+}
 
+.result-item:last-child {
+    border-bottom: none; /* Remove a linha da última entrada */
+}
 
-
+.result-item:hover {
+    background-color: #f0f0f0; /* Muda a cor de fundo ao passar o mouse */
+}
 
 
 /* Estilo do rodapé */

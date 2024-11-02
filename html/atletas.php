@@ -150,6 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 <script src="../js/fontAccessibility.js"></script>
 <script src="../js/buscaAtleta.js"></script>
 <script src="../js/searchGeral.js"></script>
+<script src="../js/filter.js"></script>
+
 
 </body>
 </html>

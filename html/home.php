@@ -169,5 +169,6 @@
     <script src="../js/carousel.js"></script>
     <script src="../js/fontAccessibility.js"></script>
     <script src="../js/searchGeral.js"></script>
+    <script src="../js/buscaAtleta.js"></script>
 </body>
 </html>
