@@ -49,9 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
             </nav>
         </div>
         <div class="searchGeral-container">
-            <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
+            <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." onkeyup="filterAtletas()" />
             <div class="searchGeral-results" id="searchGeral-results"></div>
         </div>
+
         <div class="right-nav">
             <?php
             if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
