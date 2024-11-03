@@ -2,43 +2,52 @@ function removeAcentos(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-function filterClubes() {
+// Função para a barra de pesquisa geral (header)
+function filterGeral() {
     const input = document.getElementById('searchGeral-input');
     const filter = removeAcentos(input.value).toLowerCase();
-    console.log("Filtro aplicado: ", filter);
-
-    const buttons = document.querySelectorAll('.button-clube');
     const resultsContainer = document.getElementById('searchGeral-results');
 
-    // Limpa resultados anteriores
-    resultsContainer.innerHTML = '';
+    resultsContainer.innerHTML = ''; // Limpa resultados anteriores
 
-    buttons.forEach(button => {
-        const titleElement = button.querySelector('.button-title-clube');
-        const clubId = button.getAttribute('href').split('=')[1]; // Extraindo o ID do clube do link
-        if (titleElement) {
-            const title = removeAcentos(titleElement.textContent).toLowerCase();
-            console.log("Comparando com: ", title);
-            if (title.includes(filter)) {
-                // Cria um novo elemento de resultado
-                const resultItem = document.createElement('div');
-                resultItem.className = 'result-item'; // Classe para estilização
-                resultItem.textContent = title; // Nome do clube como texto
-
-                // Adiciona evento de clique para redirecionar
-                resultItem.onclick = function() {
-                    window.location.href = 'exibeClube.php?id=' + clubId; // Redireciona para a página do clube
-                };
-
-                resultsContainer.appendChild(resultItem); // Adiciona o texto ao contêiner de resultados
-            }
+    document.querySelectorAll('.button-clube').forEach(button => {
+        const title = removeAcentos(button.querySelector('.button-title-clube').textContent).toLowerCase();
+        if (title.includes(filter)) {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.textContent = title;
+            resultItem.onclick = () => {
+                window.location.href = button.getAttribute('href');
+            };
+            resultsContainer.appendChild(resultItem);
         }
     });
 
-    // Exibe ou oculta o contêiner de resultados com base nos resultados encontrados
     resultsContainer.style.display = resultsContainer.children.length > 0 ? 'block' : 'none';
 }
 
-// Adiciona evento de input para ambas as barras de pesquisa
+// Função para a barra de pesquisa específica de clubes (aside)
+function filterClubes() {
+    const input = document.getElementById('searchClube');
+    const filter = removeAcentos(input.value).toLowerCase();
+
+    const buttonsContainer = document.querySelector('.clubes-buttons');
+    const allButtons = buttonsContainer.querySelectorAll('.button-clube');
+
+    // Oculta todos os botões inicialmente
+    allButtons.forEach(button => button.style.display = 'none');
+
+    // Mostra apenas os clubes que correspondem ao filtro
+    allButtons.forEach(button => {
+        const title = removeAcentos(button.querySelector('.button-title-clube').textContent).toLowerCase();
+        if (title.includes(filter)) {
+            button.style.display = 'block'; // Exibe o botão que corresponde ao filtro
+        }
+    });
+}
+
+// Adiciona o evento de input para ativar a pesquisa enquanto digita
 document.getElementById('searchClube').addEventListener('input', filterClubes);
-document.getElementById('searchGeral-input').addEventListener('input', filterClubes);
+// Eventos independentes para cada barra de pesquisa
+document.getElementById('searchGeral-input').addEventListener('input', filterGeral);
+
