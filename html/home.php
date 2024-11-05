@@ -83,6 +83,24 @@
             <button class="carousel-prev">‹</button>
             <button class="carousel-next">›</button>
         </section>
+
+        <div id="card-carousel" class="carousel-cards">
+
+            <button class="arrow left" onclick="scrollCarouselLeft('#card-carousel')">&#10094;</button>
+                    <div class="container-cards">
+                        <div class="card-transf">Card 1</div>
+                        <div class="card-transf">Card 2</div>
+                        <div class="card-transf">Card 3</div>
+                        <div class="card-transf">Card 4</div>
+                        <div class="card-transf">Card 5</div>
+                        <div class="card-transf">Card 6</div>
+                    </div>
+            <button class="arrow right" onclick="scrollCarouselRight('#card-carousel')">&#10095;</button>
+
+        </div>
+
+
+        
     
         <!-- Lista de Notícias -->
         <section class="news-list">
@@ -170,5 +188,6 @@
     <script src="../js/fontAccessibility.js"></script>
     <script src="../js/searchGeral.js"></script>
     <script src="../js/buscaAtleta.js"></script>
+    <script src="../js/carouselCards.js"></script>
 </body>
 </html>
