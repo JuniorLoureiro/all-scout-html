@@ -88,9 +88,15 @@
 
             <button class="arrow left" onclick="scrollCarouselLeft('#card-carousel')">&#10094;</button>
                     <div class="container-cards">
-                        <div class="card-transf">Card 1</div>
+                        <div class="card-transf">
+                            <button class="button-atleta-transf"></button>
+                        </div>
+                        
                         <div class="card-transf">Card 2</div>
                         <div class="card-transf">Card 3</div>
+                        <div class="card-transf">Card 4</div>
+                        <div class="card-transf">Card 5</div>
+                        <div class="card-transf">Card 6</div>
                         <div class="card-transf">Card 4</div>
                         <div class="card-transf">Card 5</div>
                         <div class="card-transf">Card 6</div>

@@ -1721,10 +1721,10 @@ td {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100%;
-    max-width: 1800px;
-    max-width: 100vw;
+    width: 1680px;
     overflow: hidden; /* Esconde a barra de rolagem */
+    margin: auto;
+    margin-top: 45px;
 }
 
 
@@ -1734,6 +1734,8 @@ td {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 0 15px; /* Garantia de que os elementos não ultrapassem as bordas */
+    transition: 0.5s;
+    
 }
 
 .container-cards::-webkit-scrollbar {
@@ -1741,30 +1743,47 @@ td {
 }
 
 .card-transf {
-    background-color: red;
+    background-color: black;
     margin: 15px;
     height: 500px;
     width: 300px;
     flex: 0 0 auto;
+    text-align: center;
     padding: 10px;
-    border: 1px solid #000;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    transition: 0.5s;
+}
+
+.card-transf:hover {
+    background-color: #0056b3;
+    margin-top: -2px;
 }
 
 .arrow {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    background-color: rgba(0, 0, 0, 0);
+    color:white;
     border: none;
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 2.5rem;
     padding: 10px;
     z-index: 1;
 }
 
 .arrow.left {
-    left: 10px; /* Ajuste para manter no limite da tela */
+    left: -10px; /* Ajuste para manter no limite da tela */
 }
 
 .arrow.right {
-    right: 10px; /* Ajuste para manter no limite da tela */
+    right: -10px; /* Ajuste para manter no limite da tela */
+}
+
+.button-atleta-transf{
+    max-height: 100px;  
+    max-width: 100px;
+    min-height: 100px;
+    min-width: 100px;
+    background-color: black;
+    border: 1.5px solid #007bff;
 }
