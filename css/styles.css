@@ -1797,5 +1797,14 @@ td {
     text-align: center;
     justify-content: center;
     max-width: 300px;
-    max-width: 200px;
+}
+
+.card-content{
+    position: relative;
+    transform: translateY(-15px) translateX(1px) !important; /* Mova 10px para a direita */
+    border-radius: 5px;
+    width: 275px;
+    height: 250px;
+    background-color: #007bff;
+    
 }

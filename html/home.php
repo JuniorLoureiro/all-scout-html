@@ -121,8 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 echo '        <img src="' . htmlspecialchars($row['imagem']) . '" alt="Imagem do Atleta" class="button-atleta-transf img">';
                 echo '</a>';
                 echo '    <div class="card-content">';
-                echo '<div style=" position: relative; transform: translateY(-11px); width:100%; "> <hr class="horizontal-line"></div>';
-                echo '<h3 style=" position: relative; transform: translateY(-20px); font-size: 22px;">' . htmlspecialchars($row['nome']) . '</h3>';
+                //echo '<div style=" position: relative; transform: translateY(-11px); width:100%; "> <hr class="horizontal-line"></div>';
+                echo '<h3 style=" position: relative; transform: translateY(10px); font-size: 22px; ">' . htmlspecialchars($row['nome']) . '</h3>';
                 echo '</div>';
                 echo '</div>';
             }
