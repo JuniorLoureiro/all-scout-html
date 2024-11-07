@@ -1,53 +1,76 @@
+<?php
+// Início do arquivo PHP
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Conexão com o banco de dados
+include('../php/Database.php');
+$conn = new Database();
+$db = $conn->getConnection();
+
+// Verifica se o formulário de favoritos foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
+    // Exibe os dados recebidos
+    var_dump($_POST);
+
+    if (!isset($_SESSION['favoritos'])) {
+        $_SESSION['favoritos'] = [];
+    }
+    $_SESSION['favoritos'][] = [
+        'id' => $_POST['id'],
+        'nome' => $_POST['nome'],
+        'posicao' => $_POST['posicao'],
+        'clube' => $_POST['clube'],
+        'numero' => $_POST['numero']
+    ];
+    header("Location: home.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
-    <title>Página Principal</title>
+    <title>Home</title>
 </head>
 <body>
-    <header class="top-nav">
-            <div class="top-nav-container">
-                <!-- Parte esquerda -->
-                <div class="left-nav">
-                    <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-                    <nav class="main-nav">
-                        <a href="home.php">Início</a>
-                        <a href="clubes.php">Clubes</a>
-                        <a href="atletas.php">Atletas</a>
-                        <a href="sobrenos.php">Sobre Nós</a>
-                    </nav>
-                </div>
-                <!-- Parte central -->
-                <div class="searchGeral-container">
-                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
-                    <div class="searchGeral-results" id="searchGeral-results"></div>
-                </div>
-                <!-- Parte direita -->
-                <div class="right-nav">
-                    <?php
-                    session_start();
-                    // Exibe o botão "Tela Admin" se o usuário for administrador
-                    if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
-                        echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
-                    }
-                    ?>
-                    <a href="favoritos.php" class="favorites">
-                        <img src="../images/heart_icon.png" alt="Favoritos">
-                    </a>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                        // Usuário logado, exibe o nome de usuário
-                        echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
-                    } else {
-                        // Usuário não logado, exibe "Minha Conta"
-                        echo '<a href="login.php" class="account-button">Minha Conta</a>';
-                    }
-                    ?>
-                </div>
-            </div>
-        </header>
+<header class="top-nav">
+    <div class="top-nav-container">
+        <div class="left-nav">
+            <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+            <nav class="main-nav">
+                <a href="home.php">Início</a>
+                <a href="clubes.php">Clubes</a>
+                <a href="atletas.php">Atletas</a>
+                <a href="sobrenos.php">Sobre Nós</a>
+            </nav>
+        </div>
+        <div class="searchGeral-container">
+            <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." onkeyup="filterAtletas()" />
+            <div class="searchGeral-results" id="searchGeral-results"></div>
+        </div>
+
+        <div class="right-nav">
+            <?php
+            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
+                echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
+            }
+            ?>
+            <a href="favoritos.php" class="favorites"><img src="../images/heart_icon.png" alt="Favoritos"></a>
+            <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
+            } else {
+                echo '<a href="login.php" class="account-button">Minha Conta</a>';
+            }
+            ?>
+        </div>
+    </div>
+</header>
+
 
     <div class="font-controls">
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
@@ -85,25 +108,28 @@
         </section>
 
         <div id="card-carousel" class="carousel-cards">
+    <button class="arrow left" onclick="scrollCarouselLeft('#card-carousel')">&#10094;</button>
+    <div class="container-cards">
+        <?php
+            $query = "SELECT id, nome, posicao, clube, numero, imagem FROM atletas";
+            $stmt = $db->prepare($query);
+            $stmt->execute();
 
-            <button class="arrow left" onclick="scrollCarouselLeft('#card-carousel')">&#10094;</button>
-                    <div class="container-cards">
-                        <div class="card-transf">
-                            <button class="button-atleta-transf"></button>
-                        </div>
-                        
-                        <div class="card-transf">Card 2</div>
-                        <div class="card-transf">Card 3</div>
-                        <div class="card-transf">Card 4</div>
-                        <div class="card-transf">Card 5</div>
-                        <div class="card-transf">Card 6</div>
-                        <div class="card-transf">Card 4</div>
-                        <div class="card-transf">Card 5</div>
-                        <div class="card-transf">Card 6</div>
-                    </div>
-            <button class="arrow right" onclick="scrollCarouselRight('#card-carousel')">&#10095;</button>
-
-        </div>
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="card-transf">';
+                echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta-transf">';
+                echo '        <img src="' . htmlspecialchars($row['imagem']) . '" alt="Imagem do Atleta" class="button-atleta-transf img">';
+                echo '</a>';
+                echo '    <div class="card-content">';
+                echo '<div style=" position: relative; transform: translateY(-11px); width:100%; "> <hr class="horizontal-line"></div>';
+                echo '<h3 style=" position: relative; transform: translateY(-20px); font-size: 22px;">' . htmlspecialchars($row['nome']) . '</h3>';
+                echo '</div>';
+                echo '</div>';
+            }
+        ?>
+    </div>
+    <button class="arrow right" onclick="scrollCarouselRight('#card-carousel')">&#10095;</button>
+</div>
 
 
         
@@ -195,5 +221,6 @@
     <script src="../js/searchGeral.js"></script>
     <script src="../js/buscaAtleta.js"></script>
     <script src="../js/carouselCards.js"></script>
+    <script src="../js/buscaAtleta.js"></script>
 </body>
 </html>
