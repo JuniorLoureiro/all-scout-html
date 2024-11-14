@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 echo '</a>';
                 echo '    <div class="card-content">';
                 //echo '<div style=" position: relative; transform: translateY(-11px); width:100%; "> <hr class="horizontal-line"></div>';
-                echo '<h3 style=" position: relative; transform: translateY(10px); font-size: 22px; ">' . htmlspecialchars($row['nome']) . '</h3>';
+                echo '<h3 style=" position: relative; transform: translateY(0px); font-size: 22px; ">' . htmlspecialchars($row['nome']) . '</h3>';
                 echo '</div>';
                 echo '</div>';
             }

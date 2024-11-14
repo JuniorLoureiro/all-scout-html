@@ -1801,10 +1801,11 @@ td {
 
 .card-content{
     position: relative;
-    transform: translateY(-15px) translateX(1px) !important; /* Mova 10px para a direita */
-    border-radius: 5px;
+    transform: translateY(-5px) translateX(1px) !important; /* Mova 10px para a direita */
     width: 275px;
-    height: 250px;
-    background-color: #007bff;
+    height: 0px;
+    background-color: black;
+    border-top: 5px solid #007bff;
     
 }
+
