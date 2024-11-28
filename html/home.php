@@ -111,18 +111,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     <button class="arrow left" onclick="scrollCarouselLeft('#card-carousel')">&#10094;</button>
     <div class="container-cards">
         <?php
-            $query = "SELECT id, nome, posicao, clube, numero, imagem FROM atletas";
+            $query = "
+                SELECT 
+                    transferencia.id AS transf_id,
+                    atletas.nome AS atleta_nome,
+                    atletas.imagem AS atleta_imagem,
+                    clubes_atual.nome AS clube_atual,
+                    clubes_novo.nome AS clube_novo,
+                    transferencia.tipoTransf,
+                    transferencia.valorTransf,
+                    transferencia.dataTransf
+                FROM transferencia
+                INNER JOIN atletas ON transferencia.idAtleta = atletas.id
+                INNER JOIN clubes AS clubes_atual ON transferencia.idClubeAtual = clubes_atual.id
+                INNER JOIN clubes AS clubes_novo ON transferencia.idClubeNovo = clubes_novo.id
+                ORDER BY transferencia.dataTransf DESC
+            ";
+            
             $stmt = $db->prepare($query);
             $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<div class="card-transf">';
-                echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['id']) . '" class="button-atleta-transf">';
-                echo '        <img src="' . htmlspecialchars($row['imagem']) . '" alt="Imagem do Atleta" class="button-atleta-transf img">';
+                echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['transf_id']) . '" class="button-atleta-transf">';
+                echo '<img src="' . htmlspecialchars($row['atleta_imagem']) . '" alt="Imagem do Atleta" class="button-atleta-transf img">';
                 echo '</a>';
-                echo '    <div class="card-content">';
-                //echo '<div style=" position: relative; transform: translateY(-11px); width:100%; "> <hr class="horizontal-line"></div>';
-                echo '<h3 style=" position: relative; transform: translateY(0px); font-size: 22px; ">' . htmlspecialchars($row['nome']) . '</h3>';
+                echo '<div class="card-content">';
+                echo '<h3>' . htmlspecialchars($row['atleta_nome']) . '</h3>';
+                echo '<p>Tipo: ' . htmlspecialchars($row['tipoTransf']) . '</p>';
+                echo '<p>De: ' . htmlspecialchars($row['clube_atual']) . '</p>';
+                echo '<p>Para: ' . htmlspecialchars($row['clube_novo']) . '</p>';
+                echo '<p>Valor: R$ ' . number_format($row['valorTransf'], 2, ',', '.') . '</p>';
+                echo '<p>Data: ' . date('d/m/Y', strtotime($row['dataTransf'])) . '</p>';
                 echo '</div>';
                 echo '</div>';
             }
