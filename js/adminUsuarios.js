@@ -14,18 +14,23 @@ function editarUsuario(id) {
     if (usuario) {
         document.getElementById('usuario-id').value = usuario.id;
         document.getElementById('usuario-nome').value = usuario.nome;
+        document.getElementById("username").value = usuario.username;
         document.getElementById('email').value = usuario.email;
-        document.getElementById('tipo-usuario').value = usuario.tipo_usuario;
-        document.getElementById('cpf').value = usuario.cpf; // Adicionado
-        document.getElementById('celular').value = usuario.celular; // Adicionado
-        document.getElementById('cep').value = usuario.cep; // Adicionado
-        document.getElementById('cidade').value = usuario.cidade; // Adicionado
-        document.getElementById('estado').value = usuario.estado; // Adicionado
-        document.getElementById('bairro').value = usuario.bairro; // Adicionado
-        document.getElementById('logradouro').value = usuario.logradouro; // Adicionado
-        document.getElementById('numEnd').value = usuario.numEnd; // Adicionado
-        document.getElementById('complemento').value = usuario.complemento; // Adicionado
-        document.getElementById('data_nascimento').value = usuario.data_nascimento; // Adicionado
+        document.getElementById('tipo_usuario').value = usuario.tipo_usuario;
+        document.getElementById('cpf').value = usuario.cpf;
+        document.getElementById('celular').value = usuario.celular;
+        document.getElementById('cep').value = usuario.cep;
+        document.getElementById('cidade').value = usuario.cidade;
+        document.getElementById('estado').value = usuario.estado;
+        document.getElementById('bairro').value = usuario.bairro;
+        document.getElementById('logradouro').value = usuario.logradouro;
+        document.getElementById('numEnd').value = usuario.numEnd;
+        document.getElementById('complemento').value = usuario.complemento;
+        document.getElementById('data_nascimento_usuario').value = usuario.data_nascimento;
+
+        // O campo de senha aparece com asteriscos, mas sem preencher valor real
+        document.getElementById('senha').value = '';
+        document.getElementById('senha').placeholder = '••••••••';
 
         showSection('editar-usuario');
     }
@@ -35,17 +40,20 @@ function salvarUsuario() {
     const id = document.getElementById('usuario-id').value;
     const nome = document.getElementById('usuario-nome').value;
     const email = document.getElementById('email').value;
-    const username = document.getElementById('username').value; // Adicionado
-    const tipoUsuario = document.getElementById('tipo-usuario').value;
-    const cpf = document.getElementById('cpf').value; // Adicionado
-    const celular = document.getElementById('celular').value; // Adicionado
-    const cep = document.getElementById('cep').value; // Adicionado
-    const cidade = document.getElementById('cidade').value; // Adicionado
-    const estado = document.getElementById('estado').value; // Adicionado
-    const bairro = document.getElementById('bairro').value; // Adicionado
-    const logradouro = document.getElementById('logradouro').value; // Adicionado
-    const numEnd = document.getElementById('numEnd').value; // Adicionado
-    const complemento = document.getElementById('complemento').value; // Adicionado
+    const username = document.getElementById('username').value;
+    const senha = document.getElementById('senha').value; // Senha só será enviada se preenchida
+    const tipoUsuario = document.getElementById('tipo_usuario').value;
+    const cpf = document.getElementById('cpf').value;
+    const celular = document.getElementById('celular').value;
+    const cep = document.getElementById('cep').value;
+    const cidade = document.getElementById('cidade').value;
+    const estado = document.getElementById('estado').value;
+    const bairro = document.getElementById('bairro').value;
+    const logradouro = document.getElementById('logradouro').value;
+    const numEnd = document.getElementById('numEnd').value;
+    const complemento = document.getElementById('complemento').value;
+    const dataNascimento = document.getElementById('data_nascimento_usuario').value;
+    console.log("Enviando para o PHP:", dataNascimento);
 
     const url = id ? '../php/editarUsuario.php' : '../php/adicionarUsuario.php';
     const data = {
@@ -62,8 +70,14 @@ function salvarUsuario() {
         bairro,
         logradouro,
         numEnd,
-        complemento
+        complemento,
+        data_nascimento: dataNascimento,
     };
+
+    // Só adiciona a senha se for preenchida
+    if (senha.trim() !== '') {
+        data.senha = senha;
+    }
 
     fetch(url, {
         method: 'POST',
@@ -122,22 +136,25 @@ function excluirUsuario() {
 }
 
 function adicionarUsuario() {
-    document.getElementById('usuario-id').value = ''; // Limpa o ID do usuário
-    document.getElementById('usuario-nome').value = ''; // Limpa o nome do usuário
-    document.getElementById('email').value = ''; // Limpa o email do usuário
-    document.getElementById('cpf').value = ''; // Limpa o CPF
-    document.getElementById('celular').value = ''; // Limpa o celular
-    document.getElementById('cep').value = ''; // Limpa o CEP
-    document.getElementById('cidade').value = ''; // Limpa a cidade
-    document.getElementById('estado').value = ''; // Limpa o estado
-    document.getElementById('bairro').value = ''; // Limpa o bairro
-    document.getElementById('logradouro').value = ''; // Limpa o logradouro
-    document.getElementById('numEnd').value = ''; // Limpa o número do endereço
-    document.getElementById('complemento').value = ''; // Limpa o complemento
-    document.getElementById('data_nascimento').value = ''; // Limpa a data de nascimento
-    document.getElementById('tipo-usuario').value = ''; // Limpa o tipo de usuário
+    document.getElementById('usuario-id').value = '';
+    document.getElementById('usuario-nome').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('cpf').value = '';
+    document.getElementById('celular').value = '';
+    document.getElementById('cep').value = '';
+    document.getElementById('cidade').value = '';
+    document.getElementById('estado').value = '';
+    document.getElementById('bairro').value = '';
+    document.getElementById('logradouro').value = '';
+    document.getElementById('numEnd').value = '';
+    document.getElementById('complemento').value = '';
+    document.getElementById('data_nascimento_usuario').value = '';
+    document.getElementById('tipo_usuario').value = '';
 
-    showSection('editar-usuario'); // Mostra a seção de edição de usuário
+    // Senha aparece vazia, apenas para adicionar um novo usuário
+    document.getElementById('senha').value = '';
+
+    showSection('editar-usuario');
 }
 
 function uploadImagemUsuario() {

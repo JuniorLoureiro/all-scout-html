@@ -127,8 +127,8 @@
                 <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome"><br>
                 <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
                 <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade"><br>
-                <label class="text-edit-atleta" for="data_nascimento">Data de Nascimento:</label>
-                <input class="input-edit-atleta" type="date" id="data_nascimento" name="data_nascimento"><br>
+                <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
+                <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta"><br>
                 <label class="text-edit-atleta" for="altura">Altura:</label>
                 <input class="input-edit-atleta" type="text" id="altura" name="altura"><br>
                 <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
@@ -260,7 +260,7 @@
                         item.classList.add('item-usuario');
                         item.setAttribute('data-id', usuario.id);
                         item.innerHTML = `
-                            <strong>ID: ${usuario.id}</strong> | ${usuario.nome} - ${usuario.username} - ${usuario.tipo_usuario}
+                            <strong>ID: ${usuario.id}</strong> | ${usuario.nome} - ${usuario.username} - ${usuario.cpf} - ${usuario.tipo_usuario}
                         `;
                         item.onclick = () => selecionarUsuario(item);
                         item.ondblclick = () => editarUsuario(usuario.id);
@@ -290,8 +290,12 @@
                 <input class="input-edit-usuario" type="email" id="email" name="email"><br>
                 <label class="text-edit-usuario" for="username">Username:</label>
                 <input class="input-edit-usuario" type="text" id="username" name="username"><br>
+                <label class="text-edit-usuario" for="senha">Senha:</label>
+                <input class="input-edit-usuario" type="password" id="senha" name="senha" placeholder="••••••••"><br>
                 <label class="text-edit-usuario" for="cpf">CPF:</label>
                 <input class="input-edit-usuario" type="text" id="cpf" name="cpf"><br>
+                <label class="text-edit-usuario" for="data_nascimento_usuario">Data de Nascimento:</label>
+                <input class="input-edit-usuario" type="date" id="data_nascimento_usuario" name="data_nascimento_usuario"><br>
                 <label class="text-edit-usuario" for="celular">Celular:</label>
                 <input class="input-edit-usuario" type="text" id="celular" name="celular"><br>
                 <label class="text-edit-usuario" for="cep">CEP:</label>
@@ -373,12 +377,15 @@
     }
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/adminClubes.js"></script>
 <script src="../js/adminAtletas.js"></script>
 <script src="../js/adminUsuarios.js"></script>
 <script src="../js/vlibras.js"></script>
 <script src="../js/fontAccessibility.js"></script>
 <script src="../js/desfavorito.js"></script>
+<script src="../js/sintaxeInput.js"></script>
+<script src="../js/buscarEndereco.js"></script>
 
 </body>
 </html>
