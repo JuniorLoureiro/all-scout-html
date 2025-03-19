@@ -198,37 +198,39 @@
 
         <!-- Tela de edição do clube -->
         <div class="tab-content" id="editar-clube" style="display: none;">
-            <h2>Editar Clube</h2>
-            <form id="editar-form" enctype="multipart/form-data">
-                <label for="id">ID:</label>
-                <input type="text" id="clube-id" name="id" readonly><br>
-                <label for="nome">Nome:</label>
-                <input type="text" id="clube-nome" name="nome"><br>
-                <label for="nomeCompleto">Nome Completo:</label>
-                <input type="text" id="nomeCompleto" name="nomeCompleto"><br>
-                <label for="fundacao">Fundação:</label>
-                <input type="number" id="fundacao" name="fundacao"><br>
-                <label for="estadio">Estádio:</label>
-                <input type="text" id="estadio" name="estadio"><br>
-                <label for="capacidade">Capacidade:</label>
-                <input type="number" id="capacidade" name="capacidade"><br>
-                <label for="presidente">Presidente:</label>
-                <input type="text" id="presidente" name="presidente"><br>
-                <label for="treinador">Treinador:</label>
-                <input type="text" id="treinador" name="treinador"><br>
-                <label for="localizacao">Localização:</label>
-                <input type="text" id="localizacao" name="localizacao"><br>
-                <label for="capitao">Capitão:</label>
-                <input type="text" id="capitao" name="capitao"><br>
-                <label for="tam_elenco">Tamanho do Elenco:</label>
-                <input type="number" id="tam_elenco" name="tam_elenco"><br>
-                <label for="liga">Liga:</label>
+            <form class="edit-clube" id="editar-form" enctype="multipart/form-data">
+                <label class="text-edit-clube" for="id">ID:</label>
+                <input class="input-edit-clube" type="text" id="clube-id" name="id" readonly><br>
+                <label class="text-edit-clube" for="nome">Nome:</label>
+                <input class="input-edit-clube" type="text" id="clube-nome" name="nome"><br>
+                <label class="text-edit-clube" for="nomeCompleto">Nome Completo:</label>
+                <input class="input-edit-clube" type="text" id="nomeCompleto" name="nomeCompleto"><br>
+                <label class="text-edit-clube" for="fundacao">Fundação:</label>
+                <input class="input-edit-clube" type="number" id="fundacao" name="fundacao"><br>
+                <label class="text-edit-clube" for="estadio">Estádio:</label>
+                <input class="input-edit-clube" type="text" id="estadio" name="estadio"><br>
+                <label class="text-edit-clube" for="capacidade">Capacidade:</label>
+                <input class="input-edit-clube" type="number" id="capacidade" name="capacidade"><br>
+                <label class="text-edit-clube" for="presidente">Presidente:</label>
+                <input class="input-edit-clube" type="text" id="presidente" name="presidente"><br>
+                <label class="text-edit-clube" for="treinador">Treinador:</label>
+                <input class="input-edit-clube" type="text" id="treinador" name="treinador"><br>
+                <label class="text-edit-clube" for="localizacao">Localização:</label>
+                <input class="input-edit-clube" type="text" id="localizacao" name="localizacao"><br>
+                <label class="text-edit-clube" for="capitao">Capitão:</label>
+                <input class="input-edit-clube" type="text" id="capitao" name="capitao"><br>
+                <label class="text-edit-clube" for="tam_elenco">Tamanho do Elenco:</label>
+                <input class="input-edit-clube" type="number" id="tam_elenco" name="tam_elenco"><br>
+                <label class="text-edit-clube" for="liga">Liga:</label>
                 <select id="liga-id" name="liga_id"></select><br>
-                <label for="imagem">Imagem:</label>
-                <input type="text" id="clube-imagem" name="imagem" readonly>
-                <input type="file" id="upload-imagem-clube" accept="image/*" onchange="uploadImagemClube()"><br>
-                <button type="button" onclick="salvarClube()">Salvar</button>
-                <button type="button" onclick="cancelarClube()">Cancelar</button>
+                <label class="text-edit-clube" for="imagem">Imagem:</label>
+                <input class="input-edit-clube" type="text" id="clube-imagem" name="imagem" readonly>
+                <input class="file-edit-clube" type="file" id="upload-imagem-clube" accept="image/*" onchange="uploadImagemClube()"><br>
+                <!-- Botões dentro de uma div separada -->
+                <div class="buttons-container">
+                    <button class="button-edit-clube" type="button" onclick="salvarClube()">Salvar</button>
+                    <button class="button-edit-clube" type="button" onclick="cancelarClube()">Cancelar</button>
+                </div>
             </form>
         </div>
 

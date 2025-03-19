@@ -1522,47 +1522,7 @@ td {
     font-weight: bold;
 }
 
-.lista-clubes {
-    max-height: 300px; /* Altura máxima da lista */
-    overflow-y: auto; /* Permite rolar verticalmente */
-    border: 1px solid #006eff;
-    border-radius: 3px;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: black;
-    scrollbar-width: thin; /* Para navegadores compatíveis */
-    scrollbar-color: #006eff black; /* Cor da barra de rolagem */
-}
-
-.lista-clubes::-webkit-scrollbar {
-    width: 10px;
-}
-
-.lista-clubes::-webkit-scrollbar-thumb {
-    background-color: #006eff;
-    border-radius: 5px;
-}
-
-.item-clube {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-    color: white;
-}
-
-.item-clube:last-child {
-    border-bottom: none;
-}
-
-.item-clube:hover {
-    background-color: #006eff;
-}
-
-.item-clube.selecionado {
-    background-color: #006eff;
-    font-weight: bold;
-}
-
+/* Tela de edicao de atleta */
 .edit-atleta{
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
@@ -1604,10 +1564,106 @@ td {
     transition: background-color 0.3s ease;
     position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
     margin-top: 15px;
-    transform: translateX(150px);  
+    transform: translateX(150px);
 }
 
 .button-edit-atleta:hover{
+    background-color: #0056b3;
+}
+
+/* Tela admin de clubes */
+.lista-clubes {
+    max-height: 300px; /* Altura máxima da lista */
+    overflow-y: auto; /* Permite rolar verticalmente */
+    border: 1px solid #006eff;
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: black;
+    scrollbar-width: thin; /* Para navegadores compatíveis */
+    scrollbar-color: #006eff black; /* Cor da barra de rolagem */
+}
+
+.lista-clubes::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lista-clubes::-webkit-scrollbar-thumb {
+    background-color: #006eff;
+    border-radius: 5px;
+}
+
+.item-clube {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    color: white;
+}
+
+.item-clube:last-child {
+    border-bottom: none;
+}
+
+.item-clube:hover {
+    background-color: #006eff;
+}
+
+.item-clube.selecionado {
+    background-color: #006eff;
+    font-weight: bold;
+}
+
+/* Tela de edicao de clube */
+/* Estilo do formulário de edição de clubes */
+.edit-clube {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Mesmo modelo da tela de atletas */
+    text-align: right;
+    gap: 10px;
+}
+
+.text-edit-clube {
+    margin-top: 4px;
+    color: white;
+}
+
+.input-edit-clube {
+    height: 25px;
+    color: black;
+    border-color: 1px white;
+    background-color: white;
+    border-radius: 4px;
+    outline: none;
+}
+
+.file-edit-clube {
+    color: white;
+}
+
+/* Container dos botões */
+.buttons-container {
+    grid-column: span 3; /* Faz os botões ocuparem a largura total */
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: 15px;
+}
+
+/* Estilização dos botões */
+.button-edit-clube {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.button-edit-clube:hover {
     background-color: #0056b3;
 }
 
