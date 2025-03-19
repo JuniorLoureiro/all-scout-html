@@ -2,12 +2,14 @@ $(document).ready(function() {
     // Formatar CPF
     $('#cpf').on('input', function() {
         let cpf = $(this).val().replace(/\D/g, ''); // Remove caracteres não numéricos
+
         if (cpf.length > 11) {
             cpf = cpf.slice(0, 11); // Limita o CPF a 11 dígitos
         }
-        $(this).val(cpf.replace(/(\d{3})(\d)/, "$1.$2")
-                       .replace(/(\d{3})(\d)/, "$1.$2")
-                       .replace(/(\d{3})(\d{1,2})$/, "$1-$2"));
+        let cpfFormatado = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+                        .replace(/(\d{3})(\d)/, "$1.$2")
+                        .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        $(this).val(cpfFormatado);
     });
 
     // Formatar Celular
