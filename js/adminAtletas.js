@@ -20,7 +20,7 @@ function editarAtleta(id) {
         document.getElementById('data_nascimento_atleta').value = atleta.data_nascimento;
         document.getElementById('altura').value = atleta.altura;
         document.getElementById('perna_dominante').value = atleta.perna_dominante;
-        document.getElementById('posicao').value = atleta.posicao;
+        document.getElementById('posicao').value = atleta.posicao; // Agora ID da posição
         document.getElementById('clube').value = atleta.clube;
         document.getElementById('numero').value = atleta.numero;
         document.getElementById('atleta-imagem').value = atleta.imagem;
@@ -37,7 +37,7 @@ function salvarAtleta() {
     const dataNascimento = document.getElementById('data_nascimento_atleta').value;
     const altura = document.getElementById('altura').value;
     const pernaDominante = document.getElementById('perna_dominante').value;
-    const posicao = document.getElementById('posicao').value;
+    const posicao = document.getElementById('posicao').value; // ID da posição
     const clube = document.getElementById('clube').value;
     const numero = document.getElementById('numero').value;
     const imagem = document.getElementById('atleta-imagem').value;
@@ -51,7 +51,7 @@ function salvarAtleta() {
         data_nascimento: dataNascimento,
         altura, 
         perna_dominante: pernaDominante,
-        posicao,
+        posicao, // Passa o ID da posição
         clube,
         numero,
         imagem
@@ -132,7 +132,7 @@ function adicionarAtleta() {
     document.getElementById('data_nascimento_atleta').value = '';
     document.getElementById('altura').value = '';
     document.getElementById('perna_dominante').value = '';
-    document.getElementById('posicao').value = '';
+    document.getElementById('posicao').value = ''; // ID da posição
     document.getElementById('clube').value = '';
     document.getElementById('numero').value = '';
     document.getElementById('atleta-imagem').value = '';

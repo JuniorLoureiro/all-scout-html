@@ -7,19 +7,19 @@ class Atleta {
     private $dataNascimento;
     private $clubeAtual;
     private $altura;
-    private $posicao;
+    private $posicaoId; // Agora armazena o ID da posição
     private $pernaDominante;
     private $nacionalidade;
     private $numeroCamisa;
 
     // Construtor para inicializar os atributos
-    public function __construct($id, $nome, $dataNascimento, $clubeAtual, $altura, $posicao, $pernaDominante, $nacionalidade, $numeroCamisa) {
+    public function __construct($id, $nome, $dataNascimento, $clubeAtual, $altura, $posicaoId, $pernaDominante, $nacionalidade, $numeroCamisa) {
         $this->id = $id;
         $this->nome = $nome;
         $this->dataNascimento = $dataNascimento;
         $this->clubeAtual = $clubeAtual;
         $this->altura = $altura;
-        $this->posicao = $posicao;
+        $this->posicaoId = $posicaoId; // Agora recebe um ID
         $this->pernaDominante = $pernaDominante;
         $this->nacionalidade = $nacionalidade;
         $this->numeroCamisa = $numeroCamisa;
@@ -46,8 +46,8 @@ class Atleta {
         return $this->altura;
     }
 
-    public function getPosicao() {
-        return $this->posicao;
+    public function getPosicaoId() { // Retorna o ID da posição
+        return $this->posicaoId;
     }
 
     public function getPernaDominante() {
@@ -82,8 +82,8 @@ class Atleta {
         $this->altura = $altura;
     }
 
-    public function setPosicao($posicao) {
-        $this->posicao = $posicao;
+    public function setPosicaoId($posicaoId) { // Agora recebe um ID
+        $this->posicaoId = $posicaoId;
     }
 
     public function setPernaDominante($pernaDominante) {

@@ -19,26 +19,38 @@ $nacionalidade = $data['nacionalidade'] ?? null;
 $dataNascimento = $data['data_nascimento'] ?? null;
 $altura = $data['altura'] ?? null;
 $pernaDominante = $data['perna_dominante'] ?? null;
-$posicao = $data['posicao'] ?? null;
+$posicaoSigla = $data['posicao'] ?? null;  // Recebe a sigla da posição
 $clube = $data['clube'] ?? null;
 $numero = $data['numero'] ?? null;
 $imagem = $data['imagem'] ?? null;
 
 // Valida os dados recebidos
-if (!$nome || !$posicao) {
+if (!$nome || !$posicaoSigla) {
     echo json_encode(['success' => false, 'message' => 'Nome e posição são obrigatórios.']);
     exit;
 }
 
 try {
+    // Busca o id da posição no banco usando a sigla
+    $stmt = $db->prepare("SELECT id FROM posicoes WHERE sigla = :posicaoSigla");
+    $stmt->bindParam(':posicaoSigla', $posicaoSigla);
+    $stmt->execute();
+    $posicaoId = $stmt->fetchColumn();
+
+    // Verifica se a posição foi encontrada
+    if (!$posicaoId) {
+        echo json_encode(['success' => false, 'message' => 'Posição inválida.']);
+        exit;
+    }
+
     // Insere o atleta no banco de dados
-    $stmt = $db->prepare("INSERT INTO atletas (nome, nacionalidade, data_nascimento, altura, perna_dominante, posicao, clube, numero, imagem) VALUES (:nome, :nacionalidade, :data_nascimento, :altura, :perna_dominante, :posicao, :clube, :numero, :imagem)");
+    $stmt = $db->prepare("INSERT INTO atletas (nome, nacionalidade, data_nascimento, altura, perna_dominante, posicao_id, clube, numero, imagem) VALUES (:nome, :nacionalidade, :data_nascimento, :altura, :perna_dominante, :posicao_id, :clube, :numero, :imagem)");
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':nacionalidade', $nacionalidade);
     $stmt->bindParam(':data_nascimento', $dataNascimento);
     $stmt->bindParam(':altura', $altura);
     $stmt->bindParam(':perna_dominante', $pernaDominante);
-    $stmt->bindParam(':posicao', $posicao);
+    $stmt->bindParam(':posicao_id', $posicaoId);  // Agora estamos usando o id da posição
     $stmt->bindParam(':clube', $clube);
     $stmt->bindParam(':numero', $numero);
     $stmt->bindParam(':imagem', $imagem);
