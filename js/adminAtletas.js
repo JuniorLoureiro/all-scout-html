@@ -37,7 +37,7 @@ function salvarAtleta() {
     const dataNascimento = document.getElementById('data_nascimento_atleta').value;
     const altura = document.getElementById('altura').value;
     const pernaDominante = document.getElementById('perna_dominante').value;
-    const posicao = document.getElementById('posicao').value; // ID da posição
+    const posicaoId = document.getElementById('posicao-id').value;
     const clube = document.getElementById('clube').value;
     const numero = document.getElementById('numero').value;
     const imagem = document.getElementById('atleta-imagem').value;
@@ -51,7 +51,7 @@ function salvarAtleta() {
         data_nascimento: dataNascimento,
         altura, 
         perna_dominante: pernaDominante,
-        posicao, // Passa o ID da posição
+        posicaoid: posicaoId, // Passa o ID da posição
         clube,
         numero,
         imagem

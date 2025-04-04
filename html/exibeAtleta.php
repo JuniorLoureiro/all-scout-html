@@ -123,7 +123,11 @@
                         } else {
                             // Botão para favoritar
                             echo '
-                            <button class="button-favorito" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="favoritar(' . htmlspecialchars($jogador['id']) . ', \'' . htmlspecialchars($jogador['nome']) . '\', \'' . htmlspecialchars($jogador['posicao_id']) . '\', \'' . htmlspecialchars($jogador['clube']) . '\', ' . htmlspecialchars($jogador['numero']) . ')">
+                            <button class="button-favorito" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="favoritar(' . htmlspecialchars($jogador['id']) .
+                             ', \'' . htmlspecialchars($jogador['nome']) .
+                              '\', \'' . htmlspecialchars($jogador['posicao_id']) .
+                               '\', \'' . htmlspecialchars($jogador['clube']) .
+                              '\', ' . htmlspecialchars($jogador['numero']) . ')">
                                 <img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">
                             </button>';
                         }

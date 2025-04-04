@@ -51,7 +51,7 @@ try {
     }
 
     // Atualiza os dados do atleta no banco de dados
-    $stmt = $db->prepare("UPDATE atletas SET nome = :nome, nacionalidade = :nacionalidade, data_nascimento = :data_nascimento, altura = :altura, perna_dominante = :perna_dominante, posicao_id = :posicao_id, clube = :clube, numero = :numero, imagem = :imagem WHERE id = :id");
+    $stmt = $db->prepare("UPDATE atletas SET nome = :nome, nacionalidade = :nacionalidade, data_nascimento = :data_nascimento, altura = :altura, perna_dominante = :perna_dominante, liga_id = :liga_id WHERE id = :id, clube = :clube, numero = :numero, imagem = :imagem WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':nacionalidade', $nacionalidade);
