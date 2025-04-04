@@ -97,15 +97,12 @@
     $estatisticas = $stmt_estatisticas->fetch(PDO::FETCH_ASSOC);
 
     // Consulta para obter o elenco atual do clube
-    $query_atletas = "SELECT a.id, a.nome, a.imagem, p.nome AS posicao, c.nome AS clube
-                    FROM atletas a
-                    JOIN clube_atleta ca ON a.id = ca.atleta_id
-                    JOIN clubes c ON ca.clube_id = c.id
-                    JOIN posicoes p ON a.posicao_id = p.id
+    $query_atletas = "SELECT a.id, a.nome, a.imagem, a.posicao 
+                    FROM atletas a 
+                    JOIN clube_atleta ca ON a.id = ca.atleta_id 
                     WHERE ca.clube_id = :clube_id";
-
     $stmt_atletas = $db->prepare($query_atletas);
-    $stmt_atletas->bindParam(':clube_id', $clube_id, PDO::PARAM_INT);
+    $stmt_atletas->bindParam(':clube_id', $clube_id);
     $stmt_atletas->execute();
     $atletas = $stmt_atletas->fetchAll(PDO::FETCH_ASSOC);
 
