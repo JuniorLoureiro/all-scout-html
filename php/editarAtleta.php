@@ -20,7 +20,7 @@ $nacionalidade = $data['nacionalidade'] ?? null;
 $dataNascimento = $data['data_nascimento'] ?? null;
 $altura = $data['altura'] ?? null;
 $pernaDominante = $data['perna_dominante'] ?? null;
-$posicaoSigla = $data['posicao'] ?? null;  // Agora recebemos a sigla da posição
+$posicao = $data['posicao'] ?? null;
 $clube = $data['clube'] ?? null;
 $numero = $data['numero'] ?? null;
 $imagem = $data['imagem'] ?? null;
@@ -32,33 +32,21 @@ if (!$id) {
 }
 
 // Valida os dados obrigatórios
-if (!$nome || !$posicaoSigla) {
+if (!$nome || !$posicao) {
     echo json_encode(['success' => false, 'message' => 'Nome e posição são obrigatórios.']);
     exit;
 }
 
 try {
-    // Busca o id da posição no banco usando a sigla
-    $stmt = $db->prepare("SELECT id FROM posicoes WHERE sigla = :posicaoSigla");
-    $stmt->bindParam(':posicaoSigla', $posicaoSigla);
-    $stmt->execute();
-    $posicaoId = $stmt->fetchColumn();
-
-    // Verifica se a posição foi encontrada
-    if (!$posicaoId) {
-        echo json_encode(['success' => false, 'message' => 'Posição inválida.']);
-        exit;
-    }
-
     // Atualiza os dados do atleta no banco de dados
-    $stmt = $db->prepare("UPDATE atletas SET nome = :nome, nacionalidade = :nacionalidade, data_nascimento = :data_nascimento, altura = :altura, perna_dominante = :perna_dominante, liga_id = :liga_id WHERE id = :id, clube = :clube, numero = :numero, imagem = :imagem WHERE id = :id");
+    $stmt = $db->prepare("UPDATE atletas SET nome = :nome, nacionalidade = :nacionalidade, data_nascimento = :data_nascimento, altura = :altura, perna_dominante = :perna_dominante, posicao = :posicao, clube = :clube, numero = :numero, imagem = :imagem WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':nacionalidade', $nacionalidade);
     $stmt->bindParam(':data_nascimento', $dataNascimento);
     $stmt->bindParam(':altura', $altura);
     $stmt->bindParam(':perna_dominante', $pernaDominante);
-    $stmt->bindParam(':posicao_id', $posicaoId);  // Agora estamos utilizando o id da posição
+    $stmt->bindParam(':posicao', $posicao);
     $stmt->bindParam(':clube', $clube);
     $stmt->bindParam(':numero', $numero);
     $stmt->bindParam(':imagem', $imagem);

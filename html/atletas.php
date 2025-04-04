@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
     $_SESSION['favoritos'][] = [
         'id' => $_POST['id'],
         'nome' => $_POST['nome'],
-        'posicao_id' => $_POST['posicao_id'],
+        'posicao' => $_POST['posicao'],
         'clube' => $_POST['clube'],
         'numero' => $_POST['numero']
     ];
@@ -83,11 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
                 <input type="text" id="searchInput" placeholder="Pesquisar atleta..." onkeyup="filterAtletas()" />
                 <div class="atletas-buttons">
                 <?php
-                // Atualizei o SELECT para usar JOIN e exibir o nome da posição
-                $query = "SELECT atletas.id, atletas.nome, posicoes.nome AS posicao, atletas.clube, atletas.numero 
-                          FROM atletas 
-                          JOIN posicoes ON atletas.posicao_id = posicoes.id";
-
+                $query = "SELECT id, nome, posicao, clube, numero FROM atletas";
                 $stmt = $db->prepare($query);
                 $stmt->execute();
 
@@ -155,6 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 <script src="../js/buscaAtleta.js"></script>
 <script src="../js/searchGeral.js"></script>
 <script src="../js/filter.js"></script>
+
 
 </body>
 </html>

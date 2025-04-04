@@ -65,10 +65,7 @@
         $db = $conn->getConnection();
 
         // Consulta para obter os dados do jogador
-        $query = "SELECT a.*, p.nome AS posicao 
-          FROM atletas a
-          JOIN posicoes p ON a.posicao_id = p.id
-          WHERE a.id = :id";
+        $query = "SELECT * FROM atletas WHERE id = :id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -123,11 +120,7 @@
                         } else {
                             // Botão para favoritar
                             echo '
-                            <button class="button-favorito" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="favoritar(' . htmlspecialchars($jogador['id']) .
-                             ', \'' . htmlspecialchars($jogador['nome']) .
-                              '\', \'' . htmlspecialchars($jogador['posicao_id']) .
-                               '\', \'' . htmlspecialchars($jogador['clube']) .
-                              '\', ' . htmlspecialchars($jogador['numero']) . ')">
+                            <button class="button-favorito" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="favoritar(' . htmlspecialchars($jogador['id']) . ', \'' . htmlspecialchars($jogador['nome']) . '\', \'' . htmlspecialchars($jogador['posicao']) . '\', \'' . htmlspecialchars($jogador['clube']) . '\', ' . htmlspecialchars($jogador['numero']) . ')">
                                 <img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">
                             </button>';
                         }
@@ -144,7 +137,6 @@
             <h2>informações do Atleta</h2>
             <p><label>Nacionalidade:</label> <?php echo htmlspecialchars($jogador['nacionalidade']); ?></p>
             <?php
-
                 $dataNascimento = $jogador['data_nascimento'];
                 $dataNascimentoObj = new DateTime($dataNascimento);
                 $dataFormatada = $dataNascimentoObj->format('d / m / Y');

@@ -73,20 +73,20 @@
             <div class="lista-atletas">
                 <!-- Lista de atletas será preenchida aqui via PHP -->
                 <?php
-                    // Conexão com o banco de dados usando PDO
-                    include('../php/Database.php');
-                    $conn = new Database();
-                    $db = $conn->getConnection();
+                // Conexão com o banco de dados usando PDO
+                include('../php/Database.php');
+                $conn = new Database();
+                $db = $conn->getConnection();
 
-                    try {
-                        // Consulta para buscar todos os atletas
-                        $stmt = $db->prepare("SELECT id, nome, nacionalidade, data_nascimento, altura, perna_dominante, posicao_id, clube, numero, imagem FROM atletas");
-                        $stmt->execute();
-                        $atletas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    } catch (PDOException $e) {
-                        echo "<p>Erro ao carregar atletas: " . $e->getMessage() . "</p>";
-                        $atletas = [];
-                    }                
+                try {
+                    // Consulta para buscar todos os atletas
+                    $stmt = $db->prepare("SELECT id, nome, nacionalidade, data_nascimento, altura, perna_dominante, posicao, clube, numero, imagem FROM atletas");
+                    $stmt->execute();
+                    $atletas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                } catch (PDOException $e) {
+                    echo "<p>Erro ao carregar atletas: " . $e->getMessage() . "</p>";
+                    $atletas = [];
+                }                
                 ?>
 
                 <script>
@@ -134,7 +134,6 @@
                 <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
                 <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante"><br>
                 <label class="text-edit-atleta" for="posicao">Posição:</label>
-                <select id="posicao-id" name="posicao_id"></select><br>
                 <input class="input-edit-atleta" type="text" id="posicao" name="posicao"><br>
                 <label class="text-edit-atleta" for="clube">Clube:</label>
                 <input class="input-edit-atleta" type="text" id="clube" name="clube"><br>
