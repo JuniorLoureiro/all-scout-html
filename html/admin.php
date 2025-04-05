@@ -160,21 +160,41 @@ if (session_status() == PHP_SESSION_NONE) {
   <h3>Características do Atleta</h3>
   <form id="form-caracteristicas-atleta" onsubmit="salvarCaracteristicas(); return false;">
     <input type="hidden" id="caract-id-atleta" name="id_atleta">
-    <label for="caract-posicao">Posição:</label>
-    <input type="text" id="caract-posicao" name="posicao" readonly><br>
 
-    <label>Finalização: <input type="number" id="caract-finalizacao" name="finalizacao" min="0" max="100" required></label><br>
-    <label>Drible: <input type="number" id="caract-drible" name="drible" min="0" max="100" required></label><br>
-    <label>Aceleração: <input type="number" id="caract-aceleracao" name="aceleracao" min="0" max="100" required></label><br>
-    <label>Condução: <input type="number" id="caract-conducao" name="conducao" min="0" max="100" required></label><br>
-    <label>Passe: <input type="number" id="caract-passe" name="passe" min="0" max="100" required></label><br>
-    <label>Desarme: <input type="number" id="caract-desarme" name="desarme" min="0" max="100" required></label><br>
-    <label>Interceptação: <input type="number" id="caract-interceptacao" name="interceptacao" min="0" max="100" required></label><br>
-    <label>Jogo Aéreo: <input type="number" id="caract-jogo-aereo" name="jogo_aereo" min="0" max="100" required></label><br>
+    <label for="caract-posicao">Posição:</label>
+    <input type="text" id="caract-posicao" name="posicao" readonly><br><br>
+
+    <!-- Atributos somente para jogadores de linha -->
+    <div class="campo-linha campo-somente-linha">
+      <label>Finalização: <input type="number" id="caract-finalizacao" name="finalizacao" min="0" max="100"></label><br>
+      <label>Drible: <input type="number" id="caract-drible" name="drible" min="0" max="100"></label><br>
+      <label>Aceleração: <input type="number" id="caract-aceleracao" name="aceleracao" min="0" max="100"></label><br>
+      <label>Condução: <input type="number" id="caract-conducao" name="conducao" min="0" max="100"></label><br>
+      <label>Desarme: <input type="number" id="caract-desarme" name="desarme" min="0" max="100"></label><br>
+      <label>Interceptação: <input type="number" id="caract-interceptacao" name="interceptacao" min="0" max="100"></label><br>
+    </div>
+
+    <!-- Atributos comuns a todas as posições (inclusive goleiros) -->
+    <div class="campo-linha">
+      <label>Passe: <input type="number" id="caract-passe" name="passe" min="0" max="100"></label><br>
+      <label>Jogo Aéreo: <input type="number" id="caract-jogo-aereo" name="jogo_aereo" min="0" max="100"></label><br>
+    </div>
+
+    <!-- Atributos exclusivos de goleiro -->
+    <div class="campo-goleiro" style="display: none;">
+      <label>Reflexo (GK): <input type="number" id="caract-reflexo-gk" name="reflexo_gk" min="0" max="100"></label><br>
+      <label>Rebote (GK): <input type="number" id="caract-rebote-gk" name="rebote_gk" min="0" max="100"></label><br>
+      <label>Posicionamento (GK): <input type="number" id="caract-posicionamento-gk" name="posicionamento_gk" min="0" max="100"></label><br>
+      <label>Saída do Gol (GK): <input type="number" id="caract-saida-gol-gk" name="saida_gol_gk" min="0" max="100"></label><br>
+      <label>Impulsão (GK): <input type="number" id="caract-impulsao-gk" name="impulsao_gk" min="0" max="100"></label><br>
+      <label>Pênaltis (GK): <input type="number" id="caract-penaltis-gk" name="penaltis_gk" min="0" max="100"></label><br>
+    </div>
 
     <button type="submit" class="button-edit-atleta">Salvar Características</button>
   </form>
 </div>
+
+
 
 
 
@@ -401,13 +421,19 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <script>
     function showSection(sectionId) {
-    // Esconde todos os conteúdos
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => content.style.display = 'none');
+    // Esconde todas as seções
+    const sections = document.querySelectorAll('.tab-content');
+    sections.forEach(section => section.style.display = 'none');
 
-    // Mostra o conteúdo selecionado
-    document.getElementById(sectionId).style.display = 'block';
+    // Exibe a seção desejada
+    const sectionToShow = document.getElementById(sectionId);
+    if (sectionToShow) {
+        sectionToShow.style.display = 'block';
     }
+
+    // Oculta a div de características do atleta sempre que mudar de aba
+    document.getElementById('caracteristicas-atleta').style.display = 'none';
+}
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

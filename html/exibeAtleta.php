@@ -254,71 +254,93 @@ if (session_status() == PHP_SESSION_NONE) {
         }
     </style>
 
-    <?php
-    if (session_status() === PHP_SESSION_NONE) {
+<?php
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        echo '
-        <div class="caracteristicas-bloqueadas">
-            <p>🔒 Para visualizar as características completas do atleta, você precisa estar logado.</p>
-            <a href="login.php" class="btn-login">Fazer login</a>
-        </div>';
-    } else {
-        $query_carac = "SELECT * FROM caracteristicas WHERE id_atleta = :id_atleta";
-        $stmt_carac = $db->prepare($query_carac);
-        $stmt_carac->bindParam(':id_atleta', $id, PDO::PARAM_INT);
-        $stmt_carac->execute();
-        $carac = $stmt_carac->fetch(PDO::FETCH_ASSOC);
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    echo '
+    <div class="caracteristicas-bloqueadas">
+        <p>🔒 Para visualizar as características completas do atleta, você precisa estar logado.</p>
+        <a href="login.php" class="btn-login">Fazer login</a>
+    </div>';
+} else {
+    // Buscar posição do atleta
+    $query_pos = "SELECT posicao FROM atletas WHERE id = :id_atleta";
+    $stmt_pos = $db->prepare($query_pos);
+    $stmt_pos->bindParam(':id_atleta', $id, PDO::PARAM_INT);
+    $stmt_pos->execute();
+    $posicao = $stmt_pos->fetchColumn();
 
-        function renderBar($label, $value) {
-            $val = max(0, min(100, intval($value)));
+    $query_carac = "SELECT * FROM caracteristicas WHERE id_atleta = :id_atleta";
+    $stmt_carac = $db->prepare($query_carac);
+    $stmt_carac->bindParam(':id_atleta', $id, PDO::PARAM_INT);
+    $stmt_carac->execute();
+    $carac = $stmt_carac->fetch(PDO::FETCH_ASSOC);
 
-            $hue = 120; // padrão verde
-            $saturation = 100;
+    function renderBar($label, $value) {
+        $val = max(0, min(100, intval($value)));
+
+        $hue = 120;
+        $saturation = 100;
+        $lightness = 40;
+
+        if ($val >= 100) {
+            $hue = 120;
+            $lightness = 5;
+        } elseif ($val >= 90) {
+            $hue = 120;
+            $lightness = 15 + (100 - $val);
+        } elseif ($val >= 80) {
+            $hue = 120;
+            $lightness = 35 + (90 - $val);
+        } elseif ($val >= 70) {
+            $hue = 100;
+            $lightness = 45;
+        } elseif ($val >= 60) {
+            $hue = 55;
+            $lightness = 45;
+        } elseif ($val >= 50) {
+            $hue = 35;
+            $lightness = 45;
+        } elseif ($val >= 40) {
+            $hue = 20;
+            $lightness = 42;
+        } elseif ($val >= 30) {
+            $hue = 5;
             $lightness = 40;
-
-            if ($val >= 100) {
-                $hue = 120;
-                $lightness = 5;
-            } elseif ($val >= 90) {
-                $hue = 120;
-                $lightness = 15 + (100 - $val);
-            } elseif ($val >= 80) {
-                $hue = 120;
-                $lightness = 35 + (90 - $val);
-            } elseif ($val >= 70) {
-                $hue = 100;
-                $lightness = 45;
-            } elseif ($val >= 60) {
-                $hue = 55;
-                $lightness = 45;
-            } elseif ($val >= 50) {
-                $hue = 35;
-                $lightness = 45;
-            } elseif ($val >= 40) {
-                $hue = 20;
-                $lightness = 42;
-            } elseif ($val >= 30) {
-                $hue = 5;
-                $lightness = 40;
-            } else {
-                $hue = 0;
-                $lightness = 32;
-            }
-
-            $color = "hsl($hue, {$saturation}%, {$lightness}%)";
-
-            echo "<div class='stat-label'>{$label}</div>";
-            echo "<div class='stat-bar'>";
-            echo "<div class='stat-fill' style='width: {$val}%; background-color: {$color};'>{$val}</div>";
-            echo "</div>";
+        } else {
+            $hue = 0;
+            $lightness = 32;
         }
 
-        if ($carac) {
-            echo "<div class='caracteristicas-container'>";
+        $color = "hsl($hue, {$saturation}%, {$lightness}%)";
 
+        echo "<div class='stat-label'>{$label}</div>";
+        echo "<div class='stat-bar'>";
+        echo "<div class='stat-fill' style='width: {$val}%; background-color: {$color};'>{$val}</div>";
+        echo "</div>";
+    }
+
+    if ($carac) {
+        echo "<div class='caracteristicas-container'>";
+
+        if (strtolower(trim($posicao)) === "goleiro") {
+            echo "<div class='caracteristicas-coluna'>";
+            renderBar("Passe", $carac['passe']);
+            renderBar("Jogo Aéreo", $carac['jogo_aereo']);
+            renderBar("Reflexo", $carac['reflexo_gk']);
+            renderBar("Rebote", $carac['rebote_gk']);
+            echo "</div>";
+
+            echo "<div class='caracteristicas-coluna'>";
+            renderBar("Posicionamento", $carac['posicionamento_gk']);
+            renderBar("Saída do Gol", $carac['saida_gol_gk']);
+            renderBar("Impulsão", $carac['impulsao_gk']);
+            renderBar("Pênaltis", $carac['penaltis_gk']);
+            echo "</div>";
+        } else {
             echo "<div class='caracteristicas-coluna'>";
             renderBar("Finalização", $carac['finalizacao']);
             renderBar("Drible", $carac['drible']);
@@ -332,20 +354,22 @@ if (session_status() == PHP_SESSION_NONE) {
             renderBar("Interceptação", $carac['interceptacao']);
             renderBar("Jogo Aéreo", $carac['jogo_aereo']);
             echo "</div>";
-
-            echo "<div class='caracteristicas-coluna coluna-direita'>";
-            echo "<div class='overall-container'>";
-            echo "<div class='overall-label'>AllScout Index</div>";
-            echo "<div class='overall-value'>" . (isset($carac['overall']) ? round($carac['overall'], 1) : "--") . "</div>";
-            echo "</div>";
-            echo "</div>";
-
-            echo "</div>"; // fecha .caracteristicas-container
-        } else {
-            echo "<p>Características não cadastradas para este atleta.</p>";
         }
+
+        echo "<div class='caracteristicas-coluna coluna-direita'>";
+        echo "<div class='overall-container'>";
+        echo "<div class='overall-label'>AllScout Index</div>";
+        echo "<div class='overall-value'>" . (isset($carac['overall']) ? round($carac['overall'], 1) : "--") . "</div>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "</div>"; // fecha .caracteristicas-container
+    } else {
+        echo "<p>Características não cadastradas para este atleta.</p>";
     }
-    ?>
+}
+?>
+
 </section>
 
     </main>

@@ -9,11 +9,9 @@ function filterAtletas() {
 }
 
 function editarAtleta(id) {
-    // Encontra os dados do atleta pelo ID
     const atleta = atletas.find(atleta => atleta.id === id);
 
     if (atleta) {
-        // Preenche os campos do formulário com os dados do atleta
         document.getElementById('atleta-id').value = atleta.id;
         document.getElementById('atleta-nome').value = atleta.nome;
         document.getElementById('nacionalidade').value = atleta.nacionalidade;
@@ -24,8 +22,7 @@ function editarAtleta(id) {
         document.getElementById('clube').value = atleta.clube;
         document.getElementById('numero').value = atleta.numero;
         document.getElementById('atleta-imagem').value = atleta.imagem;
-        
-        // Mostra a seção de edição
+
         showSection('editar-atleta');
     }
 }
@@ -42,14 +39,13 @@ function salvarAtleta() {
     const numero = document.getElementById('numero').value;
     const imagem = document.getElementById('atleta-imagem').value;
 
-    // Determina a URL: edição ou adição
     const url = id ? '../php/editarAtleta.php' : '../php/adicionarAtleta.php';
     const data = {
         id,
         nome,
         nacionalidade,
         data_nascimento: dataNascimento,
-        altura, 
+        altura,
         perna_dominante: pernaDominante,
         posicao,
         clube,
@@ -57,7 +53,6 @@ function salvarAtleta() {
         imagem
     };
 
-    // Faz uma requisição AJAX para salvar ou editar
     fetch(url, {
         method: 'POST',
         headers: {
@@ -70,7 +65,6 @@ function salvarAtleta() {
         if (result.success) {
             alert('Atleta salvo com sucesso!');
             showSection('atletas');
-            // Recarregar a lista de atletas
             location.reload();
         } else {
             alert('Erro ao salvar atleta: ' + result.message);
@@ -87,19 +81,15 @@ function cancelarAtleta() {
 }
 
 function excluirAtleta() {
-    // Obtém o atleta selecionado
     const atletaSelecionado = document.querySelector('.item-atleta.selecionado');
     if (!atletaSelecionado) {
         alert('Selecione um atleta para excluir.');
         return;
     }
 
-    // Pega o ID do atleta
     const atletaId = atletaSelecionado.getAttribute('data-id');
 
-    // Confirmação de exclusão
     if (confirm('Tem certeza que deseja excluir este atleta?')) {
-        // Faz uma requisição AJAX para o script PHP de exclusão
         fetch('../php/excluirAtleta.php', {
             method: 'POST',
             headers: {
@@ -111,7 +101,6 @@ function excluirAtleta() {
         .then(data => {
             if (data.success) {
                 alert('Atleta excluído com sucesso!');
-                // Remove o atleta da lista
                 atletaSelecionado.remove();
             } else {
                 alert('Erro ao excluir atleta: ' + data.message);
@@ -125,7 +114,6 @@ function excluirAtleta() {
 }
 
 function adicionarAtleta() {
-    // Limpa os campos do formulário de edição
     document.getElementById('atleta-id').value = '';
     document.getElementById('atleta-nome').value = '';
     document.getElementById('nacionalidade').value = '';
@@ -137,7 +125,6 @@ function adicionarAtleta() {
     document.getElementById('numero').value = '';
     document.getElementById('atleta-imagem').value = '';
 
-    // Mostra a tela de edição
     showSection('editar-atleta');
 }
 
@@ -159,7 +146,6 @@ function uploadImagemAtleta() {
     .then(response => response.json())
     .then(result => {
         if (result.success) {
-            // Atualiza o campo de imagem com o caminho do arquivo salvo
             document.getElementById('atleta-imagem').value = result.filePath;
             alert('Imagem carregada com sucesso!');
         } else {
@@ -172,62 +158,121 @@ function uploadImagemAtleta() {
     });
 }
 
-function mostrarCaracteristicasAtleta() {
-    const id = document.getElementById('atleta-id').value;
-    const posicao = document.getElementById('posicao').value;
+function atualizarFormularioPorPosicao(posicao) {
+    const grupoLinha = document.querySelectorAll('.campo-linha');
+    const grupoGoleiro = document.querySelectorAll('.campo-goleiro');
 
-    if (!id || !posicao) {
-        alert("Preencha o ID e a posição do atleta antes de adicionar características.");
-        return;
+    // Exibe tudo por padrão
+    grupoLinha.forEach(el => el.style.display = 'block');
+    grupoGoleiro.forEach(el => el.style.display = 'block');
+
+    // Se for goleiro, escondemos apenas os campos que são *exclusivos* de jogador de linha
+    if (posicao.toLowerCase() === 'goleiro') {
+        document.querySelectorAll('.campo-somente-linha').forEach(el => el.style.display = 'none');
+    } else {
+        // Se for jogador de linha, escondemos campos exclusivos de goleiro
+        grupoGoleiro.forEach(el => el.style.display = 'none');
     }
+}
 
-    // Preenche os campos ocultos no formulário de características
-    document.getElementById('caract-id-atleta').value = id;
-    document.getElementById('caract-posicao').value = posicao;
+function limparCamposCaracteristicas() {
+    const campos = document.querySelectorAll('#caracteristicas-atleta input');
+    campos.forEach(input => input.value = '');
+}
 
-    // Mostra o formulário de características
-    document.getElementById('caracteristicas-atleta').style.display = 'block';
+function mostrarCaracteristicasAtleta() {
+    const id = document.getElementById("atleta-id").value;
+    const posicao = document.getElementById("posicao").value.toLowerCase();
+
+    document.getElementById("caract-id-atleta").value = id;
+    document.getElementById("caract-posicao").value = posicao;
+
+    atualizarFormularioPorPosicao(posicao);
+
+    document.getElementById("caracteristicas-atleta").style.display = "block";
+
+    fetch(`../php/buscarCaracteristicas.php?id_atleta=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "sucesso") {
+                const caract = data.dados;
+
+                // Jogador de linha
+                document.getElementById("caract-finalizacao").value = caract.finalizacao ?? "";
+                document.getElementById("caract-drible").value = caract.drible ?? "";
+                document.getElementById("caract-aceleracao").value = caract.aceleracao ?? "";
+                document.getElementById("caract-conducao").value = caract.conducao ?? "";
+                document.getElementById("caract-passe").value = caract.passe ?? "";
+                document.getElementById("caract-desarme").value = caract.desarme ?? "";
+                document.getElementById("caract-interceptacao").value = caract.interceptacao ?? "";
+                document.getElementById("caract-jogo-aereo").value = caract.jogo_aereo ?? "";
+
+                // Goleiro
+                document.getElementById("caract-reflexo-gk").value = caract.reflexo_gk ?? "";
+                document.getElementById("caract-rebote-gk").value = caract.rebote_gk ?? "";
+                document.getElementById("caract-posicionamento-gk").value = caract.posicionamento_gk ?? "";
+                document.getElementById("caract-saida-gol-gk").value = caract.saida_gol_gk ?? "";
+                document.getElementById("caract-impulsao-gk").value = caract.impulsao_gk ?? "";
+                document.getElementById("caract-penaltis-gk").value = caract.penaltis_gk ?? "";
+            } else {
+                document.querySelectorAll('#form-caracteristicas-atleta input[type="number"]').forEach(input => {
+                    input.value = "";
+                });
+            }
+        });
 }
 
 function salvarCaracteristicas() {
     const dados = {
-        id_atleta: document.getElementById('caract-id-atleta').value,
-        posicao: document.getElementById('caract-posicao').value,
-        finalizacao: document.getElementById('caract-finalizacao').value,
-        drible: document.getElementById('caract-drible').value,
-        aceleracao: document.getElementById('caract-aceleracao').value,
-        conducao: document.getElementById('caract-conducao').value,
-        passe: document.getElementById('caract-passe').value,
-        desarme: document.getElementById('caract-desarme').value,
-        interceptacao: document.getElementById('caract-interceptacao').value,
-        jogo_aereo: document.getElementById('caract-jogo-aereo').value
+        id_atleta: document.getElementById("caract-id-atleta").value,
+        posicao: document.getElementById("caract-posicao").value,
+        finalizacao: document.getElementById("caract-finalizacao").value,
+        drible: document.getElementById("caract-drible").value,
+        aceleracao: document.getElementById("caract-aceleracao").value,
+        conducao: document.getElementById("caract-conducao").value,
+        passe: document.getElementById("caract-passe").value,
+        desarme: document.getElementById("caract-desarme").value,
+        interceptacao: document.getElementById("caract-interceptacao").value,
+        jogo_aereo: document.getElementById("caract-jogo-aereo").value,
+        reflexo_gk: document.getElementById("caract-reflexo-gk").value,
+        rebote_gk: document.getElementById("caract-rebote-gk").value,
+        posicionamento_gk: document.getElementById("caract-posicionamento-gk").value,
+        saida_gol_gk: document.getElementById("caract-saida-gol-gk").value,
+        impulsao_gk: document.getElementById("caract-impulsao-gk").value,
+        penaltis_gk: document.getElementById("caract-penaltis-gk").value,
     };
+
+    const camposObrigatoriosLinha = ['finalizacao', 'drible', 'aceleracao', 'conducao', 'passe', 'desarme', 'interceptacao', 'jogo_aereo'];
+    const camposObrigatoriosGK = ['reflexo_gk', 'rebote_gk', 'posicionamento_gk', 'saida_gol_gk', 'impulsao_gk', 'penaltis_gk', 'passe', 'jogo_aereo'];
+    const faltando = [];
+
+    if (dados.posicao.toLowerCase() === 'goleiro') {
+        camposObrigatoriosGK.forEach(campo => {
+            if (!dados[campo]) faltando.push(campo);
+        });
+    } else {
+        camposObrigatoriosLinha.forEach(campo => {
+            if (!dados[campo]) faltando.push(campo);
+        });
+    }
+
+    if (faltando.length > 0) {
+        alert("Preencha todos os campos obrigatórios: " + faltando.join(", "));
+        return;
+    }
 
     fetch('../php/salvarCaracteristicas.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dados)
     })
-    .then(async res => {
-        const txt = await res.text();
-        console.log('Resposta bruta:', txt);
-        return JSON.parse(txt);
-    })
-    .then(res => {
-        alert(res.mensagem);
-        if (res.status === 'sucesso') {
-            voltarParaEdicaoAtleta();
-        }
-    })
-    .catch(err => {
-        console.error('Erro ao salvar características:', err);
-        alert('Erro ao salvar. Veja o console.');
-    });
-}
-function voltarParaEdicaoAtleta() {
-    // Apenas esconde o formulário de características
-    document.getElementById('caracteristicas-atleta').style.display = 'none';
-    // Se quiser, você pode focar de volta em algum campo do formulário do atleta
+        .then(response => response.json())
+        .then(resultado => {
+            alert(resultado.mensagem);
+            document.getElementById("caracteristicas-atleta").style.display = "none";
+        })
+        .catch(erro => {
+            console.error('Erro ao salvar características:', erro);
+            alert('Erro ao salvar características');
+        });
 }
