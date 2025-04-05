@@ -154,11 +154,33 @@
 
         <div style=" grid-column: span 2; "> <hr class="horizontal-line"></div>
     
-        <!-- Estatísticas do Jogador -->
+        <!-- Características -->
         <section class="player-stats">
-            <h2>Estatísticas:</h2>
-            <div><p><label>Em andamento...</label></p></div>
-        </section>
+    <h2>Características:</h2>
+    <?php
+    $query_carac = "SELECT * FROM caracteristicas WHERE id_atleta = :id_atleta";
+    $stmt_carac = $db->prepare($query_carac);
+    $stmt_carac->bindParam(':id_atleta', $id, PDO::PARAM_INT);
+    $stmt_carac->execute();
+    $carac = $stmt_carac->fetch(PDO::FETCH_ASSOC);
+
+    if ($carac) {
+        echo "<ul>";
+        echo "<li><strong>Posição:</strong> " . htmlspecialchars($carac['posicao']) . "</li>";
+        echo "<li><strong>Aceleração:</strong> " . htmlspecialchars($carac['aceleracao']) . "</li>";
+        echo "<li><strong>Finalização:</strong> " . htmlspecialchars($carac['finalizacao']) . "</li>";
+        echo "<li><strong>Passe:</strong> " . htmlspecialchars($carac['passe']) . "</li>";
+        echo "<li><strong>Drible:</strong> " . htmlspecialchars($carac['drible']) . "</li>";
+        echo "<li><strong>Desarme:</strong> " . htmlspecialchars($carac['desarme']) . "</li>";
+        echo "<li><strong>Interceptação:</strong> " . htmlspecialchars($carac['interceptacao']) . "</li>";
+        echo "<li><strong>Jogo Aéreo:</strong> " . htmlspecialchars($carac['jogo_aereo']) . "</li>";
+        echo "</ul>";
+        echo "<p><strong>Overall:</strong> " . htmlspecialchars($carac['overall']) . "</p>";
+    } else {
+        echo "<p>Características não cadastradas para este atleta.</p>";
+    }
+    ?>
+</section>
     </main>
 
     <!-- Rodapé -->
