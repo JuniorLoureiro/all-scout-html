@@ -1,6 +1,6 @@
 // Função para remover acentos de uma string
 function removeAccents(str) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Remove acentos
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 // Função para filtrar atletas na barra de pesquisa do aside
@@ -48,6 +48,16 @@ function filterResultadosHeader() {
     resultsContainer.style.display = hasResults ? 'block' : 'none';
 }
 
-// Adiciona os eventos onkeyup para os campos de pesquisa do header e aside
-document.getElementById('searchGeral-input').addEventListener('keyup', filterResultadosHeader);
-document.getElementById('searchInput').addEventListener('keyup', filterAtletasAside);
+// 🧠 Espera o DOM estar carregado antes de buscar os inputs
+document.addEventListener('DOMContentLoaded', function () {
+    const searchHeader = document.getElementById('searchGeral-input');
+    const searchAside = document.getElementById('searchInput');
+
+    if (searchHeader) {
+        searchHeader.addEventListener('keyup', filterResultadosHeader);
+    }
+
+    if (searchAside) {
+        searchAside.addEventListener('keyup', filterAtletasAside);
+    }
+});

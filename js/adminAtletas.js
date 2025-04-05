@@ -171,3 +171,63 @@ function uploadImagemAtleta() {
         alert('Ocorreu um erro ao tentar carregar a imagem.');
     });
 }
+
+function mostrarCaracteristicasAtleta() {
+    const id = document.getElementById('atleta-id').value;
+    const posicao = document.getElementById('posicao').value;
+
+    if (!id || !posicao) {
+        alert("Preencha o ID e a posição do atleta antes de adicionar características.");
+        return;
+    }
+
+    // Preenche os campos ocultos no formulário de características
+    document.getElementById('caract-id-atleta').value = id;
+    document.getElementById('caract-posicao').value = posicao;
+
+    // Mostra o formulário de características
+    document.getElementById('caracteristicas-atleta').style.display = 'block';
+}
+
+function salvarCaracteristicas() {
+    const dados = {
+        id_atleta: document.getElementById('caract-id-atleta').value,
+        posicao: document.getElementById('caract-posicao').value,
+        finalizacao: document.getElementById('caract-finalizacao').value,
+        drible: document.getElementById('caract-drible').value,
+        aceleracao: document.getElementById('caract-aceleracao').value,
+        conducao: document.getElementById('caract-conducao').value,
+        passe: document.getElementById('caract-passe').value,
+        desarme: document.getElementById('caract-desarme').value,
+        interceptacao: document.getElementById('caract-interceptacao').value,
+        jogo_aereo: document.getElementById('caract-jogo-aereo').value
+    };
+
+    fetch('../php/salvarCaracteristicas.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(async res => {
+        const txt = await res.text();
+        console.log('Resposta bruta:', txt);
+        return JSON.parse(txt);
+    })
+    .then(res => {
+        alert(res.mensagem);
+        if (res.status === 'sucesso') {
+            voltarParaEdicaoAtleta();
+        }
+    })
+    .catch(err => {
+        console.error('Erro ao salvar características:', err);
+        alert('Erro ao salvar. Veja o console.');
+    });
+}
+function voltarParaEdicaoAtleta() {
+    // Apenas esconde o formulário de características
+    document.getElementById('caracteristicas-atleta').style.display = 'none';
+    // Se quiser, você pode focar de volta em algum campo do formulário do atleta
+}

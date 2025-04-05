@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
@@ -11,40 +16,30 @@
 <!-- Cabeçalho -->
 <header class="top-nav">
     <div class="top-nav-container">
-        <div class="left-nav">
-            <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-            <nav class="main-nav">
-                <a href="home.php">Início</a>
-                <a href="clubes.php">Clubes</a>
-                <a href="atletas.php">Atletas</a>
-                <a href="sobrenos.php">Sobre Nós</a>
-            </nav>
-        </div>
-        <div class="searchGeral-container">
-                <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
-                <div class="searchGeral-results" id="searchGeral-results"></div>
-        </div>
-        <div class="right-nav">
-            <?php
-            session_start();
-            // Exibe o botão "Tela Admin" se o usuário for administrador
-            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
-                echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
-            }
-            ?>
-            <a href="favoritos.php" class="favorites">
-                <img src="../images/heart_icon.png" alt="Favoritos">
+        <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+
+        <nav class="main-nav">
+            <a href="home.php">Início</a>
+            <a href="clubes.php">Clubes</a>
+            <a href="atletas.php">Atletas</a>
+            <a href="sobrenos.php">Sobre Nós</a>
+        </nav>
+
+        <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+            <a href="admin.php" class="nav-icon" title="Admin">
+                <img src="../images/admin-icon.png" alt="Admin">
             </a>
-            <?php
-            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                // Usuário logado, exibe o nome de usuário
-                echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
-            } else {
-                // Usuário não logado, exibe "Minha Conta"
-                echo '<a href="login.php" class="account-button">Minha Conta</a>';
-            }
-            ?>
-        </div>
+        <?php endif; ?>
+
+        <a href="favoritos.php" class="nav-icon" title="Favoritos">
+            <img src="../images/heart_icon.png" alt="Favoritos">
+        </a>
+
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+            <a href="perfilUser.php" class="account-button"><?= htmlspecialchars($_SESSION['username']) ?></a>
+        <?php else : ?>
+            <a href="login.php" class="account-button">Minha Conta</a>
+        <?php endif; ?>
     </div>
 </header>
 
@@ -116,36 +111,72 @@
             </div>
             <button class="tab-button" onclick="adicionarAtleta()">Adicionar Atleta</button>
             <button class="tab-button" onclick="excluirAtleta()">Excluir Atleta</button>
+
+            
         </div>
 
-        <!-- Tela de edição do atleta -->
-        <div class="tab-content" id="editar-atleta" style="display: none;">   
-            <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
-                <label class="text-edit-atleta" for="id">ID:</label>
-                <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly><br>
-                <label class="text-edit-atleta" for="nome">Nome:</label>
-                <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome"><br>
-                <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
-                <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade"><br>
-                <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
-                <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta"><br>
-                <label class="text-edit-atleta" for="altura">Altura:</label>
-                <input class="input-edit-atleta" type="text" id="altura" name="altura"><br>
-                <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
-                <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante"><br>
-                <label class="text-edit-atleta" for="posicao">Posição:</label>
-                <input class="input-edit-atleta" type="text" id="posicao" name="posicao"><br>
-                <label class="text-edit-atleta" for="clube">Clube:</label>
-                <input class="input-edit-atleta" type="text" id="clube" name="clube"><br>
-                <label class="text-edit-atleta" for="numero">Número:</label>
-                <input class="input-edit-atleta" type="text" id="numero" name="numero"><br>
-                <label class="text-edit-atleta" for="imagem">Imagem:</label>
-                <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
-                <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
-                <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
-                <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
-            </form>
-        </div>
+       <!-- Tela de edição do atleta -->
+<div class="tab-content" id="editar-atleta" style="display: none;">   
+    <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
+        <label class="text-edit-atleta" for="id">ID:</label>
+        <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly><br>
+
+        <label class="text-edit-atleta" for="nome">Nome:</label>
+        <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome"><br>
+
+        <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
+        <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade"><br>
+
+        <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
+        <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta"><br>
+
+        <label class="text-edit-atleta" for="altura">Altura:</label>
+        <input class="input-edit-atleta" type="text" id="altura" name="altura"><br>
+
+        <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
+        <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante"><br>
+
+        <label class="text-edit-atleta" for="posicao">Posição:</label>
+        <input class="input-edit-atleta" type="text" id="posicao" name="posicao"><br>
+
+        <label class="text-edit-atleta" for="clube">Clube:</label>
+        <input class="input-edit-atleta" type="text" id="clube" name="clube"><br>
+
+        <label class="text-edit-atleta" for="numero">Número:</label>
+        <input class="input-edit-atleta" type="text" id="numero" name="numero"><br>
+
+        <label class="text-edit-atleta" for="imagem">Imagem:</label>
+        <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
+        <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
+
+        <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
+        <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
+        <button class="button-edit-atleta" type="button" onclick="mostrarCaracteristicasAtleta()">Características Atleta</button>
+    </form>
+</div>
+
+<!-- Formulário de características do atleta -->
+<div id="caracteristicas-atleta" style="display: none; margin-top: 20px;">
+  <h3>Características do Atleta</h3>
+  <form id="form-caracteristicas-atleta" onsubmit="salvarCaracteristicas(); return false;">
+    <input type="hidden" id="caract-id-atleta" name="id_atleta">
+    <label for="caract-posicao">Posição:</label>
+    <input type="text" id="caract-posicao" name="posicao" readonly><br>
+
+    <label>Finalização: <input type="number" id="caract-finalizacao" name="finalizacao" min="0" max="100" required></label><br>
+    <label>Drible: <input type="number" id="caract-drible" name="drible" min="0" max="100" required></label><br>
+    <label>Aceleração: <input type="number" id="caract-aceleracao" name="aceleracao" min="0" max="100" required></label><br>
+    <label>Condução: <input type="number" id="caract-conducao" name="conducao" min="0" max="100" required></label><br>
+    <label>Passe: <input type="number" id="caract-passe" name="passe" min="0" max="100" required></label><br>
+    <label>Desarme: <input type="number" id="caract-desarme" name="desarme" min="0" max="100" required></label><br>
+    <label>Interceptação: <input type="number" id="caract-interceptacao" name="interceptacao" min="0" max="100" required></label><br>
+    <label>Jogo Aéreo: <input type="number" id="caract-jogo-aereo" name="jogo_aereo" min="0" max="100" required></label><br>
+
+    <button type="submit" class="button-edit-atleta">Salvar Características</button>
+  </form>
+</div>
+
+
 
         <!-- Conteúdo dos Clubes -->
         <div class="tab-content" id="clubes" style="display: none;">

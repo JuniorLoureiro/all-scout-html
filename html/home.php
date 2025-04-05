@@ -1,31 +1,6 @@
 <?php
-// Início do arquivo PHP
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-
-// Conexão com o banco de dados
-include('../php/Database.php');
-$conn = new Database();
-$db = $conn->getConnection();
-
-// Verifica se o formulário de favoritos foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
-    // Exibe os dados recebidos
-    var_dump($_POST);
-
-    if (!isset($_SESSION['favoritos'])) {
-        $_SESSION['favoritos'] = [];
-    }
-    $_SESSION['favoritos'][] = [
-        'id' => $_POST['id'],
-        'nome' => $_POST['nome'],
-        'posicao' => $_POST['posicao'],
-        'clube' => $_POST['clube'],
-        'numero' => $_POST['numero']
-    ];
-    header("Location: home.php");
-    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -39,35 +14,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 <body>
 <header class="top-nav">
     <div class="top-nav-container">
-        <div class="left-nav">
-            <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-            <nav class="main-nav">
-                <a href="home.php">Início</a>
-                <a href="clubes.php">Clubes</a>
-                <a href="atletas.php">Atletas</a>
-                <a href="sobrenos.php">Sobre Nós</a>
-            </nav>
-        </div>
-        <div class="searchGeral-container">
-            <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." onkeyup="filterAtletas()" />
-            <div class="searchGeral-results" id="searchGeral-results"></div>
-        </div>
+        <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
 
-        <div class="right-nav">
-            <?php
-            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
-                echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
-            }
-            ?>
-            <a href="favoritos.php" class="favorites"><img src="../images/heart_icon.png" alt="Favoritos"></a>
-            <?php
-            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
-            } else {
-                echo '<a href="login.php" class="account-button">Minha Conta</a>';
-            }
-            ?>
-        </div>
+        <nav class="main-nav">
+            <a href="home.php">Início</a>
+            <a href="clubes.php">Clubes</a>
+            <a href="atletas.php">Atletas</a>
+            <a href="sobrenos.php">Sobre Nós</a>
+        </nav>
+
+        <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+            <a href="admin.php" class="nav-icon" title="Admin">
+                <img src="../images/admin-icon.png" alt="Admin">
+            </a>
+        <?php endif; ?>
+
+        <a href="favoritos.php" class="nav-icon" title="Favoritos">
+            <img src="../images/heart_icon.png" alt="Favoritos">
+        </a>
+
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+            <a href="perfilUser.php" class="account-button"><?= htmlspecialchars($_SESSION['username']) ?></a>
+        <?php else : ?>
+            <a href="login.php" class="account-button">Minha Conta</a>
+        <?php endif; ?>
     </div>
 </header>
 

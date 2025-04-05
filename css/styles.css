@@ -17,7 +17,7 @@ body, html {
 /* Estilo do cabeçalho */
 .top-nav {
     width: 100%;
-    height: 68px; /* Ajuste a altura conforme necessário */
+    height: 68px;
     padding: 1px 20px;
     background: radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 100%);
     position: fixed;
@@ -28,37 +28,64 @@ body, html {
 }
 
 .top-nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
+    height: 100%; /* Agora ele segue os 68px definidos no .top-nav */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 15px;
 }
-
-.left-nav {
-    display: flex;
-    align-items: center;
-}
-
 .mini-logo {
     width: 110px;
 }
 
 .main-nav {
     display: flex;
-    gap: 15px; /* Espaço entre os links */
+    gap: 25px; /* Aqui você aumenta o espaço entre os links */
     align-items: center;
 }
-
 .main-nav a {
     color: white;
-    text-decoration: none;
-    font-size: 16px;
-    white-space: nowrap; /* Impede quebra de linha dentro dos links */
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    text-decoration: none; /* <- isso aqui remove o underline */
+}
+.main-nav a:hover {
+    color: #006eff;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.main-nav a:hover {
-    text-decoration: underline;
+
+.nav-icon img {
+    width: 25px;
+    height: 25px;
+    margin: 0; /* zera margens */
+    padding: 0;
+    display: block; /* evita espaço vertical adicional de imagens inline */
+}
+
+@media screen and (max-width: 768px) {
+    .top-nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.account-button {
+    padding: 8px 12px;
+    background-color: #006eff;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .search-container {
@@ -81,24 +108,12 @@ body, html {
     color: white;
 }
 
-.right-nav {
-    display: flex;
-    align-items: center;
-}
-
 .favorites img {
     width: 25px;
     margin-right: 20px; /* Espaço entre o ícone de favoritos e o botão Minha Conta */
 }
 
-.account-button {
-    color: #006eff;
-    text-decoration: none;
-    padding: 8px 12px;
-    border: 2px solid #006eff;
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+
 
 .content-wrapper {
     flex: 1;
@@ -1025,19 +1040,28 @@ h1 {
 }
 
 #searchClube {
-    grid-column: span 4; /* Faz a barra de pesquisa ocupar todas as colunas */
-    width: 900px; /* Largura fixa */
+    display: block;
+    width: 1350px; /* Largura fixa */
     min-width: 300px; /* Largura mínima */
-    max-width: 1300px; /* Largura mínima */
     padding: 10px; /* Preenchimento */
-    margin: 0 auto 20px; /* Centraliza e adiciona espaço abaixo */
-    border: 1px solid #007bff; /* Borda padrão */
-    color: black; /* Cor do texto */
-    background-color: white; /* Cor de fundo */
+    margin-bottom: 20px; /* Espaço abaixo */
+    border: 1px solid #007bff; /* Borda */
+    background-color: #007bff;
+    color: white;
     border-radius: 4px; /* Cantos arredondados */
-    font-size: 16px; /* Tamanho da fonte */
-    transition: border-color 0.3s ease; /* Transição suave da borda */
+    font-family: Arial, sans-serif; /* Fonte do texto digitado */
+    font-size: 16px; /* Tamanho da fonte do texto digitado */
+    outline: none; /* Remove o contorno ao clicar */
 }
+
+
+#searchClube::placeholder {
+    color: white; /* Cor do texto do placeholder */
+    opacity: 1; /* Deixa o placeholder totalmente opaco */
+    font-family: 'Arial', sans-serif; /* Fonte do texto do placeholder */
+    font-size: 16px; /* Tamanho da fonte do texto do placeholder */
+}
+
 
 #searchClube:focus {
     outline: none; /* Remove o contorno padrão do foco */

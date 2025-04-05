@@ -31,45 +31,33 @@ $tipo_usuario = isset($_SESSION['tipo_usuario']) ? $_SESSION['tipo_usuario'] : '
 
     <!-- Barra de Navegação -->
     <header class="top-nav">
-            <div class="top-nav-container">
-                <!-- Parte esquerda -->
-                <div class="left-nav">
-                    <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-                    <nav class="main-nav">
-                        <a href="home.php">Início</a>
-                        <a href="clubes.php">Clubes</a>
-                        <a href="atletas.php">Atletas</a>
-                        <a href="sobrenos.php">Sobre Nós</a>
-                    </nav>
-                </div>
-                <!-- Parte central -->
-                <div class="searchGeral-container">
-                    <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." />
-                    <div class="searchGeral-results" id="searchGeral-results"></div>
-                </div>
-                <!-- Parte direita -->
-                <div class="right-nav">
-                    <?php
-                    // Exibe o botão "Tela Admin" se o usuário for administrador
-                    if ($tipo_usuario === 'admin') {
-                        echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Favoritos"></a>';
-                    }
-                    ?>
-                    <a href="favoritos.php" class="favorites">
-                        <img src="../images/heart_icon.png" alt="Favoritos">
-                    </a>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                        // Usuário logado, exibe o nome de usuário
-                        echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
-                    } else {
-                        // Usuário não logado, exibe "Minha Conta"
-                        echo '<a href="login.php" class="account-button">Minha Conta</a>';
-                    }
-                    ?>
-                </div>
-            </div>
-        </header>
+    <div class="top-nav-container">
+        <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
+
+        <nav class="main-nav">
+            <a href="home.php">Início</a>
+            <a href="clubes.php">Clubes</a>
+            <a href="atletas.php">Atletas</a>
+            <a href="sobrenos.php">Sobre Nós</a>
+        </nav>
+
+        <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+            <a href="admin.php" class="nav-icon" title="Admin">
+                <img src="../images/admin-icon.png" alt="Admin">
+            </a>
+        <?php endif; ?>
+
+        <a href="favoritos.php" class="nav-icon" title="Favoritos">
+            <img src="../images/heart_icon.png" alt="Favoritos">
+        </a>
+
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+            <a href="perfilUser.php" class="account-button"><?= htmlspecialchars($_SESSION['username']) ?></a>
+        <?php else : ?>
+            <a href="login.php" class="account-button">Minha Conta</a>
+        <?php endif; ?>
+    </div>
+</header>
 
     <div class="font-controls">
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
