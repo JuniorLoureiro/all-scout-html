@@ -115,46 +115,56 @@ if (session_status() == PHP_SESSION_NONE) {
             
         </div>
 
-       <!-- Tela de edição do atleta -->
+<!-- Tela de edição do atleta -->
 <div class="tab-content" id="editar-atleta" style="display: none;">   
-    <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
-        <label class="text-edit-atleta" for="id">ID:</label>
-        <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly><br>
+    <div class="editar-atleta-container">
 
-        <label class="text-edit-atleta" for="nome">Nome:</label>
-        <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome"><br>
+        <!-- Lado Esquerdo: Formulário -->
+        <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
+            <label class="text-edit-atleta" for="id">ID:</label>
+            <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly>
 
-        <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
-        <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade"><br>
+            <label class="text-edit-atleta" for="nome">Nome:</label>
+            <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome">
 
-        <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
-        <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta"><br>
+            <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
+            <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade">
 
-        <label class="text-edit-atleta" for="altura">Altura:</label>
-        <input class="input-edit-atleta" type="text" id="altura" name="altura"><br>
+            <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
+            <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta">
 
-        <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
-        <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante"><br>
+            <label class="text-edit-atleta" for="altura">Altura:</label>
+            <input class="input-edit-atleta" type="text" id="altura" name="altura">
 
-        <label class="text-edit-atleta" for="posicao">Posição:</label>
-        <input class="input-edit-atleta" type="text" id="posicao" name="posicao"><br>
+            <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
+            <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante">
 
-        <label class="text-edit-atleta" for="clube">Clube:</label>
-        <input class="input-edit-atleta" type="text" id="clube" name="clube"><br>
+            <label class="text-edit-atleta" for="posicao">Posição:</label>
+            <input class="input-edit-atleta" type="text" id="posicao" name="posicao">
 
-        <label class="text-edit-atleta" for="numero">Número:</label>
-        <input class="input-edit-atleta" type="text" id="numero" name="numero"><br>
+            <label class="text-edit-atleta" for="clube">Clube:</label>
+            <input class="input-edit-atleta" type="text" id="clube" name="clube">
 
-        <label class="text-edit-atleta" for="imagem">Imagem:</label>
-        <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
-        <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
+            <label class="text-edit-atleta" for="numero">Número:</label>
+            <input class="input-edit-atleta" type="text" id="numero" name="numero">
 
-        <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
-        <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
-        <button class="button-edit-atleta" type="button" onclick="mostrarCaracteristicasAtleta()">Características Atleta</button>
-    </form>
+            <label class="text-edit-atleta" for="imagem">Imagem:</label>
+            <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
+            <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
+
+            <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
+            <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
+            <button class="button-edit-atleta" type="button" onclick="mostrarCaracteristicasAtleta()">Características Atleta</button>
+        </form>
+
+        <!-- Lado Direito: Espaço para conteúdo adicional -->
+        <div class="editar-atleta-direita">
+            <!-- Conteúdo futuro, exemplo: imagem preview, stats etc -->
+            <p style="color: #ccc;">Conteúdo adicional aqui</p>
+        </div>
+
+    </div>
 </div>
-
 <!-- Formulário de características do atleta -->
 <div id="caracteristicas-atleta" style="display: none; margin-top: 20px;">
   <h3>Características do Atleta</h3>
