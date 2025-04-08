@@ -219,6 +219,7 @@ if (session_status() == PHP_SESSION_NONE) {
             font-weight: 600;
             color: black;
             letter-spacing: 1px;
+            margin-
         }
 
         .overall-value {

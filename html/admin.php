@@ -117,92 +117,92 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <!-- Tela de edição do atleta -->
 <div class="tab-content" id="editar-atleta" style="display: none;">   
-    <div class="editar-atleta-container">
+  <div class="editar-atleta-container">
 
-        <!-- Lado Esquerdo: Formulário -->
-        <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
-            <label class="text-edit-atleta" for="id">ID:</label>
-            <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly>
+    <!-- Lado Esquerdo: Formulário -->
+    <form class="edit-atleta" id="editar-form" enctype="multipart/form-data">
+      <label class="text-edit-atleta" for="id">ID:</label>
+      <input class="input-edit-atleta" type="text" id="atleta-id" name="id" readonly>
 
-            <label class="text-edit-atleta" for="nome">Nome:</label>
-            <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome">
+      <label class="text-edit-atleta" for="nome">Nome:</label>
+      <input class="input-edit-atleta" type="text" id="atleta-nome" name="nome">
 
-            <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
-            <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade">
+      <label class="text-edit-atleta" for="nacionalidade">Nacionalidade:</label>
+      <input class="input-edit-atleta" type="text" id="nacionalidade" name="nacionalidade">
 
-            <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
-            <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta">
+      <label class="text-edit-atleta" for="data_nascimento_atleta">Data de Nascimento:</label>
+      <input class="input-edit-atleta" type="date" id="data_nascimento_atleta" name="data_nascimento_atleta">
 
-            <label class="text-edit-atleta" for="altura">Altura:</label>
-            <input class="input-edit-atleta" type="text" id="altura" name="altura">
+      <label class="text-edit-atleta" for="altura">Altura:</label>
+      <input class="input-edit-atleta" type="text" id="altura" name="altura">
 
-            <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
-            <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante">
+      <label class="text-edit-atleta" for="perna_dominante">Perna Dominante:</label>
+      <input class="input-edit-atleta" type="text" id="perna_dominante" name="perna_dominante">
 
-            <label class="text-edit-atleta" for="posicao">Posição:</label>
-            <input class="input-edit-atleta" type="text" id="posicao" name="posicao">
+      <label class="text-edit-atleta" for="posicao">Posição:</label>
+      <input class="input-edit-atleta" type="text" id="posicao" name="posicao">
 
-            <label class="text-edit-atleta" for="clube">Clube:</label>
-            <input class="input-edit-atleta" type="text" id="clube" name="clube">
+      <label class="text-edit-atleta" for="clube">Clube:</label>
+      <input class="input-edit-atleta" type="text" id="clube" name="clube">
 
-            <label class="text-edit-atleta" for="numero">Número:</label>
-            <input class="input-edit-atleta" type="text" id="numero" name="numero">
+      <label class="text-edit-atleta" for="numero">Número:</label>
+      <input class="input-edit-atleta" type="text" id="numero" name="numero">
 
-            <label class="text-edit-atleta" for="imagem">Imagem:</label>
-            <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
-            <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
+      <label class="text-edit-atleta" for="imagem">Imagem:</label>
+      <input class="input-edit-atleta" type="text" id="atleta-imagem" name="imagem" readonly>
+      <input class="file-edit-atleta" type="file" id="upload-imagem-atleta" accept="image/*" onchange="uploadImagemAtleta()">
 
-            <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
-            <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
-            <button class="button-edit-atleta" type="button" onclick="mostrarCaracteristicasAtleta()">Características Atleta</button>
+    <button class="button-edit-atleta" type="button" onclick="salvarAtleta()">Salvar</button>
+    <button class="button-edit-atleta" type="button" onclick="cancelarAtleta()">Cancelar</button>
+    </form>
+
+    <!-- Lado Direito: Espaço para conteúdo adicional -->
+    <div class="editar-atleta-direita">
+    <button class="button-abre-caracteristicas" type="button" onclick="mostrarCaracteristicasAtleta()">Editar Características Atleta</button>
+      <div id="caracteristicas-atleta" style="display: none;">
+        <h3>Características do Atleta</h3>
+        <form id="form-caracteristicas-atleta" onsubmit="salvarCaracteristicas(); return false;">
+          <input type="hidden" id="caract-id-atleta" name="id_atleta">
+
+          <label for="caract-posicao">Posição:</label>
+          <input type="text" id="caract-posicao" name="posicao" readonly><br><br>
+
+          <!-- Jogador de linha -->
+          <div class="campo-linha campo-somente-linha">
+            <label>Finalização: <input type="number" id="caract-finalizacao" name="finalizacao" min="0" max="100"></label><br>
+            <label>Drible: <input type="number" id="caract-drible" name="drible" min="0" max="100"></label><br>
+            <label>Aceleração: <input type="number" id="caract-aceleracao" name="aceleracao" min="0" max="100"></label><br>
+            <label>Condução: <input type="number" id="caract-conducao" name="conducao" min="0" max="100"></label><br>
+            <label>Desarme: <input type="number" id="caract-desarme" name="desarme" min="0" max="100"></label><br>
+            <label>Interceptação: <input type="number" id="caract-interceptacao" name="interceptacao" min="0" max="100"></label><br>
+          </div>
+
+          <!-- Atributos comuns -->
+          <div class="campo-linha">
+            <label>Passe: <input type="number" id="caract-passe" name="passe" min="0" max="100"></label><br>
+            <label>Jogo Aéreo: <input type="number" id="caract-jogo-aereo" name="jogo_aereo" min="0" max="100"></label><br>
+          </div>
+
+          <!-- Goleiro -->
+          <div class="campo-goleiro" style="display: none;">
+            <label>Reflexo (GK): <input type="number" id="caract-reflexo-gk" name="reflexo_gk" min="0" max="100"></label><br>
+            <label>Rebote (GK): <input type="number" id="caract-rebote-gk" name="rebote_gk" min="0" max="100"></label><br>
+            <label>Posicionamento (GK): <input type="number" id="caract-posicionamento-gk" name="posicionamento_gk" min="0" max="100"></label><br>
+            <label>Saída do Gol (GK): <input type="number" id="caract-saida-gol-gk" name="saida_gol_gk" min="0" max="100"></label><br>
+            <label>Impulsão (GK): <input type="number" id="caract-impulsao-gk" name="impulsao_gk" min="0" max="100"></label><br>
+            <label>Pênaltis (GK): <input type="number" id="caract-penaltis-gk" name="penaltis_gk" min="0" max="100"></label><br>
+          </div>
+
+          <button type="submit" class="button-salva-caracteristicas">Salvar Características</button>
+          <button type="button" onclick="fecharCaracteristicas()" class="btn-fechar-caracteristicas">×</button>
+
         </form>
-
-        <!-- Lado Direito: Espaço para conteúdo adicional -->
-        <div class="editar-atleta-direita">
-            <!-- Conteúdo futuro, exemplo: imagem preview, stats etc -->
-            <p style="color: #ccc;">Conteúdo adicional aqui</p>
-        </div>
-
+      </div>
     </div>
+
+  </div>
 </div>
-<!-- Formulário de características do atleta -->
-<div id="caracteristicas-atleta" style="display: none; margin-top: 20px;">
-  <h3>Características do Atleta</h3>
-  <form id="form-caracteristicas-atleta" onsubmit="salvarCaracteristicas(); return false;">
-    <input type="hidden" id="caract-id-atleta" name="id_atleta">
 
-    <label for="caract-posicao">Posição:</label>
-    <input type="text" id="caract-posicao" name="posicao" readonly><br><br>
-
-    <!-- Atributos somente para jogadores de linha -->
-    <div class="campo-linha campo-somente-linha">
-      <label>Finalização: <input type="number" id="caract-finalizacao" name="finalizacao" min="0" max="100"></label><br>
-      <label>Drible: <input type="number" id="caract-drible" name="drible" min="0" max="100"></label><br>
-      <label>Aceleração: <input type="number" id="caract-aceleracao" name="aceleracao" min="0" max="100"></label><br>
-      <label>Condução: <input type="number" id="caract-conducao" name="conducao" min="0" max="100"></label><br>
-      <label>Desarme: <input type="number" id="caract-desarme" name="desarme" min="0" max="100"></label><br>
-      <label>Interceptação: <input type="number" id="caract-interceptacao" name="interceptacao" min="0" max="100"></label><br>
-    </div>
-
-    <!-- Atributos comuns a todas as posições (inclusive goleiros) -->
-    <div class="campo-linha">
-      <label>Passe: <input type="number" id="caract-passe" name="passe" min="0" max="100"></label><br>
-      <label>Jogo Aéreo: <input type="number" id="caract-jogo-aereo" name="jogo_aereo" min="0" max="100"></label><br>
-    </div>
-
-    <!-- Atributos exclusivos de goleiro -->
-    <div class="campo-goleiro" style="display: none;">
-      <label>Reflexo (GK): <input type="number" id="caract-reflexo-gk" name="reflexo_gk" min="0" max="100"></label><br>
-      <label>Rebote (GK): <input type="number" id="caract-rebote-gk" name="rebote_gk" min="0" max="100"></label><br>
-      <label>Posicionamento (GK): <input type="number" id="caract-posicionamento-gk" name="posicionamento_gk" min="0" max="100"></label><br>
-      <label>Saída do Gol (GK): <input type="number" id="caract-saida-gol-gk" name="saida_gol_gk" min="0" max="100"></label><br>
-      <label>Impulsão (GK): <input type="number" id="caract-impulsao-gk" name="impulsao_gk" min="0" max="100"></label><br>
-      <label>Pênaltis (GK): <input type="number" id="caract-penaltis-gk" name="penaltis_gk" min="0" max="100"></label><br>
-    </div>
-
-    <button type="submit" class="button-edit-atleta">Salvar Características</button>
-  </form>
-</div>
 
 
 

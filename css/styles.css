@@ -1559,24 +1559,66 @@ td {
     flex: 1;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 6px;
+    gap: 0px;
     max-width: 500px;
-    padding: 20px;
+    margin-left: 20px;
     background-color: black;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-/* Lado direito (conteúdo futuro) */
+/* Lado direito  */
+
 .editar-atleta-direita {
-    flex: 1;
-    height: 100%;
-    min-height: 200px;
+    width: 300px; /* ou um valor fixo, tipo 600px */
+    height: 800px; /* altura fixa desejada */
     background-color: #1a1a1a;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     padding: 20px;
-}
+    color: white;
+    margin-right: 20px;
+    flex-shrink: 0; /* impede que ele encolha */
+  }
+  
+  /* Estilo geral dos grupos de label + input */
+  #caracteristicas-atleta label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #ccc;
+    max-width: 300px;
+  }
+  
+  /* Input ajustado para número pequeno e alinhado */
+  #caracteristicas-atleta input[type="number"],
+  #caracteristicas-atleta input[type="text"] {
+    width: 80px;
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+
+  #caracteristicas-atleta h3 {
+    color: #006eff;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+  }
+  
+  #caracteristicas-atleta #caract-posicao {
+    text-transform: uppercase;
+    margin-left: -1px;
+    width: 261px;
+    display: inline-block;
+  }
 
 .text-edit-atleta {
     font-size: 13px;
@@ -1627,6 +1669,66 @@ td {
 
 .button-edit-atleta:hover{
     background-color: #0056b3;
+}
+
+.button-abre-caracteristicas{
+    background-color: #007bff;/*background-color: #00101E;*/
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    width: 260px;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
+    margin-top: 10px;
+}
+
+.button-abre-caracteristicas:hover{
+    background-color: #0056b3;
+}
+
+
+.button-salva-caracteristicas{
+    background-color: #007bff;/*background-color: #00101E;*/
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    width: 260px;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
+    margin-top: 15px;
+    
+}
+
+.button-salva-caracteristicas:hover{
+    background-color: #0056b3;
+}
+
+.btn-fechar-caracteristicas {
+    position: absolute;
+    top: 190px;
+    right: 45px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.btn-fechar-caracteristicas:hover {
+    color: #ff0000;
 }
 
 /* Tela admin de clubes */

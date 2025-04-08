@@ -162,15 +162,12 @@ function atualizarFormularioPorPosicao(posicao) {
     const grupoLinha = document.querySelectorAll('.campo-linha');
     const grupoGoleiro = document.querySelectorAll('.campo-goleiro');
 
-    // Exibe tudo por padrão
     grupoLinha.forEach(el => el.style.display = 'block');
     grupoGoleiro.forEach(el => el.style.display = 'block');
 
-    // Se for goleiro, escondemos apenas os campos que são *exclusivos* de jogador de linha
-    if (posicao.toLowerCase() === 'goleiro') {
+    if (posicao.toLowerCase().includes('goleiro')) {
         document.querySelectorAll('.campo-somente-linha').forEach(el => el.style.display = 'none');
     } else {
-        // Se for jogador de linha, escondemos campos exclusivos de goleiro
         grupoGoleiro.forEach(el => el.style.display = 'none');
     }
 }
@@ -197,7 +194,6 @@ function mostrarCaracteristicasAtleta() {
             if (data.status === "sucesso") {
                 const caract = data.dados;
 
-                // Jogador de linha
                 document.getElementById("caract-finalizacao").value = caract.finalizacao ?? "";
                 document.getElementById("caract-drible").value = caract.drible ?? "";
                 document.getElementById("caract-aceleracao").value = caract.aceleracao ?? "";
@@ -207,7 +203,6 @@ function mostrarCaracteristicasAtleta() {
                 document.getElementById("caract-interceptacao").value = caract.interceptacao ?? "";
                 document.getElementById("caract-jogo-aereo").value = caract.jogo_aereo ?? "";
 
-                // Goleiro
                 document.getElementById("caract-reflexo-gk").value = caract.reflexo_gk ?? "";
                 document.getElementById("caract-rebote-gk").value = caract.rebote_gk ?? "";
                 document.getElementById("caract-posicionamento-gk").value = caract.posicionamento_gk ?? "";
@@ -219,8 +214,15 @@ function mostrarCaracteristicasAtleta() {
                     input.value = "";
                 });
             }
+
+            // Esconde o botão após clicar
+            const botao = document.querySelector(".button-abre-caracteristicas");
+            if (botao) {
+                botao.style.display = "none";
+            }
         });
 }
+
 
 function salvarCaracteristicas() {
     const dados = {
@@ -246,7 +248,7 @@ function salvarCaracteristicas() {
     const camposObrigatoriosGK = ['reflexo_gk', 'rebote_gk', 'posicionamento_gk', 'saida_gol_gk', 'impulsao_gk', 'penaltis_gk', 'passe', 'jogo_aereo'];
     const faltando = [];
 
-    if (dados.posicao.toLowerCase() === 'goleiro') {
+    if (dados.posicao.toLowerCase().includes('goleiro')) {
         camposObrigatoriosGK.forEach(campo => {
             if (!dados[campo]) faltando.push(campo);
         });
@@ -270,9 +272,23 @@ function salvarCaracteristicas() {
         .then(resultado => {
             alert(resultado.mensagem);
             document.getElementById("caracteristicas-atleta").style.display = "none";
-        })
+        
+            const botao = document.querySelector(".button-abre-caracteristicas");
+            if (botao) {
+                botao.style.display = "block";
+        }})
         .catch(erro => {
             console.error('Erro ao salvar características:', erro);
             alert('Erro ao salvar características');
         });
 }
+
+function fecharCaracteristicas() {
+    document.getElementById("caracteristicas-atleta").style.display = "none";
+
+    const botao = document.querySelector(".button-abre-caracteristicas");
+    if (botao) {
+        botao.style.display = "block";
+    }
+}
+
