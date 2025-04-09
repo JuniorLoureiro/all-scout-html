@@ -17,7 +17,7 @@ body, html {
 /* Estilo do cabeçalho */
 .top-nav {
     width: 100%;
-    height: 68px; /* Ajuste a altura conforme necessário */
+    height: 68px;
     padding: 1px 20px;
     background: radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0.8) 100%);
     position: fixed;
@@ -28,37 +28,64 @@ body, html {
 }
 
 .top-nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
+    height: 100%; /* Agora ele segue os 68px definidos no .top-nav */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 15px;
 }
-
-.left-nav {
-    display: flex;
-    align-items: center;
-}
-
 .mini-logo {
     width: 110px;
 }
 
 .main-nav {
     display: flex;
-    gap: 15px; /* Espaço entre os links */
+    gap: 25px; /* Aqui você aumenta o espaço entre os links */
     align-items: center;
 }
-
 .main-nav a {
     color: white;
-    text-decoration: none;
-    font-size: 16px;
-    white-space: nowrap; /* Impede quebra de linha dentro dos links */
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+    text-decoration: none; /* <- isso aqui remove o underline */
+}
+.main-nav a:hover {
+    color: #006eff;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.main-nav a:hover {
-    text-decoration: underline;
+
+.nav-icon img {
+    width: 25px;
+    height: 25px;
+    margin: 0; /* zera margens */
+    padding: 0;
+    display: block; /* evita espaço vertical adicional de imagens inline */
+}
+
+@media screen and (max-width: 768px) {
+    .top-nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.account-button {
+    padding: 8px 12px;
+    background-color: #006eff;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .search-container {
@@ -81,24 +108,12 @@ body, html {
     color: white;
 }
 
-.right-nav {
-    display: flex;
-    align-items: center;
-}
-
 .favorites img {
     width: 25px;
     margin-right: 20px; /* Espaço entre o ícone de favoritos e o botão Minha Conta */
 }
 
-.account-button {
-    color: #006eff;
-    text-decoration: none;
-    padding: 8px 12px;
-    border: 2px solid #006eff;
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+
 
 .content-wrapper {
     flex: 1;
@@ -1025,19 +1040,28 @@ h1 {
 }
 
 #searchClube {
-    grid-column: span 4; /* Faz a barra de pesquisa ocupar todas as colunas */
-    width: 900px; /* Largura fixa */
+    display: block;
+    width: 1350px; /* Largura fixa */
     min-width: 300px; /* Largura mínima */
-    max-width: 1300px; /* Largura mínima */
     padding: 10px; /* Preenchimento */
-    margin: 0 auto 20px; /* Centraliza e adiciona espaço abaixo */
-    border: 1px solid #007bff; /* Borda padrão */
-    color: black; /* Cor do texto */
-    background-color: white; /* Cor de fundo */
+    margin-bottom: 20px; /* Espaço abaixo */
+    border: 1px solid #007bff; /* Borda */
+    background-color: #007bff;
+    color: white;
     border-radius: 4px; /* Cantos arredondados */
-    font-size: 16px; /* Tamanho da fonte */
-    transition: border-color 0.3s ease; /* Transição suave da borda */
+    font-family: Arial, sans-serif; /* Fonte do texto digitado */
+    font-size: 16px; /* Tamanho da fonte do texto digitado */
+    outline: none; /* Remove o contorno ao clicar */
 }
+
+
+#searchClube::placeholder {
+    color: white; /* Cor do texto do placeholder */
+    opacity: 1; /* Deixa o placeholder totalmente opaco */
+    font-family: 'Arial', sans-serif; /* Fonte do texto do placeholder */
+    font-size: 16px; /* Tamanho da fonte do texto do placeholder */
+}
+
 
 #searchClube:focus {
     outline: none; /* Remove o contorno padrão do foco */
@@ -1407,7 +1431,7 @@ td {
 .background-admin {
     margin-top: 100px;       /* Margem a partir do topo */
     width: 900px;            /* Largura fixa */
-    max-height: 1500px ;  /* Altura máxima ajustada à tela, subtraindo o espaço reservado para o header e footer */
+    max-height: 2000px ;  /* Altura máxima ajustada à tela, subtraindo o espaço reservado para o header e footer */
     background-color: black; /* Cor de fundo para visualização */
     border-radius: 8px;      /* Arredondamento das bordas */
     position:relative;      /* Permite que ela se comporte em relação aos elementos ao redor */
@@ -1522,34 +1546,120 @@ td {
     font-weight: bold;
 }
 
-/* Tela de edicao de atleta */
-.edit-atleta{
+.editar-atleta-container {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Lado esquerdo (formulário) */
+.edit-atleta {
+    flex: 1;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    text-align: right;
-    gap:10px;
+    grid-template-columns: 1fr;
+    gap: 0px;
+    max-width: 500px;
+    margin-left: 20px;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-.text-edit-atleta{
-    margin-top: 4px;
+/* Lado direito  */
+
+.editar-atleta-direita {
+    width: 300px; /* ou um valor fixo, tipo 600px */
+    height: 800px; /* altura fixa desejada */
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    padding: 20px;
     color: white;
+    margin-right: 20px;
+    flex-shrink: 0; /* impede que ele encolha */
+  }
 
+  .logo-edicao {
+    position: absolute;
+    bottom: 20px; /* ajuste a distância do fundo */
+    left: 715px; /* centraliza horizontalmente */
+    transform: translateX(-50%); /* corrige o centro */
+    width: 175px;
+    height: 100px;
+    object-fit: contain;
 }
-.input-edit-atleta{
-    height: 25px;
-    margin-left: 0px;
-    color: black;
-    border-color: 1px white;
-    background-color: white;
-    border-radius: 4px;
-    outline: none; /* Remove o contorno padrão do foco */
+  
+  /* Estilo geral dos grupos de label + input */
+  #caracteristicas-atleta label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #ccc;
+    max-width: 300px;
+  }
+  
+  /* Input ajustado para número pequeno e alinhado */
+  #caracteristicas-atleta input[type="number"],
+  #caracteristicas-atleta input[type="text"] {
+    width: 80px;
+    padding: 6px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+
+  #caracteristicas-atleta h3 {
+    color: #006eff;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 1px solid #006eff;
+    padding-bottom: 10px;
+  }
+  
+  #caracteristicas-atleta #caract-posicao {
+    text-transform: uppercase;
+    margin-left: -1px;
+    width: 261px;
+    display: inline-block;
+  }
+
+.text-edit-atleta {
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    display: block;
+    font-weight: 500;
+    text-align: left;
 }
 
-.file-edit-atleta{
-    margin-left: -5px;
-    margin-top: 3px;
-    color: white;
-    
+.input-edit-atleta {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-edit-atleta:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
+    outline: none;
+}
+
+.file-edit-atleta {
+    color: #ccc;
+    font-size: 13px;
 }
 .button-edit-atleta{
     background-color: #007bff;/*background-color: #00101E;*/
@@ -1564,11 +1674,71 @@ td {
     transition: background-color 0.3s ease;
     position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
     margin-top: 15px;
-    transform: translateX(150px);
+    
 }
 
 .button-edit-atleta:hover{
     background-color: #0056b3;
+}
+
+.button-abre-caracteristicas{
+    background-color: #007bff;/*background-color: #00101E;*/
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    width: 260px;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
+    margin-top: 10px;
+}
+
+.button-abre-caracteristicas:hover{
+    background-color: #0056b3;
+}
+
+
+.button-salva-caracteristicas{
+    background-color: #007bff;/*background-color: #00101E;*/
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    width: 260px;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    position: relative !important;/* Posiciona o botão de forma absoluta em relação ao contêiner */
+    margin-top: 15px;
+    
+}
+
+.button-salva-caracteristicas:hover{
+    background-color: #0056b3;
+}
+
+.btn-fechar-caracteristicas {
+    position: absolute;
+    top: 190px;
+    right: 45px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.btn-fechar-caracteristicas:hover {
+    color: #ff0000;
 }
 
 /* Tela admin de clubes */
@@ -1583,6 +1753,8 @@ td {
     scrollbar-width: thin; /* Para navegadores compatíveis */
     scrollbar-color: #006eff black; /* Cor da barra de rolagem */
 }
+
+
 
 .lista-clubes::-webkit-scrollbar {
     width: 10px;
@@ -1613,43 +1785,58 @@ td {
     font-weight: bold;
 }
 
-/* Tela de edicao de clube */
-/* Estilo do formulário de edição de clubes */
+/* Formulário de edição de clube */
 .edit-clube {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Mesmo modelo da tela de atletas */
-    text-align: right;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 0px;
+    width: 800px;
+    margin-left: 20px;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
 }
 
+
+
+/* Label do formulário de clube */
 .text-edit-clube {
-    margin-top: 4px;
-    color: white;
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    display: block;
+    font-weight: 500;
+    text-align: left;
 }
 
+/* Input de texto e número do clube */
 .input-edit-clube {
-    height: 25px;
-    color: black;
-    border-color: 1px white;
-    background-color: white;
-    border-radius: 4px;
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-edit-clube:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
     outline: none;
 }
 
+/* Input de upload de imagem */
 .file-edit-clube {
-    color: white;
+    color: #ccc;
+    font-size: 13px;
+    margin-top: -5px;
 }
 
-/* Container dos botões */
-.buttons-container {
-    grid-column: span 3; /* Faz os botões ocuparem a largura total */
-    display: flex;
-    justify-content: center; /* Centraliza os botões */
-    gap: 10px; /* Espaçamento entre os botões */
-    margin-top: 15px;
-}
-
-/* Estilização dos botões */
+/* Botões de ação */
 .button-edit-clube {
     background-color: #007bff;
     border: 1px solid #007bff;
@@ -1659,14 +1846,43 @@ td {
     text-align: center;
     font-size: 16px;
     padding: 10px;
+    display: block;
     transition: background-color 0.3s ease;
-    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .button-edit-clube:hover {
     background-color: #0056b3;
 }
 
+/* Container dos botões de salvar/cancelar */
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Select para Ligas */
+#liga-id {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    appearance: none;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+#liga-id:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
+    outline: none;
+}
+    
 /* Tela admin de Usuários */
 .lista-usuarios {
     max-height: 300px; /* Altura máxima da lista */
@@ -1710,41 +1926,73 @@ td {
     font-weight: bold;
 }
 
-/* CSS para o formulário de edição do usuário */
+/* Formulário de edição de usuário */
 .edit-usuario {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    text-align: right;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 0px;
+    width: 800px;
+    margin-left: 20px;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
 }
 
+/* Label do formulário de usuário */
 .text-edit-usuario {
-    margin-top: 4px;
-    color: white;
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    display: block;
+    font-weight: 500;
+    text-align: left;
 }
 
+/* Input padrão */
 .input-edit-usuario {
-    height: 25px;
-    color: black;
-    border: 1px solid white;
-    background-color: white;
-    border-radius: 4px;
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-edit-usuario:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
     outline: none;
 }
 
+/* Botões */
 .button-edit-usuario {
     background-color: #007bff;
     border: 1px solid #007bff;
     border-radius: 4px;
+    text-decoration: none;
     color: white;
+    text-align: center;
     font-size: 16px;
     padding: 10px;
     display: block;
     transition: background-color 0.3s ease;
-    position: relative !important;
-    margin-top: 15px;
-    transform: translateX(150px);
+    width: 100%;
+    margin-top: 10px;
 }
+
+.button-edit-usuario:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo do select */
+#tipo_usuario {
+    appearance: none;
+}
+
 
 .button-edit-usuario:hover {
     background-color: #0056b3;

@@ -1,31 +1,6 @@
 <?php
-// Início do arquivo PHP
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-
-// Conexão com o banco de dados
-include('../php/Database.php');
-$conn = new Database();
-$db = $conn->getConnection();
-
-// Verifica se o formulário de favoritos foi enviado
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
-    // Exibe os dados recebidos
-    var_dump($_POST);
-
-    if (!isset($_SESSION['favoritos'])) {
-        $_SESSION['favoritos'] = [];
-    }
-    $_SESSION['favoritos'][] = [
-        'id' => $_POST['id'],
-        'nome' => $_POST['nome'],
-        'posicao' => $_POST['posicao'],
-        'clube' => $_POST['clube'],
-        'numero' => $_POST['numero']
-    ];
-    header("Location: home.php");
-    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -39,35 +14,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
 <body>
 <header class="top-nav">
     <div class="top-nav-container">
-        <div class="left-nav">
-            <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
-            <nav class="main-nav">
-                <a href="home.php">Início</a>
-                <a href="clubes.php">Clubes</a>
-                <a href="atletas.php">Atletas</a>
-                <a href="sobrenos.php">Sobre Nós</a>
-            </nav>
-        </div>
-        <div class="searchGeral-container">
-            <input type="text" id="searchGeral-input" placeholder="Digite para buscar..." onkeyup="filterAtletas()" />
-            <div class="searchGeral-results" id="searchGeral-results"></div>
-        </div>
+        <a href="home.php"><img src="../images/mini_logo.png" alt="Mini Logo" class="mini-logo"></a>
 
-        <div class="right-nav">
-            <?php
-            if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') {
-                echo '<a href="admin.php" class="favorites"><img src="../images/admin-icon.png" alt="Tela Admin"></a>';
-            }
-            ?>
-            <a href="favoritos.php" class="favorites"><img src="../images/heart_icon.png" alt="Favoritos"></a>
-            <?php
-            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                echo '<a href="perfilUser.php" class="account-button">' . htmlspecialchars($_SESSION['username']) . '</a>';
-            } else {
-                echo '<a href="login.php" class="account-button">Minha Conta</a>';
-            }
-            ?>
-        </div>
+        <nav class="main-nav">
+            <a href="home.php">Início</a>
+            <a href="clubes.php">Clubes</a>
+            <a href="atletas.php">Atletas</a>
+            <a href="sobrenos.php">Sobre Nós</a>
+        </nav>
+
+        <?php if (isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin') : ?>
+            <a href="admin.php" class="nav-icon" title="Admin">
+                <img src="../images/admin-icon.png" alt="Admin">
+            </a>
+        <?php endif; ?>
+
+        <a href="favoritos.php" class="nav-icon" title="Favoritos">
+            <img src="../images/heart_icon.png" alt="Favoritos">
+        </a>
+
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+            <a href="perfilUser.php" class="account-button"><?= htmlspecialchars($_SESSION['username']) ?></a>
+        <?php else : ?>
+            <a href="login.php" class="account-button">Minha Conta</a>
+        <?php endif; ?>
     </div>
 </header>
 
@@ -107,49 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
             <button class="carousel-next">›</button>
         </section>
 
-        <div id="card-carousel" class="carousel-cards">
-    <button class="arrow left" onclick="scrollCarouselLeft('#card-carousel')">&#10094;</button>
-    <div class="container-cards">
-        <?php
-            $query = "
-                SELECT 
-                    transferencia.id AS transf_id,
-                    atletas.nome AS atleta_nome,
-                    atletas.imagem AS atleta_imagem,
-                    clubes_atual.nome AS clube_atual,
-                    clubes_novo.nome AS clube_novo,
-                    transferencia.tipoTransf,
-                    transferencia.valorTransf,
-                    transferencia.dataTransf
-                FROM transferencia
-                INNER JOIN atletas ON transferencia.idAtleta = atletas.id
-                INNER JOIN clubes AS clubes_atual ON transferencia.idClubeAtual = clubes_atual.id
-                INNER JOIN clubes AS clubes_novo ON transferencia.idClubeNovo = clubes_novo.id
-                ORDER BY transferencia.dataTransf DESC
-            ";
-            
-            $stmt = $db->prepare($query);
-            $stmt->execute();
+        
 
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="card-transf">';
-                echo '<a href="exibeAtleta.php?id=' . htmlspecialchars($row['transf_id']) . '" class="button-atleta-transf">';
-                echo '<img src="' . htmlspecialchars($row['atleta_imagem']) . '" alt="Imagem do Atleta" class="button-atleta-transf img">';
-                echo '</a>';
-                echo '<div class="card-content">';
-                echo '<h3>' . htmlspecialchars($row['atleta_nome']) . '</h3>';
-                echo '<p>Tipo: ' . htmlspecialchars($row['tipoTransf']) . '</p>';
-                echo '<p>De: ' . htmlspecialchars($row['clube_atual']) . '</p>';
-                echo '<p>Para: ' . htmlspecialchars($row['clube_novo']) . '</p>';
-                echo '<p>Valor: R$ ' . number_format($row['valorTransf'], 2, ',', '.') . '</p>';
-                echo '<p>Data: ' . date('d/m/Y', strtotime($row['dataTransf'])) . '</p>';
-                echo '</div>';
-                echo '</div>';
-            }
-        ?>
-    </div>
-    <button class="arrow right" onclick="scrollCarouselRight('#card-carousel')">&#10095;</button>
-</div>
+
 
 
         
