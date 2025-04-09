@@ -159,6 +159,8 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Lado Direito: Espaço para conteúdo adicional -->
     <div class="editar-atleta-direita">
     <button class="button-abre-caracteristicas" type="button" onclick="mostrarCaracteristicasAtleta()">Editar Características Atleta</button>
+    <img src="../images/logo.png" alt="Logo" class="logo-edicao">
+    
       <div id="caracteristicas-atleta" style="display: none;">
         <h3>Características do Atleta</h3>
         <form id="form-caracteristicas-atleta" onsubmit="salvarCaracteristicas(); return false;">
@@ -195,6 +197,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
           <button type="submit" class="button-salva-caracteristicas">Salvar Características</button>
           <button type="button" onclick="fecharCaracteristicas()" class="btn-fechar-caracteristicas">×</button>
+          
 
         </form>
       </div>

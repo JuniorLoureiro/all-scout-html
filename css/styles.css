@@ -1431,7 +1431,7 @@ td {
 .background-admin {
     margin-top: 100px;       /* Margem a partir do topo */
     width: 900px;            /* Largura fixa */
-    max-height: 1500px ;  /* Altura máxima ajustada à tela, subtraindo o espaço reservado para o header e footer */
+    max-height: 2000px ;  /* Altura máxima ajustada à tela, subtraindo o espaço reservado para o header e footer */
     background-color: black; /* Cor de fundo para visualização */
     border-radius: 8px;      /* Arredondamento das bordas */
     position:relative;      /* Permite que ela se comporte em relação aos elementos ao redor */
@@ -1580,6 +1580,16 @@ td {
     margin-right: 20px;
     flex-shrink: 0; /* impede que ele encolha */
   }
+
+  .logo-edicao {
+    position: absolute;
+    bottom: 20px; /* ajuste a distância do fundo */
+    left: 715px; /* centraliza horizontalmente */
+    transform: translateX(-50%); /* corrige o centro */
+    width: 175px;
+    height: 100px;
+    object-fit: contain;
+}
   
   /* Estilo geral dos grupos de label + input */
   #caracteristicas-atleta label {
@@ -1744,6 +1754,8 @@ td {
     scrollbar-color: #006eff black; /* Cor da barra de rolagem */
 }
 
+
+
 .lista-clubes::-webkit-scrollbar {
     width: 10px;
 }
@@ -1773,43 +1785,58 @@ td {
     font-weight: bold;
 }
 
-/* Tela de edicao de clube */
-/* Estilo do formulário de edição de clubes */
+/* Formulário de edição de clube */
 .edit-clube {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Mesmo modelo da tela de atletas */
-    text-align: right;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 0px;
+    width: 800px;
+    margin-left: 20px;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
 }
 
+
+
+/* Label do formulário de clube */
 .text-edit-clube {
-    margin-top: 4px;
-    color: white;
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    display: block;
+    font-weight: 500;
+    text-align: left;
 }
 
+/* Input de texto e número do clube */
 .input-edit-clube {
-    height: 25px;
-    color: black;
-    border-color: 1px white;
-    background-color: white;
-    border-radius: 4px;
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-edit-clube:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
     outline: none;
 }
 
+/* Input de upload de imagem */
 .file-edit-clube {
-    color: white;
+    color: #ccc;
+    font-size: 13px;
+    margin-top: -5px;
 }
 
-/* Container dos botões */
-.buttons-container {
-    grid-column: span 3; /* Faz os botões ocuparem a largura total */
-    display: flex;
-    justify-content: center; /* Centraliza os botões */
-    gap: 10px; /* Espaçamento entre os botões */
-    margin-top: 15px;
-}
-
-/* Estilização dos botões */
+/* Botões de ação */
 .button-edit-clube {
     background-color: #007bff;
     border: 1px solid #007bff;
@@ -1819,14 +1846,43 @@ td {
     text-align: center;
     font-size: 16px;
     padding: 10px;
+    display: block;
     transition: background-color 0.3s ease;
-    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .button-edit-clube:hover {
     background-color: #0056b3;
 }
 
+/* Container dos botões de salvar/cancelar */
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Select para Ligas */
+#liga-id {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    appearance: none;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+#liga-id:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
+    outline: none;
+}
+    
 /* Tela admin de Usuários */
 .lista-usuarios {
     max-height: 300px; /* Altura máxima da lista */
@@ -1870,41 +1926,73 @@ td {
     font-weight: bold;
 }
 
-/* CSS para o formulário de edição do usuário */
+/* Formulário de edição de usuário */
 .edit-usuario {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    text-align: right;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 0px;
+    width: 800px;
+    margin-left: 20px;
+    background-color: black;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
 }
 
+/* Label do formulário de usuário */
 .text-edit-usuario {
-    margin-top: 4px;
-    color: white;
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    display: block;
+    font-weight: 500;
+    text-align: left;
 }
 
+/* Input padrão */
 .input-edit-usuario {
-    height: 25px;
-    color: black;
-    border: 1px solid white;
-    background-color: white;
-    border-radius: 4px;
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #f1f1f1;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.input-edit-usuario:focus {
+    border-color: #0ea5e9;
+    background-color: #1f1f1f;
     outline: none;
 }
 
+/* Botões */
 .button-edit-usuario {
     background-color: #007bff;
     border: 1px solid #007bff;
     border-radius: 4px;
+    text-decoration: none;
     color: white;
+    text-align: center;
     font-size: 16px;
     padding: 10px;
     display: block;
     transition: background-color 0.3s ease;
-    position: relative !important;
-    margin-top: 15px;
-    transform: translateX(150px);
+    width: 100%;
+    margin-top: 10px;
 }
+
+.button-edit-usuario:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo do select */
+#tipo_usuario {
+    appearance: none;
+}
+
 
 .button-edit-usuario:hover {
     background-color: #0056b3;
