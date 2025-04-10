@@ -45,50 +45,47 @@ if (session_status() == PHP_SESSION_NONE) {
         <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
         <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
     </div>
+
     <nav>
-    <section id="home">
-        <center><h1>Bem-vindo ao Projeto All-Scout</h1></center>
-        <p></p>
-    </section>
+        <section id="about-intro">
+            <center><h1>Bem-vindo ao Projeto All-Scout</h1></center>
+            <p></p>
+        </section>
 
-    <section id="about">
-        <p>
-            <center>
-            <br>O All-Scout é um projeto dedicado à análise abrangente e detalhada do futebol,
-            <br>focado em explorar e destacar o talento de jogadores de todas as divisões e 
-            <br>categorias. A plataforma oferece uma visão global das habilidades e desempenhos
-            <br>dos jogadores, desde as categorias de base até as principais ligas profissionais.
-            <br>Com uma abordagem imparcial e criteriosa, o All-Scout busca ser uma referência
-            <br>para técnicos, olheiros, e entusiastas do futebol, ajudando na descoberta e
-            <br>valorização de novos talentos.</center>
-
+        <section id="about-description">
             <p>
-            <p>
-
-            <center>
-           <br> O All Scout foi criado para oferecer uma solução que facilita o acesso aos dados esportivos para o público geral.
-           <br>Empresários, dirigentes, e até mesmo amantes do futebol podem se beneficiar de uma plataforma que centraliza e
-           <br>automatiza a coleta e a análise de dados de forma simples e intuitiva...</p></center>
-    </section>
-    <section id="creators">
-        <div class="creator">
-            <img src="../images/logo.png" alt="Foto do Criador 1">
-            <h3>Davi Santos, Gelson Junior, Lucas Laner, Mateus Assumpção e Lucas Roppa</h3>
-            <p>Todos os 5 eram colegas na Instituição de ensino Senac Tech do Curso de Técnico de Desenvolvimento de Sistemas, e tiveram a ideia do All-Scout como projeto Integrador.
-                <br>O projeto de inico era pra ser um jogo que se chamaria "Clube do Bolinha", mas tivemos que muda por causa das dificuldades de fazer um jogo.
+                O All-Scout é um projeto dedicado à análise abrangente e detalhada do futebol, focado em explorar e destacar o talento de jogadores de todas as divisões e categorias. A plataforma oferece uma visão global das habilidades e desempenhos dos jogadores, desde as categorias de base até as principais ligas profissionais. Com uma abordagem imparcial e criteriosa, o All-Scout busca ser uma referência para técnicos, olheiros e entusiastas do futebol, ajudando na descoberta e valorização de novos talentos.
             </p>
-        </div>
-    </section>
 
-    <selection>
-        <div class="creator">
-            <img src="../images/Senac.png" alt="Foto empresa">
-           <br> <p> Local onde a empresa se encontra: 
-            <br>  Av. Venâncio Aires, 93 - Cidade Baixa, Porto Alegre - RS, 90040-191
-           </p>
-        </div>
-    </selection>
-  
+            <p>
+                O All-Scout foi criado para oferecer uma solução que facilita o acesso aos dados esportivos para o público geral. Empresários, dirigentes e até mesmo amantes do futebol podem se beneficiar de uma plataforma que centraliza e automatiza a coleta e a análise de dados de forma simples e intuitiva.
+            </p>
+        </section>
+
+        <section id="about-team">
+            <div class="about-card">
+                <img src="../images/logo.png" alt="Foto do Criador 1">
+                <h3>Davi Santos, Gelson Junior, Lucas Laner, Mateus Assumpção e Lucas Roppa</h3>
+                <p>Todos os 5 eram colegas na Instituição de ensino Senac Tech do Curso de Técnico de Desenvolvimento de Sistemas, e tiveram a ideia do All-Scout como projeto Integrador.
+                    <br>O projeto de início era pra ser um jogo que se chamaria "Clube do Bolinha", mas tivemos que mudar por causa das dificuldades de fazer um jogo.
+                </p>
+            </div>
+        </section>
+
+        <section id="about-location">
+            <div class="about-card">
+                <img src="../images/senactech.jpg" alt="Foto empresa">
+                <br>
+                <p>
+                    Local onde a empresa se encontra:
+                    <br>Av. Venâncio Aires, 93 - Cidade Baixa, Porto Alegre - RS, 90040-191
+                </p>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.79161441889!2d-51.2188929!3d-30.0428357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951978567f17f28d%3A0x2c2c5272bacf4d3a!2sSenac%20Tech!5e0!3m2!1spt-BR!2sbr!4v1744327605371!5m2!1spt-BR!2sbr"
+                    width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
     </nav>
 
     <footer class="site-footer">

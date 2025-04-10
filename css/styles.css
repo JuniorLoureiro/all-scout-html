@@ -703,33 +703,50 @@ aside {
 }
 
 /* Estilo da página sobre nós*/
-nav{
-    color:white;
-    margin: 5% ;
+nav {
+    color: white;
+    margin: 5%;
 }
 
-#creators {
+section {
+    margin-bottom: 50px; /* Espaçamento mais controlado entre seções */
+}
+
+#about-description p,
+#about-team p,
+#about-location p {
+    max-width: 800px; /* Largura ideal para leitura */
+    margin: 0 auto 20px auto; /* Centraliza e espaça */
+    line-height: 1.6; /* Altura de linha mais confortável */
+    text-align: center; /* Centraliza o texto */
+}
+
+#about-team,
+#about-location {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ajuste a altura conforme necessário */
-    text-align: center; /* Opcional: centraliza o texto */
+    min-height: 80vh; /* Altura reduzida para diminuir espaçamento */
+    text-align: center;
+    padding: 40px 20px;
 }
-  
-.creator {
+
+.about-card {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alinha o conteúdo horizontalmente no centro */
-    text-align: center; /* Opcional: centraliza o texto */
+    align-items: center;
+    text-align: center;
+    max-width: 900px;
 }
-  
-.creator img {
-    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
-    height: auto; /* Mantém a proporção da imagem */
+
+.about-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
-  
+
 h3, p {
-    margin: 0.5em 0; /* Ajuste a margem conforme necessário */
+    margin: 0.5em 0;
 }
 
 #searchInput {
