@@ -1,4 +1,3 @@
-// loginUser.php
 <?php
 require '../php/Database.php';
 require '../php/usuario.php';
@@ -26,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Login bem-sucedido, cria a sessão
                 $_SESSION['username'] = $usuario->username;
                 $_SESSION['loggedin'] = true;
+                $_SESSION['id_usuario'] = $usuario->id; // ✅ Aqui está correto
 
                 // Armazena os dados do usuário na sessão
                 $_SESSION['nome'] = $usuario->nome;
@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['estado'] = $usuario->estado;
                 $_SESSION['bairro'] = $usuario->bairro;
                 $_SESSION['numEnd'] = $usuario->numEnd;
-                $_SESSION['tipo_usuario'] = $usuario->tipo_usuario; // Adiciona o tipo de usuário
-                
+                $_SESSION['tipo_usuario'] = $usuario->tipo_usuario;
+
                 // Redireciona com base no tipo de usuário
                 if ($usuario->tipo_usuario === 'admin') {
                     header("Location: ../html/admin.php");

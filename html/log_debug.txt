@@ -1,0 +1,28 @@
+SESSION:
+Array
+(
+    [username] => dav
+    [loggedin] => 1
+    [id_usuario] => 2
+    [nome] => Marcelo Pinho Santos
+    [email] => advpinhosantos@gmail.com
+    [cpf] => 556.775.680-15
+    [cep] => 91.040-160
+    [cidade] => Porto Alegre
+    [logradouro] => Rua Bortolo Barbieri
+    [complemento] => 
+    [celular] => (51) 99623-4495
+    [data_nascimento] => 2025-05-01
+    [estado] => RS
+    [bairro] => Jardim São Pedro
+    [numEnd] => 77
+    [tipo_usuario] => usuario
+)
+
+POST:
+Array
+(
+    [id_atleta] => 5
+)
+Tentando inserir: usuario 2 - atleta 5
+SUCESSO na inserção

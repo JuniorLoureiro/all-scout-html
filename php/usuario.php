@@ -5,6 +5,7 @@ class Usuario {
     private $conn;
     private $table_name = "usuarios";
 
+    public $id; // ✅ Adicionado para armazenar o ID
     public $nome;
     public $email;
     public $cpf;
@@ -21,12 +22,10 @@ class Usuario {
     public $numEnd;
     public $tipo_usuario;
 
-    // Construtor
     public function __construct($db) {
         $this->conn = $db;
     }
 
-    // Método para registrar o usuário
     public function registrar() {
         $query = "INSERT INTO " . $this->table_name . " 
             (nome, email, cpf, senha, cep, cidade, logradouro, complemento, username, celular, data_nascimento, estado, bairro, numEnd)
@@ -35,7 +34,6 @@ class Usuario {
         
         $stmt = $this->conn->prepare($query);
 
-        // Ligação dos parâmetros
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':cpf', $this->cpf);
@@ -51,14 +49,9 @@ class Usuario {
         $stmt->bindParam(':bairro', $this->bairro);
         $stmt->bindParam(':numEnd', $this->numEnd);
 
-        // Executa a query
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        return false;
+        return $stmt->execute();
     }
-    
+
     public function verificarSenha($senha_atual) {
         $query = "SELECT senha FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
         $stmt = $this->conn->prepare($query);
@@ -76,51 +69,32 @@ class Usuario {
     public function atualizarSenha() {
         $query = "UPDATE " . $this->table_name . " SET senha = :senha WHERE username = :username";
         $stmt = $this->conn->prepare($query);
-
-        // bind
         $stmt->bindParam(':senha', $this->senha);
         $stmt->bindParam(':username', $this->username);
-
         return $stmt->execute();
     }
 
     public function buscarPorUsername($username) {
-    
-   
-        // Cria a query para buscar o usuário pelo username
         $query = "SELECT id FROM " . $this->table_name . " WHERE username = :username LIMIT 1";
-            
-        // Prepara a consulta
         $stmt = $this->conn->prepare($query);
-            
-        // Liga o parâmetro do username
         $stmt->bindParam(':username', $username);
-       
-        // Executa a consulta
         $stmt->execute();
-
-        // Verifica se encontrou algum resultado
-        if ($stmt->rowCount() > 0) {
-                return true; // O username já existe
-            }
-        else{
-            return false; // O username não existe
-        }     
-
+        return $stmt->rowCount() > 0;
     }
 
     public function obterDadosPorUsername($username) {
-        $query = "SELECT nome, email, cpf, cep, cidade, logradouro, complemento, celular, data_nascimento, estado, bairro, numEnd, senha, tipo_usuario 
+        $query = "SELECT id, nome, email, cpf, cep, cidade, logradouro, complemento, celular, data_nascimento, estado, bairro, numEnd, senha, tipo_usuario 
                   FROM " . $this->table_name . " 
                   WHERE username = :username 
                   LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
-    
+
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            // Armazena os dados na classe
+
+            $this->id = $row['id']; // ✅ ESSENCIAL PARA A SESSÃO FUNCIONAR
             $this->nome = $row['nome'];
             $this->email = $row['email'];
             $this->cpf = $row['cpf'];
@@ -133,32 +107,22 @@ class Usuario {
             $this->estado = $row['estado'];
             $this->bairro = $row['bairro'];
             $this->numEnd = $row['numEnd'];
-            $this->senha = $row['senha']; // Armazena a senha para verificação
-            $this->tipo_usuario = $row['tipo_usuario']; // Armazena o tipo de usuário
+            $this->senha = $row['senha'];
+            $this->tipo_usuario = $row['tipo_usuario'];
+
             return true;
         }
-        return false; // Retorna falso se não encontrar
+        return false;
     }
-    
+
+    public function deletar($username) {
+        $query = "DELETE FROM " . $this->table_name . " WHERE username = :username";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':username', $username);
+        return $stmt->execute();
+    }
+
     public function getTableName() {
         return $this->table_name;
     }
-    public function deletar($username) {
-        // Query para deletar o usuário
-        $query = "DELETE FROM " . $this->table_name . " WHERE username = :username";
-        
-        // Preparação da consulta
-        $stmt = $this->conn->prepare($query);
-        
-        // Bind do parâmetro
-        $stmt->bindParam(':username', $username);
-    
-        // Executa a query e retorna o resultado
-        if ($stmt->execute()) {
-            return true;
-        }
-        
-        return false;
-    }
 }
-?>
