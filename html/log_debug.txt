@@ -1,28 +1,28 @@
 SESSION:
 Array
 (
-    [username] => dav
+    [username] => admin01
     [loggedin] => 1
-    [id_usuario] => 2
-    [nome] => Marcelo Pinho Santos
-    [email] => advpinhosantos@gmail.com
-    [cpf] => 556.775.680-15
-    [cep] => 91.040-160
+    [id_usuario] => 1
+    [nome] => Junior Loureiro
+    [email] => junior@ex.com
+    [cpf] => 124.214.124
+    [cep] => 90040191
     [cidade] => Porto Alegre
-    [logradouro] => Rua Bortolo Barbieri
-    [complemento] => 
-    [celular] => (51) 99623-4495
-    [data_nascimento] => 2025-05-01
+    [logradouro] => Avenida Venâncio Aires
+    [complemento] => 12
+    [celular] => (51) 51512-5122
+    [data_nascimento] => 1212-12-12
     [estado] => RS
-    [bairro] => Jardim São Pedro
-    [numEnd] => 77
-    [tipo_usuario] => usuario
+    [bairro] => Azenha
+    [numEnd] => 12
+    [tipo_usuario] => admin
 )
 
 POST:
 Array
 (
-    [id_atleta] => 5
+    [id_atleta] => 1
 )
-Tentando inserir: usuario 2 - atleta 5
+Tentando inserir: usuario 1 - atleta 1
 SUCESSO na inserção

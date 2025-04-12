@@ -2,6 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+require_once('../php/Database.php'); // Caminho correto do seu arquivo de conexão
+$conn = new Database();
+$db = $conn->getConnection(); // <<< ESSA linha cria a variável $db que está faltando
 ?>
 <!DOCTYPE html>
 <html lang="PT-BR">
@@ -10,6 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <title>Favoritos</title>
+
 </head>
 <body>
 <header class="top-nav">
@@ -50,19 +54,26 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="favoritos-container">
     <h2>Favoritados</h2>
     <div class="atletas-buttons"> <!-- Adicionando a classe para aplicar o estilo -->
-            <?php
-                if (isset($_SESSION['favoritos']) && !empty($_SESSION['favoritos'])) {
-                    // Array para rastrear IDs dos atletas exibidos
-                    $exibidos = [];
-                    
-                    foreach ($_SESSION['favoritos'] as $atleta) {
-                        // Verifica se o ID do atleta já foi exibido
-                        if (!in_array($atleta['id'], $exibidos)) {
-                            $atletaId = htmlspecialchars($atleta['id']);
-                            echo '<div id="atleta-' . $atletaId . '" class="favorito-item">'; // ID único para o contêiner do atleta
-                            // Link para a página exibeAtleta.php com o id do atleta
+    <?php
+        if (isset($_SESSION['id_usuario'])) {
+                    $id_usuario = $_SESSION['id_usuario'];
+
+                    $stmt = $db->prepare("
+                        SELECT a.id, a.nome, a.posicao, a.clube, a.numero
+                        FROM favoritos f
+                        JOIN atletas a ON f.id_atleta = a.id
+                        WHERE f.id_usuario = ?
+                    ");
+                    $stmt->execute([$id_usuario]);
+                    $atletas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (!empty($atletas)) {
+                        foreach ($atletas as $atleta) {
+                            $atletaId = $atleta['id'];
+
+                            echo '<div id="atleta-' . $atletaId . '" class="favorito-item">';
                             echo '    <a href="exibeAtleta.php?id=' . $atletaId . '" class="button-atleta">';
-                            echo '        <div class="button-content-atleta">'; // Mantendo estrutura para conteúdo
+                            echo '        <div class="button-content-atleta">';
                             echo '            <h3 class="button-title-atleta">' . htmlspecialchars($atleta['nome']) . '</h3>';
                             echo '            <p class="button-info-atleta">Posição: ' . htmlspecialchars($atleta['posicao']) . '</p>';
                             echo '            <p class="button-info-atleta">Clube: ' . htmlspecialchars($atleta['clube']) . '</p>';
@@ -70,21 +81,23 @@ if (session_status() == PHP_SESSION_NONE) {
                             echo '        </div>';
                             echo '    </a>';
 
-                            // Botão para desfavoritar com chamada AJAX
-                            echo '    <button class="desfavoritar-button1" onclick="desfavoritar(' . $atletaId . ')">';
+                            // ✅ AQUI está o ajuste: adiciona o data-id para o JS funcionar
+                            echo '    <button class="desfavoritar-button1" onclick="desfavoritarDoFavoritos(' . $atletaId . ')" data-id="' . $atletaId . '">';
                             echo '        <img src="../images/excluir.png" alt="desfav" class="desfavorito1">';
                             echo '    </button>';
 
-                            echo '</div>';
 
-                            // Adiciona o ID do atleta ao array de exibidos
-                            $exibidos[] = $atleta['id'];
+                            echo '</div>';
                         }
+                    } else {
+                        echo '<p>Nenhum atleta favoritado ainda.</p>';
                     }
                 } else {
-                    echo '<p>Nenhum atleta favorito encontrado.</p>';
+                    echo '<p>Você precisa estar logado para ver seus favoritos.</p>';
                 }
-            ?>
+        ?>
+
+
     </div>
 </div>
 
@@ -132,7 +145,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
-    <script src="../js/desfavorito.js"></script>
+    <script src="../js/favorito.js"></script>
     
 </body>
 </html>

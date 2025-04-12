@@ -92,31 +92,31 @@ if (session_status() == PHP_SESSION_NONE) {
             <h2> </h2>
             <section class="favoritar-atleta">
             <?php
-                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                    // Verifica se o atleta já está nos favoritos
-                    $jaFavoritado = false;
-                    if (isset($_SESSION['favoritos'])) {
-                        foreach ($_SESSION['favoritos'] as $atleta) {
-                            if ($atleta['id'] == $jogador['id']) {
-                                $jaFavoritado = true;
-                                break;
-                            }
-                        }
-                    }
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                $jaFavoritado = false;
 
-                    if ($jaFavoritado) {
-                        echo '
-                        <button class="desfavoritar-button" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="desfavoritar(' . htmlspecialchars($jogador['id']) . ')">
-                            <img src="../images/excluir.png" alt="Desfavoritar" class="desfavorito">
-                        </button>';
-                    } else {
-                        echo '
-                        <button class="button-favorito" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="favoritar(' . htmlspecialchars($jogador['id']) . ')">
-                            <img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">
-                        </button>';
+                if (isset($_SESSION['id_usuario'])) {
+                    $stmt = $db->prepare("SELECT 1 FROM favoritos WHERE id_usuario = ? AND id_atleta = ?");
+                    $stmt->execute([$_SESSION['id_usuario'], $jogador['id']]);
+                    if ($stmt->fetch()) {
+                        $jaFavoritado = true;
                     }
                 }
-             ?>
+
+                if ($jaFavoritado) {
+                    echo '
+                    <button class="desfavoritar-button" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="desfavoritar(' . htmlspecialchars($jogador['id']) . ')">
+                        <img src="../images/excluir.png" alt="Desfavoritar" class="desfavorito">
+                    </button>';
+                } else {
+                    echo '
+                    <button class="button-favorito" data-id="' . htmlspecialchars($jogador['id']) . '" onclick="favoritar(' . htmlspecialchars($jogador['id']) . ')">
+                        <img src="../images/heart_icon.png" alt="Favoritar" class="icon-favorito">
+                    </button>';
+                }
+            }
+            ?>
+
 
 </section>
     <div style=" grid-column: span 2; width:95%;"> <hr class="horizontal-line"></div>
