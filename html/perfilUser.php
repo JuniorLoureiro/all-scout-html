@@ -104,8 +104,8 @@ $tipo_usuario = isset($_SESSION['tipo_usuario']) ? $_SESSION['tipo_usuario'] : '
             <form method="POST" action="/all-scout-html/php/logout.php">
                 <button type="submit" class="login-button">Sair da Conta</button>
             </form>
-            <form method="POST" action="/all-scout-html/php/deleteuser.php">
-                <input type="hidden" name="username" value="<?php echo htmlspecialchars($username); ?>"> <!-- Incluindo o campo hidden -->
+            <form method="POST" action="/all-scout-html/php/deleteuser.php" onsubmit="return confirmarExclusao()">
+                <input type="hidden" name="username" value="<?php echo htmlspecialchars($username); ?>">
                 <button type="submit" class="login-button">Deletar Usuário</button>
             </form>
         </div>
@@ -155,7 +155,11 @@ $tipo_usuario = isset($_SESSION['tipo_usuario']) ? $_SESSION['tipo_usuario'] : '
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-
+    <script>
+    function confirmarExclusao() {
+        return confirm("Tem certeza que deseja deletar sua conta? Essa ação não poderá ser desfeita.");
+    }
+    </script>
     <script src="../js/vlibras.js"></script>
     <script src="../js/fontAccessibility.js"></script>
 </body>

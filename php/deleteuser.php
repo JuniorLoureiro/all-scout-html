@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($usuario->buscarPorUsername($username)) {
         // Tenta deletar o usuário
         if ($usuario->deletar($username)) {
-            header("Location: ../html/login.php");  // Corrigido para redirecionar para a página de login
+            header("Location: logout.php");
             exit();
         } else {
             echo "Erro ao deletar o usuário.";
