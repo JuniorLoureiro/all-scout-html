@@ -50,13 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 exit();
             } else {
-                echo "Senha incorreta.";
-            }
+                $_SESSION['mensagem'] = "Senha incorreta.";
+                header("Location: ../html/login.php");
+                exit();
+            }            
         } else {
-            echo "Erro ao obter dados do usuário.";
-        }
+            $_SESSION['mensagem'] = "Erro ao obter dados do usuário.";
+            header("Location: ../html/login.php");
+            exit();
+        }        
     } else {
-        echo "Usuário não encontrado.";
-    }
+        $_SESSION['mensagem'] = "Usuário não encontrado.";
+        header("Location: ../html/login.php");
+        exit();
+    }    
 }
 ?>

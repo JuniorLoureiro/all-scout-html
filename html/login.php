@@ -70,10 +70,10 @@ if (session_status() == PHP_SESSION_NONE) {
     </main>
 
     <?php if (isset($_SESSION['mensagem'])): ?>
-        <div class="alert">
-            <p><?php echo htmlspecialchars($_SESSION['mensagem']); ?></p>
-        </div>
-        <?php unset($_SESSION['mensagem']); // Limpa a mensagem após exibir ?>
+        <script>
+            alert("<?php echo addslashes($_SESSION['mensagem']); ?>");
+        </script>
+        <?php unset($_SESSION['mensagem']); ?>
     <?php endif; ?>
 
     <footer class="site-footer">
