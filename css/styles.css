@@ -14,6 +14,12 @@ body, html {
     overflow-x: hidden; /* Esconde a rolagem horizontal */
 }
 
+p{
+    color: white;
+}
+p label {
+    color: #006eff !important;
+}
 /* Estilo do cabeçalho */
 .top-nav {
     width: 100%;
@@ -363,6 +369,7 @@ body, html {
     background-color: black;
     position: relative; /* Necessário para posicionar a linha */
 }
+
 
 .news-item::after {
     content: "";
@@ -913,7 +920,7 @@ h1 {
     border-radius: 3px;
     position: relative; /* Posiciona o botão de forma absoluta em relação ao contêiner */
     right: -20px; /* Alinha o botão à direita */
-    top: 35px; /* Centraliza o botão verticalmente */
+    top: 80px; /* Centraliza o botão verticalmente */
     transform: translateX(420px);    
 }
 
@@ -941,7 +948,7 @@ h1 {
     border-radius: 3px;
     position: relative; /* Posiciona o botão de forma absoluta em relação ao contêiner */
     right: -20px; /* Alinha o botão à direita */
-    top: 35px; /* Centraliza o botão verticalmente */
+    top: 80px; /* Centraliza o botão verticalmente */
     transform: translateX(420px);       
 }
 .desfavoritar-button .desfavorito{
