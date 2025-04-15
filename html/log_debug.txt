@@ -6,7 +6,7 @@ Array
     [id_usuario] => 1
     [nome] => Junior Loureiro
     [email] => junior@ex.com
-    [cpf] => 124.214.124
+    [cpf] => 123.456.789-10
     [cep] => 90040191
     [cidade] => Porto Alegre
     [logradouro] => Avenida Venâncio Aires
@@ -22,7 +22,7 @@ Array
 POST:
 Array
 (
-    [id_atleta] => 3
+    [id_atleta] => 7
 )
-Tentando inserir: usuario 1 - atleta 3
+Tentando inserir: usuario 1 - atleta 7
 SUCESSO na inserção
