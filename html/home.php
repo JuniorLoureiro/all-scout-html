@@ -51,24 +51,18 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- Carrossel de Notícias -->
         <section class="news-carousel">
             <div class="carousel-slide">
-                <img src="../images/news/carousel-1.jpg" alt="Notícia 1">
+                <img src="../images/news/carousel-3.jpg" alt="Notícia 1">
                 <div class="carousel-content">
-                    <h2><a href="noticia1.html">Título da Notícia 1</a></h2>
-                    <p>Descrição breve da notícia 1.</p>
+                    <h2><a href="noticia1.html"> </a></h2>
+                    
                 </div>
             </div>
+           
             <div class="carousel-slide">
-                <img src="../images/news/carousel-2.jpg" alt="Notícia 2">
+                <img src="../images/news/torcida.jpg" alt="Notícia 4">
                 <div class="carousel-content">
-                    <h2><a href="noticia2.html">Título da Notícia 2</a></h2>
-                    <p>Descrição breve da notícia 2.</p>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="../images/news/carousel-3.jpg" alt="Notícia 3">
-                <div class="carousel-content">
-                    <h2><a href="noticia3.html">Título da Notícia 3</a></h2>
-                    <p>Descrição breve da notícia 3.</p>
+                    <h2><a href="noticia4.html"> </a></h2>
+                    
                 </div>
             </div>
         
@@ -87,38 +81,38 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- Lista de Notícias -->
         <section class="news-list">
             <article class="news-item">
-                <a href="https://ge.globo.com/futebol/times/atletico-mg/noticia/2024/08/20/torcida-do-atletico-mg-faz-mosaico-contra-o-san-lorenzo-nao-ao-racismo.ghtml" target="_blank"><img src="../images/news/noticia-4.avif" alt="Notícia Thumb 1" class="news-thumb"></a>
+                <a href="https://ge.globo.com/futebol/times/flamengo/noticia/2025/04/15/cebolinha-do-flamengo-revela-desejo-de-retornar-ao-gremio-em-um-futuro-bem-proximo.ghtml" target="_blank"><img src="../images/news/noticia-4.avif" alt="Notícia Thumb 1" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="https://ge.globo.com/futebol/times/atletico-mg/noticia/2024/08/20/torcida-do-atletico-mg-faz-mosaico-contra-o-san-lorenzo-nao-ao-racismo.ghtml" target="_blank">Torcida do Atlético-MG faz mosaico contra o San Lorenzo: "Não ao racismo"</a></h2>
-                    <p>Partida pela Libertadores, na Arena MRV, tem mosaico em manifestação contra o racismo</p>
+                    <h2><a href="https://ge.globo.com/futebol/times/flamengo/noticia/2025/04/15/cebolinha-do-flamengo-revela-desejo-de-retornar-ao-gremio-em-um-futuro-bem-proximo.ghtml" target="_blank">Cebolinha, do Flamengo, revela desejo de retornar ao Grêmio: "Em um futuro bem próximo"</a></h2>
+                    <p>Atacante deu a declaração após a vitória rubro-negra na Arena no domingo</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="https://ge.globo.com/futebol/times/fluminense/noticia/2024/08/21/artilharia-troca-de-bracadeira-e-penalti-thiago-silva-vive-noite-de-lider-em-classificacao-do-fluminense.ghtml" target="_blank"><img src="../images/news/noticia-5.avif" alt="Notícia Thumb 2" class="news-thumb"></a>
+                <a href="https://ge.globo.com/al/futebol/noticia/2025/04/15/valores-atualizados-saiba-quanto-ganham-arbitros-e-assistentes-na-serie-b-do-brasileiro-em-2025.ghtml" target="_blank"><img src="../images/news/noticia-5.avif" alt="Notícia Thumb 2" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="https://ge.globo.com/futebol/times/fluminense/noticia/2024/08/21/artilharia-troca-de-bracadeira-e-penalti-thiago-silva-vive-noite-de-lider-em-classificacao-do-fluminense.ghtml" target="_blank">Thiago Silva conta por que decidiu bater pênalti em vaga do Fluminense</a></h2>
-                    <p>Mano vê frieza nos pênaltis e prevê "efeito positivo" em recuperação no Brasileiro</p>
+                    <h2><a href="https://ge.globo.com/al/futebol/noticia/2025/04/15/valores-atualizados-saiba-quanto-ganham-arbitros-e-assistentes-na-serie-b-do-brasileiro-em-2025.ghtml" target="_blank">Quanto ganham árbitros e assistentes na Série B? Veja os valores atualizados</a></h2>
+                    <p>Veja quanto ganham árbitros e assistentes na Série A</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="https://ge.globo.com/futebol/times/corinthians/noticia/2024/08/20/corinthians-faz-proposta-ao-west-ham-para-contratar-zagueiro-luizao.ghtml"  target="_blank"><img src="../images/news/noticia-6.avif" alt="Notícia Thumb 3" class="news-thumb"></a>
+                <a href="https://ge.globo.com/sp/santos-e-regiao/futebol/times/santos/noticia/2025/04/15/o-saudosismo-vai-matar-o-santos-ceo-faz-duras-criticas-e-cobra-modernizacao-do-clube.ghtml"  target="_blank"><img src="../images/news/noticia-6.avif" alt="Notícia Thumb 3" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="https://ge.globo.com/futebol/times/corinthians/noticia/2024/08/20/corinthians-faz-proposta-ao-west-ham-para-contratar-zagueiro-luizao.ghtml"  target="_blank">Corinthians faz proposta ao West Ham para contratar zagueiro Luizão</a></h2>
-                    <p>Clube inglês aceita emprestar o jogador e negocia condições para venda em 2025</p>
+                    <h2><a href="https://ge.globo.com/sp/santos-e-regiao/futebol/times/santos/noticia/2025/04/15/o-saudosismo-vai-matar-o-santos-ceo-faz-duras-criticas-e-cobra-modernizacao-do-clube.ghtml"  target="_blank">"O saudosismo vai matar o Santos": CEO faz duras críticas e cobra modernização do clube</a></h2>
+                    <p>Diretor explica saída de Caixinha do Santos, evita falar de Sampaoli e diz não ter pressa por técnico</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="https://ge.globo.com/sp/tem-esporte/futebol/brasileirao-serie-b/jogo/20-08-2024/novorizontino-ituano.ghtml" target="_blank"><img src="../images/news/noticia-7.avif" alt="Notícia Thumb 1" class="news-thumb"></a>
+                <a href="https://ge.globo.com/futebol/times/corinthians/noticia/2025/04/15/escalacao-do-corinthians-dupla-volta-e-ramon-ensaia-time-com-romero-para-encarar-o-fluminense.ghtml" target="_blank"><img src="../images/news/noticia-7.avif" alt="Notícia Thumb 1" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="https://ge.globo.com/sp/tem-esporte/futebol/brasileirao-serie-b/jogo/20-08-2024/novorizontino-ituano.ghtml" target="_blank">Novorizontino bate Ituano e dorme na liderança</a></h2>
-                    <p>Lucca fez o único gol do jogo</p>
+                    <h2><a href="https://ge.globo.com/futebol/times/corinthians/noticia/2025/04/15/escalacao-do-corinthians-dupla-volta-e-ramon-ensaia-time-com-romero-para-encarar-o-fluminense.ghtml" target="_blank">Corinthians - Escalação: dupla volta, e Ramón ensaia time com Romero para encarar o Fluminense</a></h2>
+                    <p>Técnico argentino testa mesma formação da primeira final do Paulistão, com exceção do goleiro</p>
                 </div>
             </article>
             <article class="news-item">
-                <a href="https://ge.globo.com/futebol/selecao-brasileira/noticia/2024/08/20/eliminatorias-cbf-anuncia-brasil-x-peru-no-mane-garrincha-em-brasilia.ghtml"  target="_blank"><img src="../images/news/noticia-8.avif" alt="Notícia Thumb 2" class="news-thumb"></a>
+                <a href="https://ge.globo.com/ce/futebol/libertadores/noticia/2025/04/15/vidal-enaltece-homenagem-do-fortaleza-a-torcedores-do-colo-colo-que-faleceram-seguimos-de-luto.ghtml"  target="_blank"><img src="../images/news/noticia-8.avif" alt="Notícia Thumb 2" class="news-thumb"></a>
                 <div class="news-content">
-                    <h2><a href="https://ge.globo.com/futebol/selecao-brasileira/noticia/2024/08/20/eliminatorias-cbf-anuncia-brasil-x-peru-no-mane-garrincha-em-brasilia.ghtml"  target="_blank">CBF anuncia Brasil x Peru no Mané Garrincha, pelas Eliminatórias</a></h2>
-                    <p>Seleção jogará na capital federal sua partida como mandante da rodada de outubro do torneio</p>
+                    <h2><a href="https://ge.globo.com/ce/futebol/libertadores/noticia/2025/04/15/vidal-enaltece-homenagem-do-fortaleza-a-torcedores-do-colo-colo-que-faleceram-seguimos-de-luto.ghtml"  target="_blank">Libertadores: Vidal enaltece homenagem do Fortaleza a torcedores do Colo-Colo que faleceram: "Seguimos de luto"</a></h2>
+                    <p>Volante atua no Colo-Colo. Os dois times estão no mesmo grupo da Libertadores</p>
                 </div>
             </article>
         </section>
@@ -153,7 +147,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 AllScout. Todos os direitos reservados.</p>
+            <p>&copy; 2025 AllScout. Todos os direitos reservados.</p>
         </div>
     </footer>
 
