@@ -22,7 +22,7 @@ Array
 POST:
 Array
 (
-    [id_atleta] => 23
+    [id_atleta] => 7
 )
-Tentando inserir: usuario 1 - atleta 23
+Tentando inserir: usuario 1 - atleta 7
 SUCESSO na inserção
