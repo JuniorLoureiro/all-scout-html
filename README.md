@@ -109,8 +109,6 @@ curl_setopt($ch, CURLOPT_URL, "http://localhost/allscout");
 ## 👥 Equipe
 
 Projeto desenvolvido por:
-- Claudio Roberto  
-- Bashir Babalola  
 - Davi Gabriel Boit Dos Santos  
 - Lucas Laner Fornari  
 - Gelson Junior Parahyba Loureiro  
